@@ -8,6 +8,8 @@ import 'package:idb/app/services/logger_service.dart';
 import 'package:idb/app/services/navigation_service.dart';
 import 'package:idb/app/stores/user_store.dart';
 import 'package:get_it/get_it.dart';
+import 'package:idb/app/widgets/form/error_block.dart';
+import 'package:idb/app/widgets/form/input_wrapper.dart';
 import 'package:idb/app/widgets/layout/br.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -71,7 +73,27 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              
+              InputWrapper(
+                name: 'email',
+                hintText: L.t('Enter your e-mail'),
+                activePrefixSrc: 'ico/mail-pink_24x24.png',
+                nonactivePrefixSrc: 'ico/mail-gray_24x24.png',
+                errors: _user.errors,
+                onChanged: (value) => setState(() => _email = value),
+                textInputAction: TextInputAction.next,
+              ),
+              BR(L.v(30)),
+              InputWrapper(
+                name: 'password',
+                isPassword: true,
+                hintText: L.t('Enter your password'),
+                activePrefixSrc: 'ico/lock-pink_24x24.png',
+                nonactivePrefixSrc: 'ico/lock-gray_24x24.png',
+                errors: _user.errors,
+                onChanged: (value) => setState(() => _password = value),
+                textInputAction: TextInputAction.done,
+              ),
+              ErrorBlock(errors: _user.errors),
             ],
           ),
         ),
