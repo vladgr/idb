@@ -68,7 +68,7 @@ class _RootState extends State<Root> {
   }
 
   Future<void> _init() async {
-    print('init');
+    _user.getProfile();
   }
 
   void _setScreenSettings(BuildContext ctx) {

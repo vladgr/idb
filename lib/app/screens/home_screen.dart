@@ -31,11 +31,11 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Observer(builder: (BuildContext context) {
-      if (_user.isAuthenticated == false) {
+      if (_user.isAuthenticated == false || _user.profile == null) {
         return SplashScreen();
       }
 
-      return Container(
+      return SafeArea(
         child: Center(
           child: Text('Home'),
         ),

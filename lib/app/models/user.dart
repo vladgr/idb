@@ -9,6 +9,7 @@ class User {
   late String email;
   late String firstName;
   late String lastName;
+  late DateTime joinedAt;
 
   User({
     required this.id,
@@ -16,8 +17,14 @@ class User {
     required this.email,
     required this.firstName,
     required this.lastName,
+    required this.joinedAt,
   });
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
   Map<String, dynamic> toJson() => _$UserToJson(this);
+
+  @override
+  String toString() {
+    return 'User: $email $firstName $lastName';
+  }
 }
