@@ -1,0 +1,80 @@
+#!/bin/bash
+
+
+if [ "$1" == "avopics" ]
+then
+clear
+
+avopics ~/dev/web/flutter/flutter_starter/project/assets/images
+
+
+elif [ "$1" == "cleanbuilder" ]
+then
+clear
+
+flutter packages pub run build_runner clean
+
+
+elif [ "$1" == "builder" ]
+then
+clear
+
+flutter pub run build_runner watch --delete-conflicting-outputs
+
+
+elif [ "$1" == "cleanios" ]
+then
+clear
+
+flutter clean
+rm -rf ios/Runner.xcworkspace
+rm -rf ios/.symlinks ios/Pods
+rm -f ios/Podfile.lock
+rm -f pubspec.lock
+rm -f .packages
+
+flutter pub get
+cd ios && pod install --repo-update
+
+
+elif [ "$1" == "deploytos3" ]
+then
+clear
+
+# APK release for Android upload to AWS S3
+
+flutter build apk -t lib/main_prod.dart --release
+aws --profile vgrapps s3 cp ~/dev/web/flutter/flutter_starter/project/build/app/outputs/apk/release/app-release.apk s3://vgr-apps/apk/flutter_starter.apk --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
+
+elif [ "$1" == "removefroms3" ]
+then
+clear
+
+# Remove APK from AWS S3
+
+aws --profile vgrapps s3 rm s3://vgr-apps/apk/flutter_starter.apk
+
+
+elif [ "$1" == "deploytoiphone" ]
+then
+clear
+flutter run -t lib/main_prod.dart --release
+
+
+elif [ "$1" == "buildappbundle" ]
+then
+clear
+
+# Appbundle for Android for Google Play
+# Create and copy to ~/Downloads
+
+flutter build appbundle -t lib/main_prod.dart --release
+cp ~/dev/web/flutter/flutter_starter/project/build/app/outputs/bundle/release/app-release.aab ~/Downloads/flutter_starter.aab
+
+
+else
+clear
+
+flutter run
+
+fi
