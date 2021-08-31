@@ -1,6 +1,9 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:idb/app/config.dart';
+import 'package:idb/app/constants/constants.dart';
 import 'package:idb/app/routes.dart';
 import 'package:idb/app/services/helpers.dart';
 import 'package:idb/app/services/l.dart';
@@ -65,19 +68,22 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: Center(
         child: Container(
-          padding: EdgeInsets.all(L.v(20)),
+          constraints: BoxConstraints(
+            maxWidth: L.v(350),
+          ),
+          padding: EdgeInsets.symmetric(horizontal: L.v(50), vertical: L.v(50)),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(L.v(5)),
+            boxShadow: [kDefaultShadow],
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               InputWrapper(
                 name: 'email',
-                hintText: L.t('Enter your e-mail'),
-                activePrefixSrc: 'ico/mail-pink_24x24.png',
-                nonactivePrefixSrc: 'ico/mail-gray_24x24.png',
+                hintText: L.t('E-mail'),
+                prefixIcon: Icons.email,
                 errors: _user.errors,
                 onChanged: (value) => setState(() => _email = value),
                 textInputAction: TextInputAction.next,
@@ -86,14 +92,22 @@ class _LoginScreenState extends State<LoginScreen> {
               InputWrapper(
                 name: 'password',
                 isPassword: true,
-                hintText: L.t('Enter your password'),
-                activePrefixSrc: 'ico/lock-pink_24x24.png',
-                nonactivePrefixSrc: 'ico/lock-gray_24x24.png',
+                hintText: L.t('Password'),
+                prefixIcon: Icons.lock,
                 errors: _user.errors,
                 onChanged: (value) => setState(() => _password = value),
                 textInputAction: TextInputAction.done,
               ),
               ErrorBlock(errors: _user.errors),
+              BR(L.v(30)),
+              SizedBox(
+                width: double.infinity,
+                child: CupertinoButton(
+                  color: Config.primaryColor,
+                  child: Text('LOGIN'),
+                  onPressed: () => {},
+                ),
+              ),
             ],
           ),
         ),

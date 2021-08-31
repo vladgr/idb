@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:idb/app/screens/home_screen.dart';
 import 'package:idb/app/screens/login_screen.dart';
-
-import 'screens/home_screen.dart';
 
 class Routes {
   static const String homeRoute = '/';

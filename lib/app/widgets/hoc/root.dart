@@ -85,11 +85,14 @@ class _RootState extends State<Root> {
     _layout.setWidth(width);
     _layout.setHeight(height);
     _layout.setPaddingTop(paddingTop);
+    _layout.setBreakpoints(width);
   }
 
   @override
   Widget build(BuildContext context) {
     _setScreenSettings(context);
+
+    _logger.debug('Root render');
 
     return Observer(builder: (BuildContext context) {
       if (_user.isAuthenticated == null || !_layout.isLayoutReady) {

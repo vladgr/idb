@@ -1,3 +1,4 @@
+import 'package:idb/app/constants/constants.dart';
 import 'package:idb/app/services/l.dart';
 import 'package:idb/app/stores/user_store.dart';
 import 'package:get_it/get_it.dart';
@@ -29,7 +30,13 @@ abstract class _LayoutStore with Store {
   double paddingTop = 0;
 
   @observable
-  int navBarIndex = 0;
+  bool isMobile = false;
+
+  @observable
+  bool isTablet = false;
+
+  @observable
+  bool isDesktop = false;
 
   // Returns content height: for screens with standard app bar.
   @computed
@@ -76,4 +83,15 @@ abstract class _LayoutStore with Store {
   void setKeyboardVisibility(bool value) {
     this.isKeyboardVisible = value;
   }
+
+  @action
+  void setBreakpoints(double w) {
+    this.isMobile = w < kTabletBreakpoint ? true : false;
+
+    this.isTablet =
+        (w >= kTabletBreakpoint && w < kDesktopBreakpoint) ? true : false;
+
+    this.isDesktop = w >= kDesktopBreakpoint ? true : false;
+  }
 }
+

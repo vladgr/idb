@@ -20,6 +20,7 @@ class Config {
 
   static const apiCheckTokenUrl = '$apiUrl/v1/auth/check_token';
   static const apiLoginUrl = '$apiUrl/v1/auth/login';
+  static const apiProfileUrl = '$apiUrl/v1/profile';
   static const apiTagsUrl = '$apiUrl/v1/idb/tags';
   static const apiItemsUrl = '$apiUrl/v1/idb/items';
   static const apiItemUrl = '$apiUrl/v1/idb/items/<guid>';

@@ -114,18 +114,48 @@ mixin _$LayoutStore on _LayoutStore, Store {
     });
   }
 
-  final _$navBarIndexAtom = Atom(name: '_LayoutStore.navBarIndex');
+  final _$isMobileAtom = Atom(name: '_LayoutStore.isMobile');
 
   @override
-  int get navBarIndex {
-    _$navBarIndexAtom.reportRead();
-    return super.navBarIndex;
+  bool get isMobile {
+    _$isMobileAtom.reportRead();
+    return super.isMobile;
   }
 
   @override
-  set navBarIndex(int value) {
-    _$navBarIndexAtom.reportWrite(value, super.navBarIndex, () {
-      super.navBarIndex = value;
+  set isMobile(bool value) {
+    _$isMobileAtom.reportWrite(value, super.isMobile, () {
+      super.isMobile = value;
+    });
+  }
+
+  final _$isTabletAtom = Atom(name: '_LayoutStore.isTablet');
+
+  @override
+  bool get isTablet {
+    _$isTabletAtom.reportRead();
+    return super.isTablet;
+  }
+
+  @override
+  set isTablet(bool value) {
+    _$isTabletAtom.reportWrite(value, super.isTablet, () {
+      super.isTablet = value;
+    });
+  }
+
+  final _$isDesktopAtom = Atom(name: '_LayoutStore.isDesktop');
+
+  @override
+  bool get isDesktop {
+    _$isDesktopAtom.reportRead();
+    return super.isDesktop;
+  }
+
+  @override
+  set isDesktop(bool value) {
+    _$isDesktopAtom.reportWrite(value, super.isDesktop, () {
+      super.isDesktop = value;
     });
   }
 
@@ -194,6 +224,17 @@ mixin _$LayoutStore on _LayoutStore, Store {
   }
 
   @override
+  void setBreakpoints(double w) {
+    final _$actionInfo = _$_LayoutStoreActionController.startAction(
+        name: '_LayoutStore.setBreakpoints');
+    try {
+      return super.setBreakpoints(w);
+    } finally {
+      _$_LayoutStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 isLayoutReady: ${isLayoutReady},
@@ -202,7 +243,9 @@ orientation: ${orientation},
 width: ${width},
 height: ${height},
 paddingTop: ${paddingTop},
-navBarIndex: ${navBarIndex},
+isMobile: ${isMobile},
+isTablet: ${isTablet},
+isDesktop: ${isDesktop},
 contentHeight: ${contentHeight},
 safeAreaHeight: ${safeAreaHeight}
     ''';

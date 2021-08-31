@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:idb/app/config.dart';
 import 'package:idb/app/models/user.dart';
+import 'package:idb/app/services/api.dart';
 import 'package:idb/app/services/token.dart';
 import 'package:idb/app/stores/base_store.dart';
 import 'package:mobx/mobx.dart';
@@ -55,37 +57,32 @@ abstract class _UserStore extends BaseStore with Store {
 
   @action
   Future<void> logout() async {
-    // if (this.isAuthenticated != null && this.isAuthenticated == true) {
-    //   await apiCall(Config.apiLogoutUrl, 'POST', {}, true);
-    // }
-
     await Token.removeToken();
     this.accessToken = null;
     this.isAuthenticated = false;
 
-    // Timer(Duration(seconds: 3), () {
-    //   this.profile = null;
-    //   // clear all stores
-    // });
+    Timer(Duration(seconds: 3), () {
+      this.profile = null;
+    });
   }
 
   @action
   Future<void> login(dynamic data, VoidCallback onSuccess) async {
-    // this.isInprogress = true;
-    // this.errors = null;
+    this.isInprogress = true;
+    this.errors = null;
 
-    // var result = await apiCall(Config.apiLoginUrl, 'POST', data, false);
-    // if (result.isError) {
-    //   this.errors = result.data;
-    // } else {
-    //   Token.setToken(result.data['token']);
-    //   this.accessToken = result.data['token'];
-    //   this.isAuthenticated = true;
+    var result = await apiCall(Config.apiLoginUrl, 'POST', data, false);
+    if (result.isError) {
+      this.errors = result.data;
+    } else {
+      Token.setToken(result.data['token']);
+      this.accessToken = result.data['token'];
+      this.isAuthenticated = true;
 
-    //   onSuccess();
-    // }
+      onSuccess();
+    }
 
-    // this.isInprogress = false;
+    this.isInprogress = false;
   }
 
   @action

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:idb/app/config.dart';
 import 'package:idb/app/constants/types.dart';
@@ -35,10 +36,6 @@ class InputWrapper extends StatefulWidget {
   final TextInputAction? textInputAction;
   final TextInputType? textInputType;
   final bool enableInteractiveSelection;
-  final String? activePrefixSrc; // relative image src from assets/images
-  final String? nonactivePrefixSrc; // relative image src from assets/images
-  final String? activeSuffixSrc; // relative image src from assets/images
-  final String? nonactiveSuffixSrc; // relative image src from assets/images
   final IconData? prefixIcon;
   final IconData? suffixIcon;
 
@@ -69,10 +66,6 @@ class InputWrapper extends StatefulWidget {
     this.textInputAction,
     this.textInputType,
     this.enableInteractiveSelection: true,
-    this.activePrefixSrc,
-    this.nonactivePrefixSrc,
-    this.activeSuffixSrc,
-    this.nonactiveSuffixSrc,
     this.prefixIcon,
     this.suffixIcon,
   }) : super(key: key);
@@ -248,15 +241,6 @@ class _InputWrapperState extends State<InputWrapper> {
 
   Widget _wPrefix() {
     if (_isActive && !_hasError) {
-      if (this.widget.activePrefixSrc != null) {
-        return Padding(
-          padding: EdgeInsets.only(left: L.v(20), right: L.v(15)),
-          child: SmartImage(
-            src: 'assets/images/${this.widget.activePrefixSrc}',
-          ),
-        );
-      }
-
       if (this.widget.prefixIcon != null) {
         return Padding(
           padding: EdgeInsets.only(left: L.v(20), right: L.v(15)),
@@ -269,15 +253,6 @@ class _InputWrapperState extends State<InputWrapper> {
       }
 
       return BH(L.v(20));
-    }
-
-    if (this.widget.nonactivePrefixSrc != null) {
-      return Padding(
-        padding: EdgeInsets.only(left: L.v(20), right: L.v(15)),
-        child: SmartImage(
-          src: 'assets/images/${this.widget.nonactivePrefixSrc}',
-        ),
-      );
     }
 
     if (this.widget.prefixIcon != null) {
@@ -296,30 +271,22 @@ class _InputWrapperState extends State<InputWrapper> {
 
   Widget _wSuffix() {
     if (this.widget.isPassword) {
-      String src =
-          _isObscured ? 'assets/images/ico/eye-crossed-gray_24x24.png' : 'assets/images/ico/eye-gray_24x24.png';
+      IconData icon = _isObscured ? CupertinoIcons.eye_slash : CupertinoIcons.eye;
 
-      return TapWrapper(
+      var color = _isActive ? Config.primaryColor : Config.grayColor;
+      if (_hasError) color = Config.redColor;
+
+      return IconButton(
         onPressed: () => setState(() {
           _isObscured = !_isObscured;
         }),
-        child: Padding(
-          padding: EdgeInsets.only(left: L.v(15), right: L.v(20)),
-          child: SmartImage(src: src),
-        ),
+        constraints: BoxConstraints(),
+        icon: Icon(icon, color: color),
+        iconSize: L.v(24),
       );
     }
 
     if (_isActive && !_hasError) {
-      if (this.widget.activeSuffixSrc != null) {
-        return Padding(
-          padding: EdgeInsets.only(left: L.v(15), right: L.v(20)),
-          child: SmartImage(
-            src: 'assets/images/${this.widget.activeSuffixSrc}',
-          ),
-        );
-      }
-
       if (this.widget.suffixIcon != null) {
         return Padding(
           padding: EdgeInsets.only(left: L.v(15), right: L.v(20)),
@@ -332,15 +299,6 @@ class _InputWrapperState extends State<InputWrapper> {
       }
 
       return BH(L.v(20));
-    }
-
-    if (this.widget.nonactiveSuffixSrc != null) {
-      return Padding(
-        padding: EdgeInsets.only(left: L.v(15), right: L.v(20)),
-        child: SmartImage(
-          src: 'assets/images/${this.widget.nonactiveSuffixSrc}',
-        ),
-      );
     }
 
     if (this.widget.suffixIcon != null) {
@@ -371,11 +329,10 @@ class _InputWrapperState extends State<InputWrapper> {
 
   Widget _wCont() {
     return Container(
-      height: L.v(58),
       decoration: BoxDecoration(
         color: _contColor,
-        borderRadius: BorderRadius.circular(L.v(29)),
-        border: Border.all(color: _contBorderColor, width: L.v(2)),
+        borderRadius: BorderRadius.circular(L.v(10)),
+        border: Border.all(color: _contBorderColor, width: L.v(1)),
       ),
       child: Row(
         children: [
