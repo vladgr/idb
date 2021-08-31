@@ -28,15 +28,6 @@ abstract class _UserStore extends BaseStore with Store {
   }
 
   @action
-  Future<void> tempAuth() async {
-    await Future.delayed(Duration(milliseconds: 200), () async {
-      await Token.setToken('test');
-      this.accessToken = 'test';
-      this.isAuthenticated = true;
-    });
-  }
-
-  @action
   Future<void> init() async {
     await this.getProfile();
   }
@@ -87,48 +78,16 @@ abstract class _UserStore extends BaseStore with Store {
 
   @action
   Future<void> getProfile() async {
-    this.profile = User();
-    // this.isInprogress = true;
-    // this.errors = null;
+    this.isInprogress = true;
+    this.errors = null;
 
-    // var result = await apiCall(Config.apiProfileUrl, 'GET', {}, true);
-    // if (result.isError) {
-    //   this.logout();
-    // } else {
-    //   this.profile = User.fromJson(result.data);
-    // }
+    var result = await apiCall(Config.apiProfileUrl, 'GET', {}, true);
+    if (result.isError) {
+      this.logout();
+    } else {
+      this.profile = User.fromJson(result.data);
+    }
 
-    // this.isInprogress = false;
-  }
-
-  @action
-  Future<void> editProfile(dynamic data, VoidCallback onSuccess) async {
-    // this.isInprogress = true;
-    // this.errors = null;
-
-    // var result = await apiCall(Config.apiProfileUrl, 'PATCH', data, true);
-    // if (result.isError) {
-    //   this.errors = result.data;
-    // } else {
-    //   this.profile = User.fromJson(result.data);
-    //   onSuccess();
-    // }
-
-    // this.isInprogress = false;
-  }
-
-  @action
-  Future<void> changePassword(dynamic data, VoidCallback onSuccess) async {
-    // this.isInprogress = true;
-    // this.errors = null;
-
-    // var result = await apiCall(Config.apiChangePasswordUrl, 'POST', data, true);
-    // if (result.isError) {
-    //   this.errors = result.data;
-    // } else {
-    //   onSuccess();
-    // }
-
-    // this.isInprogress = false;
+    this.isInprogress = false;
   }
 }

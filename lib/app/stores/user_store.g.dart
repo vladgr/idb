@@ -54,13 +54,6 @@ mixin _$UserStore on _UserStore, Store {
     });
   }
 
-  final _$tempAuthAsyncAction = AsyncAction('_UserStore.tempAuth');
-
-  @override
-  Future<void> tempAuth() {
-    return _$tempAuthAsyncAction.run(() => super.tempAuth());
-  }
-
   final _$initAsyncAction = AsyncAction('_UserStore.init');
 
   @override
@@ -95,22 +88,6 @@ mixin _$UserStore on _UserStore, Store {
   @override
   Future<void> getProfile() {
     return _$getProfileAsyncAction.run(() => super.getProfile());
-  }
-
-  final _$editProfileAsyncAction = AsyncAction('_UserStore.editProfile');
-
-  @override
-  Future<void> editProfile(dynamic data, VoidCallback onSuccess) {
-    return _$editProfileAsyncAction
-        .run(() => super.editProfile(data, onSuccess));
-  }
-
-  final _$changePasswordAsyncAction = AsyncAction('_UserStore.changePassword');
-
-  @override
-  Future<void> changePassword(dynamic data, VoidCallback onSuccess) {
-    return _$changePasswordAsyncAction
-        .run(() => super.changePassword(data, onSuccess));
   }
 
   final _$_UserStoreActionController = ActionController(name: '_UserStore');

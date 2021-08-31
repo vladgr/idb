@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:idb/app/config.dart';
 import 'package:idb/app/constants/constants.dart';
 import 'package:idb/app/routes.dart';
@@ -65,53 +66,56 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Container(
-          constraints: BoxConstraints(
-            maxWidth: L.v(350),
-          ),
-          padding: EdgeInsets.symmetric(horizontal: L.v(50), vertical: L.v(50)),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(L.v(5)),
-            boxShadow: [kDefaultShadow],
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              InputWrapper(
-                name: 'email',
-                hintText: L.t('E-mail'),
-                prefixIcon: Icons.email,
-                errors: _user.errors,
-                onChanged: (value) => setState(() => _email = value),
-                textInputAction: TextInputAction.next,
-              ),
-              BR(L.v(30)),
-              InputWrapper(
-                name: 'password',
-                isPassword: true,
-                hintText: L.t('Password'),
-                prefixIcon: Icons.lock,
-                errors: _user.errors,
-                onChanged: (value) => setState(() => _password = value),
-                textInputAction: TextInputAction.done,
-              ),
-              ErrorBlock(errors: _user.errors),
-              BR(L.v(30)),
-              SizedBox(
-                width: double.infinity,
-                child: CupertinoButton(
-                  color: Config.primaryColor,
-                  child: Text('LOGIN'),
-                  onPressed: () => {},
+    return Observer(builder: (BuildContext context) {
+      return Scaffold(
+        body: Center(
+          child: Container(
+            constraints: BoxConstraints(
+              maxWidth: L.v(350),
+            ),
+            padding: EdgeInsets.symmetric(horizontal: L.v(50), vertical: L.v(50)),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(L.v(5)),
+              boxShadow: [kDefaultShadow],
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                InputWrapper(
+                  name: 'email',
+                  hintText: L.t('E-mail'),
+                  prefixIcon: Icons.email,
+                  errors: _user.errors,
+                  onChanged: (value) => setState(() => _email = value),
+                  textInputAction: TextInputAction.next,
                 ),
-              ),
-            ],
+                BR(L.v(30)),
+                InputWrapper(
+                  name: 'password',
+                  isPassword: true,
+                  hintText: L.t('Password'),
+                  prefixIcon: Icons.lock,
+                  errors: _user.errors,
+                  onChanged: (value) => setState(() => _password = value),
+                  textInputAction: TextInputAction.done,
+                ),
+                ErrorBlock(errors: _user.errors),
+                BR(L.v(30)),
+                SizedBox(
+                  width: double.infinity,
+                  child: CupertinoButton(
+                    disabledColor: Config.primaryColor.withOpacity(0.4),
+                    color: Config.primaryColor,
+                    child: Text('LOGIN'),
+                    onPressed: _isDisabled ? null : _onPressed,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }

@@ -8,8 +8,6 @@ import 'package:idb/app/services/l.dart';
 import 'package:idb/app/services/ts.dart';
 import 'package:idb/app/widgets/layout/bh.dart';
 import 'package:idb/app/widgets/layout/empty.dart';
-import 'package:idb/app/widgets/layout/smart_image.dart';
-import 'package:idb/app/widgets/layout/tap_wrapper.dart';
 
 /// If regex passed for validation, also should pass regexError and store not null
 /// Validation will be done on every onChanged
