@@ -2,7 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:idb/app/routes.dart';
+import 'package:idb/app/services/helpers.dart';
+import 'package:idb/app/services/l.dart';
 import 'package:idb/app/services/logger_service.dart';
+import 'package:idb/app/services/navigation_service.dart';
 import 'package:idb/app/stores/user_store.dart';
 import 'package:get_it/get_it.dart';
 import 'package:idb/app/widgets/layout/br.dart';
@@ -16,7 +19,11 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _logger = GetIt.I<LoggerService>();
+  final _ns = GetIt.I<NavigationService>();
   final _user = GetIt.I<UserStore>();
+
+  String _email = '';
+  String _password = '';
 
   @override
   void initState() {
@@ -26,44 +33,47 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void dispose() {
+    _user.clearErrors();
     _logger.debug('LogginScreen disposed');
     super.dispose();
+  }
+
+  bool get _isDisabled {
+    if (_user.isInprogress) return true;
+    if (_email.trim().isEmpty) return true;
+    if (_password.trim().isEmpty) return true;
+    return false;
+  }
+
+  void _onSuccess() {
+    _ns.navigateAndClear(Routes.homeRoute);
+  }
+
+  Future<void> _onPressed() async {
+    dynamic data = {
+      'email': _email,
+      'password': _password,
+    };
+    await _user.login(data, _onSuccess);
+    dismissKeyboard(context);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('LoginScreen'),
-      ),
       body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'LoginScreen',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            BR(20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed(Routes.homeRoute);
-              },
-              child: Text('Go to signup'),
-            ),
-            BR(20),
-            ElevatedButton(
-              onPressed: () async {
-                await _user.tempAuth();
-
-                // Required.
-                Timer(Duration(milliseconds: 200), () {
-                  Navigator.of(context).pushNamed(Routes.homeRoute);
-                });
-              },
-              child: Text('Authenticate'),
-            ),
-          ],
+        child: Container(
+          padding: EdgeInsets.all(L.v(20)),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(L.v(5)),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              
+            ],
+          ),
         ),
       ),
     );

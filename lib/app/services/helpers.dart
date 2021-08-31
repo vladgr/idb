@@ -4,6 +4,7 @@ import 'dart:io';
 import 'dart:math';
 import 'package:crypto/crypto.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
 bool isInt(String? value) {
@@ -59,17 +60,15 @@ String getPasswordRegExpError() {
 
 String enumToString(Object? o) => o.toString().split('.').last;
 
-T enumFromString<T>(String key, List<T> values) =>
-    values.firstWhere((v) => key == enumToString(v));
+T enumFromString<T>(String key, List<T> values) => values.firstWhere((v) => key == enumToString(v));
 
 String getMd5(String input) {
   return md5.convert(utf8.encode(input)).toString();
 }
 
-// void dismissKeyboard() {
-//   final context = getContext();
-//   FocusScope.of(context).requestFocus(FocusNode());
-// }
+void dismissKeyboard(BuildContext context) {
+  FocusScope.of(context).requestFocus(FocusNode());
+}
 
 Future<void> sleep(int milliseconds) {
   return Future.delayed(Duration(milliseconds: milliseconds), () => {});
@@ -77,8 +76,7 @@ Future<void> sleep(int milliseconds) {
 
 String generateRandomString(int len) {
   var r = Random();
-  const chars =
-      'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+  const chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
   return List.generate(len, (index) => chars[r.nextInt(chars.length)]).join();
 }
 
