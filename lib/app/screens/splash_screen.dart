@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget _wSplash() {
     return Scaffold(
       body: Center(
-        child: CupertinoActivityIndicator(radius: 25),
+        child: CupertinoActivityIndicator(radius: 16),
       ),
     );
   }

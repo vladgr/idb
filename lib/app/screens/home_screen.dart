@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
+import 'package:idb/app/config.dart';
 import 'package:idb/app/screens/splash_screen.dart';
+import 'package:idb/app/services/l.dart';
 import 'package:idb/app/services/logger_service.dart';
 import 'package:idb/app/stores/user_store.dart';
+import 'package:idb/app/widgets/dashboard/content_col.dart';
+import 'package:idb/app/widgets/dashboard/items_col.dart';
+import 'package:idb/app/widgets/dashboard/navbar.dart';
+import 'package:idb/app/widgets/dashboard/tags_col.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -36,8 +42,37 @@ class _HomeScreenState extends State<HomeScreen> {
       }
 
       return SafeArea(
-        child: Center(
-          child: Text('Home'),
+        child: Scaffold(
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                AppTopNavbar(),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: L.v(250),
+                      child: ItemsCol(),
+                    ),
+                    Expanded(
+                      flex: 7,
+                      child: ContentCol(),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: TagsCol(),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {},
+            child: Icon(Icons.add),
+            backgroundColor: Config.primaryColor,
+            foregroundColor: Colors.white,
+          ),
         ),
       );
     });
