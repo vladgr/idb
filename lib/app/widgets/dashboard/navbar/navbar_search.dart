@@ -66,11 +66,13 @@ class _NavbarSearchState extends State<NavbarSearch> {
             width: L.v(250),
             height: L.v(40),
             child: TextField(
+              autofocus: true,
               controller: _controller,
               cursorWidth: 1,
               cursorColor: Config.gray108Color,
               style: Ts.text14(Config.gray108Color),
               decoration: InputDecoration(
+                hintText: 'Search',
                 fillColor: Config.gray222Color,
                 filled: true,
                 border: OutlineInputBorder(

@@ -6,6 +6,7 @@ import 'package:idb/app/models/item.dart';
 import 'package:idb/app/services/api.dart';
 import 'package:idb/app/stores/base_store.dart';
 import 'package:idb/app/stores/search_store.dart';
+import 'package:idb/app/stores/tag_store.dart';
 import 'package:mobx/mobx.dart';
 
 part 'item_store.g.dart';
@@ -16,11 +17,18 @@ abstract class _ItemStore extends BaseStore with Store {
   @observable
   Map<int, Item> map = Map<int, Item>();
 
+  @observable
+  Item? selectedItem;
+
   @action
   void clear() {}
 
   String get _queryString {
-    return 'search=${GetIt.I<SearchStore>().text}';
+    final tagIds = GetIt.I<TagStore>().selectedTags.map((x) => x.id).toList();
+
+    String q = 'search=${GetIt.I<SearchStore>().text}';
+    if (tagIds.isNotEmpty) q += '&tag_ids=${tagIds.join(',')}';
+    return q;
   }
 
   @action
@@ -37,5 +45,29 @@ abstract class _ItemStore extends BaseStore with Store {
 
       this.map = m;
     }
+  }
+
+  @action
+  Future<void> fetchItem(String guid) async {
+    final url = Config.apiItemUrl.replaceFirst('<guid>', guid);
+
+    var result = await apiCall(url, 'GET', {}, true);
+    if (!result.isError) {
+      final item = Item.fromJson(result.data);
+      this.selectedItem = item;
+    }
+  }
+
+  @action
+  void clearSelectedItem() {
+    this.selectedItem = null;
+  }
+
+  @action
+  void setItem(Item value) {
+    this.selectedItem = value;
+
+    // Fetch item from API
+    this.fetchItem(value.guid);
   }
 }

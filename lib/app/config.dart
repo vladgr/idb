@@ -16,6 +16,7 @@ class Config {
 
   static const Color gray33Color = Color.fromRGBO(33, 33, 33, 1);
   static const Color gray108Color = Color.fromRGBO(108, 108, 108, 1);
+  static const Color gray125Color = Color.fromRGBO(125, 125, 125, 1);
   static const Color gray222Color = Color.fromRGBO(222, 222, 222, 1);
   static const Color gray243Color = Color.fromRGBO(243, 243, 243, 1);
 

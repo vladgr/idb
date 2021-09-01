@@ -28,4 +28,10 @@ class Item {
   String toString() {
     return 'Item: $id $name';
   }
+
+  @override
+  bool operator ==(covariant Item other) => other.id == id;
+
+  @override
+  int get hashCode => this.id;
 }

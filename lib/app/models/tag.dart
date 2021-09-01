@@ -19,4 +19,10 @@ class Tag {
   String toString() {
     return 'Tag: $id $name';
   }
+
+  @override
+  bool operator ==(covariant Tag other) => other.id == this.id;
+
+  @override
+  int get hashCode => this.id;
 }

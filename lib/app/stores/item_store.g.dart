@@ -24,11 +24,33 @@ mixin _$ItemStore on _ItemStore, Store {
     });
   }
 
+  final _$selectedItemAtom = Atom(name: '_ItemStore.selectedItem');
+
+  @override
+  Item? get selectedItem {
+    _$selectedItemAtom.reportRead();
+    return super.selectedItem;
+  }
+
+  @override
+  set selectedItem(Item? value) {
+    _$selectedItemAtom.reportWrite(value, super.selectedItem, () {
+      super.selectedItem = value;
+    });
+  }
+
   final _$fetchAsyncAction = AsyncAction('_ItemStore.fetch');
 
   @override
   Future<void> fetch() {
     return _$fetchAsyncAction.run(() => super.fetch());
+  }
+
+  final _$fetchItemAsyncAction = AsyncAction('_ItemStore.fetchItem');
+
+  @override
+  Future<void> fetchItem(String guid) {
+    return _$fetchItemAsyncAction.run(() => super.fetchItem(guid));
   }
 
   final _$_ItemStoreActionController = ActionController(name: '_ItemStore');
@@ -45,9 +67,32 @@ mixin _$ItemStore on _ItemStore, Store {
   }
 
   @override
+  void clearSelectedItem() {
+    final _$actionInfo = _$_ItemStoreActionController.startAction(
+        name: '_ItemStore.clearSelectedItem');
+    try {
+      return super.clearSelectedItem();
+    } finally {
+      _$_ItemStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setItem(Item value) {
+    final _$actionInfo =
+        _$_ItemStoreActionController.startAction(name: '_ItemStore.setItem');
+    try {
+      return super.setItem(value);
+    } finally {
+      _$_ItemStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-map: ${map}
+map: ${map},
+selectedItem: ${selectedItem}
     ''';
   }
 }

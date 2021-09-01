@@ -1,9 +1,12 @@
 import 'dart:async';
 
+import 'package:get_it/get_it.dart';
 import 'package:idb/app/config.dart';
+import 'package:idb/app/models/item.dart';
 import 'package:idb/app/models/tag.dart';
 import 'package:idb/app/services/api.dart';
 import 'package:idb/app/stores/base_store.dart';
+import 'package:idb/app/stores/item_store.dart';
 import 'package:mobx/mobx.dart';
 
 part 'tag_store.g.dart';
@@ -14,8 +17,36 @@ abstract class _TagStore extends BaseStore with Store {
   @observable
   Map<int, Tag> map = Map<int, Tag>();
 
+  // If items map is not empty,
+  // returns tags that exist in items
+  @computed
+  List<Tag> get tags {
+    final _item = GetIt.I<ItemStore>();
+
+    var allTags = this.map.values.toList();
+
+    if (_item.map.isEmpty) {
+      return allTags;
+    }
+
+    Set<Tag> tagsSet = Set<Tag>();
+    for (var item in _item.map.values) {
+      tagsSet.addAll(item.tags);
+    }
+
+    print('---');
+    print(tagsSet);
+
+    var l = allTags.where((x) => tagsSet.contains(x)).toList();
+    print(l);
+    return l;
+  }
+
   @action
   void clear() {}
+
+  @observable
+  List<Tag> selectedTags = [];
 
   @action
   Future<void> load() async {
@@ -30,5 +61,21 @@ abstract class _TagStore extends BaseStore with Store {
 
       this.map = m;
     }
+  }
+
+  @action
+  void toggleTag(Tag tag) {
+    var l = [...this.selectedTags];
+
+    if (this.selectedTags.contains(tag)) {
+      l.remove(tag);
+    } else {
+      l.add(tag);
+    }
+
+    this.selectedTags = l;
+
+    // Reload items
+    GetIt.I<ItemStore>().fetch();
   }
 }

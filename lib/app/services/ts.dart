@@ -16,7 +16,7 @@ class Ts {
   static TextStyle _text(double size, Color color, {bool isUnderline: false}) {
     return TextStyle(
       fontFamily: 'Roboto',
-      fontWeight: FontWeight.w400,
+      fontWeight: FontWeight.w300,
       fontSize: L.v(size),
       color: color,
       decoration: isUnderline ? TextDecoration.underline : TextDecoration.none,
@@ -29,6 +29,10 @@ class Ts {
 
   static TextStyle text12(Color color, {bool isUnderline: false}) {
     return _text(12, color, isUnderline: isUnderline);
+  }
+
+  static TextStyle text13(Color color, {bool isUnderline: false}) {
+    return _text(13, color, isUnderline: isUnderline);
   }
 
   static TextStyle text14(Color color, {bool isUnderline: false}) {
