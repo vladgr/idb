@@ -8,19 +8,17 @@ class Item {
   late int id;
   late String guid;
   late String name;
-  late String content;
-  late int sort;
-  // late DateTime createdAt;
-  // late List<Tag> tags;
+  late List<Tag> tags;
+
+  String? content;
+  String? contentHtml;
+  DateTime? createdAt;
 
   Item({
     required this.id,
     required this.guid,
     required this.name,
-    required this.content,
-    required this.sort,
-    // required this.createdAt,
-    // required this.tags,
+    required this.tags,
   });
 
   factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);

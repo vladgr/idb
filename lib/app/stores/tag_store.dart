@@ -20,6 +20,15 @@ abstract class _TagStore extends BaseStore with Store {
   @action
   Future<void> load() async {
     var result = await apiCall(Config.apiTagsUrl, 'GET', {}, true);
-    if (!result.isError) {}
+    if (!result.isError) {
+      var m = Map<int, Tag>();
+
+      for (var d in result.data) {
+        var tag = Tag.fromJson(d);
+        m[tag.id] = tag;
+      }
+
+      this.map = m;
+    }
   }
 }

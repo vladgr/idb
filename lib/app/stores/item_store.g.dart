@@ -24,11 +24,11 @@ mixin _$ItemStore on _ItemStore, Store {
     });
   }
 
-  final _$loadAsyncAction = AsyncAction('_ItemStore.load');
+  final _$fetchAsyncAction = AsyncAction('_ItemStore.fetch');
 
   @override
-  Future<void> load() {
-    return _$loadAsyncAction.run(() => super.load());
+  Future<void> fetch() {
+    return _$fetchAsyncAction.run(() => super.fetch());
   }
 
   final _$_ItemStoreActionController = ActionController(name: '_ItemStore');

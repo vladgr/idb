@@ -40,11 +40,17 @@ class _NavbarSearchState extends State<NavbarSearch> {
         icon: Icon(
           CupertinoIcons.clear,
           color: Config.gray108Color,
+          size: L.v(18),
         ),
         onPressed: () => _controller.text = '',
       );
     }
-    return Icon(CupertinoIcons.search, color: Config.gray108Color);
+
+    return Icon(
+      CupertinoIcons.search,
+      color: Config.gray108Color,
+      size: L.v(18),
+    );
   }
 
   @override

@@ -6,12 +6,10 @@ part 'tag.g.dart';
 class Tag {
   late int id;
   late String name;
-  late int sort;
 
   Tag({
     required this.id,
     required this.name,
-    required this.sort,
   });
 
   factory Tag.fromJson(Map<String, dynamic> json) => _$TagFromJson(json);

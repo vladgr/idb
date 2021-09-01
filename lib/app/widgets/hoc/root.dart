@@ -5,6 +5,8 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:idb/app/routes.dart';
 import 'package:idb/app/services/navigation_service.dart';
+import 'package:idb/app/stores/item_store.dart';
+import 'package:idb/app/stores/tag_store.dart';
 import 'package:mobx/mobx.dart';
 import 'package:idb/app/screens/splash_screen.dart';
 import 'package:idb/app/services/helpers.dart';
@@ -25,9 +27,11 @@ class Root extends StatefulWidget {
 }
 
 class _RootState extends State<Root> {
+  final _item = GetIt.I<ItemStore>();
   final _layout = GetIt.I<LayoutStore>();
   final _logger = GetIt.I<LoggerService>();
   final _nav = GetIt.I<NavigationService>();
+  final _tag = GetIt.I<TagStore>();
   final _user = GetIt.I<UserStore>();
 
   late ReactionDisposer _disposer;
@@ -68,7 +72,8 @@ class _RootState extends State<Root> {
   }
 
   Future<void> _init() async {
-    _user.getProfile();
+    await _user.getProfile();
+    await _tag.load();
   }
 
   void _setScreenSettings(BuildContext ctx) {
