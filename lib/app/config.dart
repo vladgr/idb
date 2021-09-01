@@ -14,6 +14,11 @@ class Config {
   static const Color grayBgColor = Color(0xFFE5E5E5);
   static const Color yellowColor = Color(0xFFFFB72B);
 
+  static const Color gray33Color = Color.fromRGBO(33, 33, 33, 1);
+  static const Color gray108Color = Color.fromRGBO(108, 108, 108, 1);
+  static const Color gray222Color = Color.fromRGBO(222, 222, 222, 1);
+  static const Color gray243Color = Color.fromRGBO(243, 243, 243, 1);
+
   static const apiUrl = 'https://api.desit.ru';
 
   static const sentryDSN = 'https://3943fc97b137429a8731e09b700e6091@o343321.ingest.sentry.io/5938944';

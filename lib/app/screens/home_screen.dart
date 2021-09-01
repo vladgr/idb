@@ -8,7 +8,7 @@ import 'package:idb/app/services/logger_service.dart';
 import 'package:idb/app/stores/user_store.dart';
 import 'package:idb/app/widgets/dashboard/content_col.dart';
 import 'package:idb/app/widgets/dashboard/items_col.dart';
-import 'package:idb/app/widgets/dashboard/navbar.dart';
+import 'package:idb/app/widgets/dashboard/navbar/navbar.dart';
 import 'package:idb/app/widgets/dashboard/tags_col.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -25,6 +25,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
+
+    bootstrapGridParameters(gutterSize: 0);
     _logger.debug('HomeScreen inited');
   }
 
@@ -53,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: BootstrapContainer(
             fluid: true,
             children: <Widget>[
-              AppTopNavbar(),
+              Navbar(),
               BootstrapRow(
                 height: 60,
                 children: <BootstrapCol>[

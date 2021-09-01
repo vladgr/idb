@@ -4,6 +4,7 @@ import 'package:idb/app/services/scaffold_service.dart';
 import 'package:idb/app/services/sentry_service.dart';
 import 'package:idb/app/services/storage_service.dart';
 import 'package:idb/app/stores/layout_store.dart';
+import 'package:idb/app/stores/search_store.dart';
 import 'package:idb/app/stores/user_store.dart';
 import 'package:get_it/get_it.dart';
 
@@ -22,7 +23,7 @@ void setupLocator() {
   locator.registerSingleton<StorageService>(StorageService());
 
   // Stores
-
   locator.registerLazySingleton<LayoutStore>(() => LayoutStore());
+  locator.registerLazySingleton<SearchStore>(() => SearchStore());
   locator.registerLazySingleton<UserStore>(() => UserStore());
 }
