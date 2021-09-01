@@ -5,6 +5,7 @@ import 'package:idb/app/config.dart';
 import 'package:idb/app/services/l.dart';
 import 'package:idb/app/services/ts.dart';
 import 'package:idb/app/stores/item_store.dart';
+import 'package:idb/app/widgets/dashboard/content/content_box.dart';
 import 'package:idb/app/widgets/dashboard/content/content_buttons.dart';
 import 'package:idb/app/widgets/layout/empty.dart';
 
@@ -28,7 +29,7 @@ class ContentCol extends StatelessWidget {
               Expanded(
                 child: Text(
                   item.name,
-                  style: Ts.text18(Config.gray108Color),
+                  style: Ts.text22(Config.gray108Color),
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
@@ -36,6 +37,7 @@ class ContentCol extends StatelessWidget {
             ],
           ),
           Divider(),
+          ContentBox(item: item),
         ],
       );
     });

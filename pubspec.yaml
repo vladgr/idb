@@ -14,7 +14,7 @@ dependencies:
     flutter_keyboard_visibility: ^5.0.1
     flutter_mobx: ^2.0.0
     flutter_svg: ^0.22.0
-    flutter_widget_from_html_core: ^0.7.0
+    flutter_html: ^2.1.1
     get_it: ^7.2.0
     path: ^1.8.0
     path_provider: ^2.0.1
@@ -33,3 +33,11 @@ dev_dependencies:
 
 flutter:
     uses-material-design: true
+
+    fonts:
+        - family: Inconsolata
+          fonts:
+              - asset: assets/fonts/Inconsolata-Bold.ttf
+                weight: 700
+              - asset: assets/fonts/Inconsolata-Regular.ttf
+                weight: 400

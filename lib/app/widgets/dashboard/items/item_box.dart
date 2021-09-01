@@ -18,7 +18,7 @@ class ItemBox extends StatelessWidget {
   }) : super(key: key);
 
   Color get _textColor {
-    return isActive ? Colors.white : Config.gray125Color;
+    return isActive ? Colors.white : Config.gray108Color;
   }
 
   Widget _wLeft() {

@@ -114,7 +114,8 @@ Future<ApiResult> apiCall(String url, String method, dynamic data, bool isAuth) 
     return result;
   }
 
-  dynamic d = json.decode(response.body);
+  // dynamic d = json.decode(response.body);
+  dynamic d = json.decode(utf8.decode(response.bodyBytes));
 
   if (status >= 200 && status <= 300) {
     result.data = d;
