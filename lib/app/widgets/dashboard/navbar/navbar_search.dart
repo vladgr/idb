@@ -42,7 +42,10 @@ class _NavbarSearchState extends State<NavbarSearch> {
           color: Config.gray108Color,
           size: L.v(18),
         ),
-        onPressed: () => _controller.text = '',
+        onPressed: () {
+          _controller.text = '';
+          _search.clear();
+        },
       );
     }
 

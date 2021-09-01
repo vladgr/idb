@@ -21,7 +21,10 @@ abstract class _ItemStore extends BaseStore with Store {
   Item? selectedItem;
 
   @action
-  void clear() {}
+  void clear() {
+    this.selectedItem = null;
+    this.map = Map<int, Item>();
+  }
 
   String get _queryString {
     final tagIds = GetIt.I<TagStore>().selectedTags.map((x) => x.id).toList();
@@ -33,6 +36,9 @@ abstract class _ItemStore extends BaseStore with Store {
 
   @action
   Future<void> fetch() async {
+    final _search = GetIt.I<SearchStore>();
+    if (_search.text.length < 3) return;
+
     final url = '${Config.apiItemsUrl}?$_queryString';
     var result = await apiCall(url, 'GET', {}, true);
     if (!result.isError) {
