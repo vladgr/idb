@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bootstrap/flutter_bootstrap.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:idb/app/config.dart';
 import 'package:idb/app/screens/splash_screen.dart';
-import 'package:idb/app/services/l.dart';
 import 'package:idb/app/services/logger_service.dart';
 import 'package:idb/app/stores/user_store.dart';
 import 'package:idb/app/widgets/dashboard/content_col.dart';
@@ -41,37 +41,38 @@ class _HomeScreenState extends State<HomeScreen> {
         return SplashScreen();
       }
 
-      return SafeArea(
-        child: Scaffold(
-          body: SingleChildScrollView(
-            child: Column(
-              children: [
-                AppTopNavbar(),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: L.v(250),
-                      child: ItemsCol(),
-                    ),
-                    Expanded(
-                      flex: 7,
-                      child: ContentCol(),
-                    ),
-                    Expanded(
-                      flex: 2,
-                      child: TagsCol(),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {},
-            child: Icon(Icons.add),
-            backgroundColor: Config.primaryColor,
-            foregroundColor: Colors.white,
+      return Scaffold(
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: Icon(Icons.add),
+          backgroundColor: Config.primaryColor,
+          foregroundColor: Colors.white,
+        ),
+        body: SingleChildScrollView(
+          child: BootstrapContainer(
+            fluid: true,
+            children: <Widget>[
+              AppTopNavbar(),
+              BootstrapRow(
+                height: 60,
+                children: <BootstrapCol>[
+                  BootstrapCol(
+                    sizes: 'col-xl-2 col-lg-3 col-md-4 col-sm-12',
+                    child: ItemsCol(),
+                  ),
+                  BootstrapCol(
+                    sizes: 'col-xl-8 col-lg-7 col-md-8 col-sm-12',
+                    child: ContentCol(),
+                  ),
+                  BootstrapCol(
+                    sizes: 'col-xl-2 col-lg-2 col-md-12 col-sm-12',
+                    invisibleForSizes: 'xs sm md',
+                    child: TagsCol(),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       );

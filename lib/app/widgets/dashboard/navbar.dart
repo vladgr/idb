@@ -9,7 +9,7 @@ class AppTopNavbar extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: L.v(50),
-      color: Colors.blue,
+      color: Colors.black12,
     );
   }
 }
