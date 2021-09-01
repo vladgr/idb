@@ -6,7 +6,7 @@ class Ts {
   static TextStyle _bold(double size, Color color, {bool isUnderline: false}) {
     return TextStyle(
       fontFamily: 'Roboto',
-      fontWeight: FontWeight.w700,
+      fontWeight: FontWeight.w600,
       fontSize: L.v(size),
       color: color,
       decoration: isUnderline ? TextDecoration.underline : TextDecoration.none,

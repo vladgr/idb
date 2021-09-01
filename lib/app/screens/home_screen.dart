@@ -48,14 +48,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Container(
       width: L.v(300),
-      margin: EdgeInsets.symmetric(horizontal: L.v(20)),
+      margin: EdgeInsets.only(left: L.v(20)),
       child: ItemsCol(),
     );
   }
 
   Widget _wContentCol() {
     return Expanded(
-      child: ContentCol(),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: L.v(20)),
+        child: ContentCol(),
+      ),
     );
   }
 
@@ -66,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Container(
       width: L.v(180),
-      margin: EdgeInsets.symmetric(horizontal: L.v(20)),
+      margin: EdgeInsets.only(right: L.v(20)),
       child: TagsCol(),
     );
   }

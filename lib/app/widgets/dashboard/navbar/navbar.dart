@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:idb/app/config.dart';
 import 'package:idb/app/services/l.dart';
-import 'package:idb/app/widgets/dashboard/navbar/navbar_buttons.dart';
+import 'package:idb/app/widgets/dashboard/navbar/navbar_info.dart';
 import 'package:idb/app/widgets/dashboard/navbar/navbar_search.dart';
 
 class Navbar extends StatelessWidget {
@@ -19,7 +19,7 @@ class Navbar extends StatelessWidget {
         children: [
           NavbarSearch(),
           Spacer(),
-          NavbarButtons(),
+          NavbarInfo(),
         ],
       ),
     );
