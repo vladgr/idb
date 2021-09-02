@@ -27,6 +27,12 @@ class _CreateItemDialogState extends State<CreateItemDialog> {
   final String _content = 'content';
   String _name = '';
 
+  @override
+  void dispose() {
+    _item.clearErrors();
+    super.dispose();
+  }
+
   bool get _isDisabled {
     if (_item.isInprogress) return true;
     if (_name.trim().isEmpty) return true;
