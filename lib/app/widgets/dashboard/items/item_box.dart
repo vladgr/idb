@@ -49,6 +49,7 @@ class ItemBox extends StatelessWidget {
       onPressed: () {
         _item.setItem(this.item);
         _item.fetchItem(this.item.guid);
+        _item.setEditModeEnabled(false);
       },
       child: Container(
         width: double.infinity,

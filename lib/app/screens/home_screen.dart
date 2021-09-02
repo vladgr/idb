@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:idb/app/config.dart';
 import 'package:idb/app/constants/constants.dart';
 import 'package:idb/app/screens/splash_screen.dart';
 import 'package:idb/app/services/l.dart';
@@ -86,6 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         floatingActionButton: CreateItemButton(),
         body: SingleChildScrollView(
+          physics: ClampingScrollPhysics(),
           child: Column(
             children: <Widget>[
               Navbar(),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:idb/app/config.dart';
-import 'package:idb/app/services/l.dart';
 import 'package:idb/app/services/ts.dart';
 import 'package:idb/app/stores/item_store.dart';
 import 'package:idb/app/widgets/dashboard/content/content_box.dart';

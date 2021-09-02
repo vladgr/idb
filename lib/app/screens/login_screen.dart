@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:idb/app/config.dart';
 import 'package:idb/app/constants/constants.dart';
 import 'package:idb/app/routes.dart';
 import 'package:idb/app/services/helpers.dart';

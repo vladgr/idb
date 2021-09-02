@@ -62,11 +62,7 @@ abstract class _ItemStore extends BaseStore with Store {
 
     var result = await apiCall(url, 'GET', {}, true);
     if (!result.isError) {
-      final item = Item.fromJson(result.data);
-      this.selectedItem = item;
-
-      // Automatically remove edit mode
-      this.isEditModeEnabled = false;
+      this.selectedItem = Item.fromJson(result.data);
     }
   }
 
@@ -128,6 +124,7 @@ abstract class _ItemStore extends BaseStore with Store {
     return result.isError ? false : true;
   }
 
+  @action
   void postDeleteItem() {
     this.selectedItem = null;
     this.fetch();

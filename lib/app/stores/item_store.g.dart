@@ -105,6 +105,17 @@ mixin _$ItemStore on _ItemStore, Store {
   }
 
   @override
+  void postDeleteItem() {
+    final _$actionInfo = _$_ItemStoreActionController.startAction(
+        name: '_ItemStore.postDeleteItem');
+    try {
+      return super.postDeleteItem();
+    } finally {
+      _$_ItemStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void clearSelectedItem() {
     final _$actionInfo = _$_ItemStoreActionController.startAction(
         name: '_ItemStore.clearSelectedItem');

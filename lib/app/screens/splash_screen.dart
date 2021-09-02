@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:idb/app/services/ts.dart';
 
 /// Optional child widget is used in Root
 /// where we need to activate "widget.child" in navigator state.

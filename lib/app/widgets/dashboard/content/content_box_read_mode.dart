@@ -12,6 +12,14 @@ class ContentBoxReadMode extends StatelessWidget {
     required this.item,
   }) : super(key: key);
 
+  Color get _backgroundColor {
+    return Color.fromRGBO(245, 245, 245, 1);
+  }
+
+  Color get _borderColor {
+    return Color.fromRGBO(227, 227, 227, 1);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,6 +32,12 @@ class ContentBoxReadMode extends StatelessWidget {
             fontWeight: FontWeight.w400,
             color: Colors.black87,
           ),
+          'code': Style(
+            backgroundColor: _backgroundColor,
+            fontFamily: 'Inconsolata',
+            fontSize: FontSize(L.v(14)),
+            color: Config.primaryColor,
+          ),
           'pre': Style(
             padding: EdgeInsets.only(
               top: L.v(10),
@@ -33,18 +47,13 @@ class ContentBoxReadMode extends StatelessWidget {
             fontSize: FontSize(L.v(14)),
             fontWeight: FontWeight.w400,
             color: Colors.black.withOpacity(0.65),
-            backgroundColor: Color.fromRGBO(245, 245, 245, 1),
+            backgroundColor: _backgroundColor,
             border: Border(
-              bottom: BorderSide(color: Color.fromRGBO(227, 227, 227, 1)),
-              top: BorderSide(color: Color.fromRGBO(227, 227, 227, 1)),
-              left: BorderSide(color: Color.fromRGBO(227, 227, 227, 1)),
-              right: BorderSide(color: Color.fromRGBO(227, 227, 227, 1)),
+              bottom: BorderSide(color: _borderColor),
+              top: BorderSide(color: _borderColor),
+              left: BorderSide(color: _borderColor),
+              right: BorderSide(color: _borderColor),
             ),
-          ),
-          'code': Style(
-            fontFamily: 'Inconsolata',
-            fontSize: FontSize(L.v(14)),
-            color: Config.primaryColor,
           ),
           'pre code': Style(
             fontFamily: 'Inconsolata',
