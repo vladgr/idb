@@ -33,7 +33,7 @@ class ContentCol extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
-              ContentButtons(),
+              ContentButtons(item: item),
             ],
           ),
           Divider(),

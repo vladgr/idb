@@ -141,6 +141,7 @@ Future<void> showConfirmDialog(
   FutureVoidCallback onPressed,
 ) async {
   showCupertinoDialog(
+    barrierDismissible: true,
     context: context,
     builder: (BuildContext context) => CupertinoAlertDialog(
       title: Text(title, style: Ts.bold20(Config.blackColor)),

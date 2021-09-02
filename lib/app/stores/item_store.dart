@@ -130,6 +130,10 @@ abstract class _ItemStore extends BaseStore with Store {
     }
 
     this.selectedItem = null;
+
+    // Refetch items
+    this.fetch();
+
     return true;
   }
 

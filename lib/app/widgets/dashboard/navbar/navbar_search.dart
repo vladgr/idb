@@ -24,7 +24,9 @@ class _NavbarSearchState extends State<NavbarSearch> {
     _controller.text = _search.text;
 
     _controller.addListener(() {
-      _search.setText(_controller.text);
+      if (_controller.text != _search.text) {
+        _search.setText(_controller.text);
+      }
     });
   }
 
