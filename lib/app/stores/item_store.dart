@@ -65,7 +65,7 @@ abstract class _ItemStore extends BaseStore with Store {
   }
 
   @action
-  Future<void> createItem(String name, String content, List<int> tagIds) async {
+  Future<bool> createItem(String name, String content, List<int> tagIds) async {
     this.isInprogress = true;
     this.errors = null;
 
@@ -74,15 +74,18 @@ abstract class _ItemStore extends BaseStore with Store {
     dynamic data = {
       'name': name,
       'content': content,
-      'tag_ids': tagIds.join(','),
+      'tag_ids': tagIds,
     };
 
     var result = await apiCall(url, 'POST', data, true);
+    this.isInprogress = false;
+
     if (result.isError) {
       this.errors = result.data;
-    } else {}
+      return false;
+    }
 
-    this.isInprogress = false;
+    return true;
   }
 
   @action

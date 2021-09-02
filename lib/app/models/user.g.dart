@@ -14,6 +14,7 @@ User _$UserFromJson(Map<String, dynamic> json) {
     firstName: json['first_name'] as String,
     lastName: json['last_name'] as String,
     joinedAt: DateTime.parse(json['joined_at'] as String),
+    isAdmin: json['is_admin'] as bool,
   );
 }
 
@@ -24,4 +25,5 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'first_name': instance.firstName,
       'last_name': instance.lastName,
       'joined_at': instance.joinedAt.toIso8601String(),
+      'is_admin': instance.isAdmin,
     };

@@ -8,6 +8,10 @@ import 'package:idb/app/stores/user_store.dart';
 class NavbarInfo extends StatelessWidget {
   const NavbarInfo({Key? key}) : super(key: key);
 
+  double get _iconSize {
+    return L.v(24);
+  }
+
   @override
   Widget build(BuildContext context) {
     final _user = GetIt.I<UserStore>();
@@ -26,16 +30,23 @@ class NavbarInfo extends StatelessWidget {
           IconButton(
             constraints: BoxConstraints(),
             onPressed: () => {},
+            icon: Icon(Icons.clear),
+            color: Config.gray108Color,
+            iconSize: _iconSize,
+          ),
+          IconButton(
+            constraints: BoxConstraints(),
+            onPressed: () => {},
             icon: Icon(Icons.menu),
             color: Config.gray108Color,
-            iconSize: L.v(24),
+            iconSize: _iconSize,
           ),
           IconButton(
             constraints: BoxConstraints(),
             onPressed: _user.logout,
             icon: Icon(Icons.exit_to_app),
             color: Config.gray108Color,
-            iconSize: L.v(24),
+            iconSize: _iconSize,
           ),
         ],
       ),

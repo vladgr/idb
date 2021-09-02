@@ -16,6 +16,7 @@ class InputWrapper extends StatefulWidget {
   final Map<String, dynamic>? formData;
   final String name;
   final dynamic errors;
+  final bool autofocus;
   final String initialValue;
   final bool isPassword;
   final bool isValidateEmpty;
@@ -45,6 +46,7 @@ class InputWrapper extends StatefulWidget {
     this.formData,
     required this.name,
     this.errors,
+    this.autofocus: false,
     this.initialValue: '',
     this.labelText: '',
     this.hintText: '',
@@ -195,6 +197,7 @@ class _InputWrapperState extends State<InputWrapper> {
 
   Widget _wInputField() {
     return TextFormField(
+      autofocus: this.widget.autofocus,
       scrollPadding: EdgeInsets.all(L.v(30)),
       controller: _controller,
       focusNode: _focusNode,

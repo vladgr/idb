@@ -10,6 +10,7 @@ class User {
   late String firstName;
   late String lastName;
   late DateTime joinedAt;
+  late bool isAdmin;
 
   User({
     required this.id,
@@ -18,6 +19,7 @@ class User {
     required this.firstName,
     required this.lastName,
     required this.joinedAt,
+    required this.isAdmin,
   });
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

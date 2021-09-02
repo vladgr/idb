@@ -56,7 +56,7 @@ mixin _$ItemStore on _ItemStore, Store {
   final _$createItemAsyncAction = AsyncAction('_ItemStore.createItem');
 
   @override
-  Future<void> createItem(String name, String content, List<int> tagIds) {
+  Future<bool> createItem(String name, String content, List<int> tagIds) {
     return _$createItemAsyncAction
         .run(() => super.createItem(name, content, tagIds));
   }
