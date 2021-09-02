@@ -50,6 +50,7 @@ class _ContentBoxEditModeState extends State<ContentBoxEditMode> {
         height: MediaQuery.of(context).size.height * 0.75,
         child: TextField(
           cursorColor: Config.gray108Color,
+          cursorWidth: 3,
           style: Ts.text13(Config.gray108Color),
           textAlignVertical: TextAlignVertical.top,
           maxLines: null,
