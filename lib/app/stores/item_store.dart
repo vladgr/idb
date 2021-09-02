@@ -125,16 +125,12 @@ abstract class _ItemStore extends BaseStore with Store {
     var result = await apiCall(url, 'DELETE', {}, true);
     this.isInprogress = false;
 
-    if (result.isError) {
-      return false;
-    }
+    return result.isError ? false : true;
+  }
 
+  void postDeleteItem() {
     this.selectedItem = null;
-
-    // Refetch items
     this.fetch();
-
-    return true;
   }
 
   @action
@@ -145,9 +141,6 @@ abstract class _ItemStore extends BaseStore with Store {
   @action
   void setItem(Item value) {
     this.selectedItem = value;
-
-    // Fetch item from API
-    this.fetchItem(value.guid);
   }
 
   @action

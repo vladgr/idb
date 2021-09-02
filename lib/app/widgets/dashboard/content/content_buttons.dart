@@ -47,6 +47,7 @@ class ContentButtons extends StatelessWidget {
   Future<void> _onPressDeleteConfirm() async {
     bool isDeleted = await _item.deleteItem(this.item.guid);
     if (isDeleted) {
+      _item.postDeleteItem();
       _scaffold.createAlert('Item deleted');
     } else {
       _scaffold.createAlert('Something went wrong!', type: AlertType.error);

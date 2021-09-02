@@ -36,7 +36,6 @@ class ItemBox extends StatelessWidget {
         return Text(
           item.name,
           style: Ts.text10(_textColor),
-          // textAlign: TextAlign.end,
         );
       }).toList(),
     );
@@ -47,7 +46,10 @@ class ItemBox extends StatelessWidget {
     final _item = GetIt.I<ItemStore>();
 
     return TapWrapper(
-      onPressed: () => _item.setItem(this.item),
+      onPressed: () {
+        _item.setItem(this.item);
+        _item.fetchItem(this.item.guid);
+      },
       child: Container(
         width: double.infinity,
         padding: EdgeInsets.symmetric(horizontal: L.v(10), vertical: L.v(7)),
