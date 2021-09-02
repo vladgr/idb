@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:idb/app/config.dart';
+import 'package:idb/app/constants/enums.dart';
 import 'package:idb/app/services/scaffold_service.dart';
 import 'package:idb/app/stores/tag_store.dart';
 import 'package:idb/app/stores/user_store.dart';
@@ -24,7 +25,7 @@ class CreateItemButton extends StatelessWidget {
       return FloatingActionButton(
         onPressed: () async {
           if (_tag.selectedTags.isEmpty) {
-            _scaffold.createAlert('Please select tags', type: 'error');
+            _scaffold.createAlert('Please select tags', type: AlertType.error);
             return;
           }
 

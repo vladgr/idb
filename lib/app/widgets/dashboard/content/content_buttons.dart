@@ -4,10 +4,35 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:idb/app/config.dart';
 import 'package:idb/app/services/l.dart';
+import 'package:idb/app/services/scaffold_service.dart';
 import 'package:idb/app/stores/item_store.dart';
+import 'package:idb/app/constants/enums.dart';
 
 class ContentButtons extends StatelessWidget {
-  const ContentButtons({Key? key}) : super(key: key);
+  ContentButtons({Key? key}) : super(key: key);
+
+  final _item = GetIt.I<ItemStore>();
+  final _scaffold = GetIt.I<ScaffoldService>();
+
+  Future<void> _onPressSave() async {
+    bool isUpdated = await _item.updateItem('guid', 'content');
+    if (isUpdated) {
+      _scaffold.createAlert('Item updated');
+    } else {
+      _scaffold.createAlert('Something went wrong!', type: AlertType.error);
+    }
+  }
+
+  Future<void> _onPressDelete() async {}
+
+  Future<void> _onPressDeleteConfirm() async {
+    bool isDeleted = await _item.deleteItem('guid');
+    if (isDeleted) {
+      _scaffold.createAlert('Item updated');
+    } else {
+      _scaffold.createAlert('Something went wrong!', type: AlertType.error);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +45,7 @@ class ContentButtons extends StatelessWidget {
           if (_item.isEditModeEnabled)
             IconButton(
               constraints: BoxConstraints(),
-              onPressed: () => {},
+              onPressed: _onPressSave,
               icon: Icon(
                 Icons.save,
                 color: Config.gray108Color,
@@ -30,7 +55,7 @@ class ContentButtons extends StatelessWidget {
           if (_item.isEditModeEnabled)
             IconButton(
               constraints: BoxConstraints(),
-              onPressed: () => {},
+              onPressed: _onPressDelete,
               icon: Icon(
                 Icons.delete,
                 color: Config.gray108Color,

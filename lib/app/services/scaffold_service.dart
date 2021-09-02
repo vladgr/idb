@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:idb/app/config.dart';
+import 'package:idb/app/constants/enums.dart';
 import 'package:idb/app/services/ts.dart';
 
 class ScaffoldService {
-  final GlobalKey<ScaffoldMessengerState> scaffoldKey =
-      GlobalKey<ScaffoldMessengerState>();
+  final GlobalKey<ScaffoldMessengerState> scaffoldKey = GlobalKey<ScaffoldMessengerState>();
 
-  void createAlert(String text, {String type: 'success', int seconds: 3}) {
+  void createAlert(String text, {AlertType type: AlertType.success, int seconds: 3}) {
     var color;
 
     switch (type) {
-      case 'success':
+      case AlertType.success:
         color = Config.primaryColor;
         break;
-      case 'error':
+      case AlertType.error:
         color = Config.redColor;
         break;
-      case 'warning':
+      case AlertType.warning:
         color = Config.yellowColor;
         break;
-      case 'info':
+      case AlertType.info:
         color = Colors.blueAccent;
         break;
       default:

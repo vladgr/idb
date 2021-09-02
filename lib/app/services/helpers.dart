@@ -3,8 +3,12 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:math';
 import 'package:crypto/crypto.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:idb/app/config.dart';
+import 'package:idb/app/constants/types.dart';
+import 'package:idb/app/services/ts.dart';
 import 'package:uuid/uuid.dart';
 
 bool isInt(String? value) {
@@ -127,4 +131,33 @@ bool get isLinux {
 
 bool get isWeb {
   return kIsWeb;
+}
+
+Future<void> showConfirmDialog(
+  BuildContext context,
+  String title,
+  String text,
+  String buttonText,
+  FutureVoidCallback onPressed,
+) async {
+  showCupertinoDialog(
+    context: context,
+    builder: (BuildContext context) => CupertinoAlertDialog(
+      title: Text(title, style: Ts.bold20(Config.blackColor)),
+      content: Text(text, style: Ts.text16(Config.blackColor)),
+      actions: [
+        CupertinoDialogAction(
+          child: Text('Cancel', style: Ts.text18(Colors.blueAccent)),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        CupertinoDialogAction(
+          child: Text(buttonText, style: Ts.text18(Config.redColor)),
+          onPressed: () async {
+            await onPressed();
+            Navigator.of(context).pop();
+          },
+        ),
+      ],
+    ),
+  );
 }

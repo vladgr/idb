@@ -95,24 +95,41 @@ abstract class _ItemStore extends BaseStore with Store {
   }
 
   @action
-  Future<void> updateItem(String guid, String name, String content, List<int> tagIds) async {
+  Future<bool> updateItem(String guid, String content) async {
     this.isInprogress = true;
-    this.errors = null;
 
     final url = Config.apiItemUrl.replaceFirst('<guid>', guid);
 
     dynamic data = {
-      'name': name,
       'content': content,
-      'tag_ids': tagIds.join(','),
     };
 
-    var result = await apiCall(url, 'POST', data, true);
-    if (!result.isError) {
-      this.errors = result.data;
-    } else {}
-
+    var result = await apiCall(url, 'PATCH', data, true);
     this.isInprogress = false;
+
+    if (result.isError) {
+      return false;
+    }
+
+    this.selectedItem = Item.fromJson(result.data);
+    return true;
+  }
+
+  @action
+  Future<bool> deleteItem(String guid) async {
+    this.isInprogress = true;
+
+    final url = Config.apiItemUrl.replaceFirst('<guid>', guid);
+
+    var result = await apiCall(url, 'DELETE', {}, true);
+    this.isInprogress = false;
+
+    if (result.isError) {
+      return false;
+    }
+
+    this.selectedItem = null;
+    return true;
   }
 
   @action
