@@ -65,6 +65,48 @@ abstract class _ItemStore extends BaseStore with Store {
   }
 
   @action
+  Future<void> createItem(String name, String content, List<int> tagIds) async {
+    this.isInprogress = true;
+    this.errors = null;
+
+    final url = Config.apiItemsUrl;
+
+    dynamic data = {
+      'name': name,
+      'content': content,
+      'tag_ids': tagIds.join(','),
+    };
+
+    var result = await apiCall(url, 'POST', data, true);
+    if (result.isError) {
+      this.errors = result.data;
+    } else {}
+
+    this.isInprogress = false;
+  }
+
+  @action
+  Future<void> updateItem(String guid, String name, String content, List<int> tagIds) async {
+    this.isInprogress = true;
+    this.errors = null;
+
+    final url = Config.apiItemUrl.replaceFirst('<guid>', guid);
+
+    dynamic data = {
+      'name': name,
+      'content': content,
+      'tag_ids': tagIds.join(','),
+    };
+
+    var result = await apiCall(url, 'POST', data, true);
+    if (!result.isError) {
+      this.errors = result.data;
+    } else {}
+
+    this.isInprogress = false;
+  }
+
+  @action
   void clearSelectedItem() {
     this.selectedItem = null;
   }

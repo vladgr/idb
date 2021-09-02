@@ -14,6 +14,7 @@ import 'package:idb/app/stores/user_store.dart';
 import 'package:get_it/get_it.dart';
 import 'package:idb/app/widgets/form/error_block.dart';
 import 'package:idb/app/widgets/form/input_wrapper.dart';
+import 'package:idb/app/widgets/layout/app_button.dart';
 import 'package:idb/app/widgets/layout/br.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -102,14 +103,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 ErrorBlock(errors: _user.errors),
                 BR(L.v(30)),
-                SizedBox(
-                  width: double.infinity,
-                  child: CupertinoButton(
-                    disabledColor: Config.primaryColor.withOpacity(0.4),
-                    color: Config.primaryColor,
-                    child: Text('LOGIN'),
-                    onPressed: _isDisabled ? null : _onPressed,
-                  ),
+                AppButton(
+                  text: 'LOGIN',
+                  isDisabled: _isDisabled,
+                  onPressed: _onPressed,
                 ),
               ],
             ),

@@ -53,6 +53,23 @@ mixin _$ItemStore on _ItemStore, Store {
     return _$fetchItemAsyncAction.run(() => super.fetchItem(guid));
   }
 
+  final _$createItemAsyncAction = AsyncAction('_ItemStore.createItem');
+
+  @override
+  Future<void> createItem(String name, String content, List<int> tagIds) {
+    return _$createItemAsyncAction
+        .run(() => super.createItem(name, content, tagIds));
+  }
+
+  final _$updateItemAsyncAction = AsyncAction('_ItemStore.updateItem');
+
+  @override
+  Future<void> updateItem(
+      String guid, String name, String content, List<int> tagIds) {
+    return _$updateItemAsyncAction
+        .run(() => super.updateItem(guid, name, content, tagIds));
+  }
+
   final _$_ItemStoreActionController = ActionController(name: '_ItemStore');
 
   @override

@@ -32,7 +32,7 @@ class NavbarInfo extends StatelessWidget {
           ),
           IconButton(
             constraints: BoxConstraints(),
-            onPressed: () => {},
+            onPressed: _user.logout,
             icon: Icon(Icons.exit_to_app),
             color: Config.gray108Color,
             iconSize: L.v(24),

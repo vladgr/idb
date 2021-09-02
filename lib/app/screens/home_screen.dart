@@ -10,6 +10,7 @@ import 'package:idb/app/stores/layout_store.dart';
 import 'package:idb/app/stores/tag_store.dart';
 import 'package:idb/app/stores/user_store.dart';
 import 'package:idb/app/widgets/dashboard/content/content_col.dart';
+import 'package:idb/app/widgets/dashboard/items/create_item_button.dart';
 import 'package:idb/app/widgets/dashboard/items/items_col.dart';
 import 'package:idb/app/widgets/dashboard/navbar/navbar.dart';
 import 'package:idb/app/widgets/dashboard/tags/tags_col.dart';
@@ -83,12 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
       return Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          child: Icon(Icons.add),
-          backgroundColor: Config.primaryColor,
-          foregroundColor: Colors.white,
-        ),
+        floatingActionButton: CreateItemButton(),
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[

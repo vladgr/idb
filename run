@@ -72,6 +72,13 @@ flutter build appbundle -t lib/main_prod.dart --release
 cp ~/dev/web/flutter/flutter_starter/project/build/app/outputs/bundle/release/app-release.aab ~/Downloads/flutter_starter.aab
 
 
+elif [ "$1" == "test" ]
+then
+clear
+
+flutter test test/items/content_parsing_test.dart
+
+
 else
 clear
 
