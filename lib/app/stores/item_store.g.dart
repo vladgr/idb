@@ -79,8 +79,9 @@ mixin _$ItemStore on _ItemStore, Store {
   final _$updateItemAsyncAction = AsyncAction('_ItemStore.updateItem');
 
   @override
-  Future<bool> updateItem(String guid, String content) {
-    return _$updateItemAsyncAction.run(() => super.updateItem(guid, content));
+  Future<bool> updateItem(String guid, String content, List<int> tagIds) {
+    return _$updateItemAsyncAction
+        .run(() => super.updateItem(guid, content, tagIds));
   }
 
   final _$deleteItemAsyncAction = AsyncAction('_ItemStore.deleteItem');

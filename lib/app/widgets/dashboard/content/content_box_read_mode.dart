@@ -16,7 +16,7 @@ class ContentBoxReadMode extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Html(
-        data: this.item.contentHtml ?? '',
+        data: this.item.contentHtml,
         style: {
           'body': Style(
             fontSize: FontSize(L.v(13)),

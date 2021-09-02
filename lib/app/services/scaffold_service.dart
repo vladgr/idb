@@ -11,7 +11,7 @@ class ScaffoldService {
 
     switch (type) {
       case AlertType.success:
-        color = Config.primaryColor;
+        color = Config.greenColor;
         break;
       case AlertType.error:
         color = Config.redColor;

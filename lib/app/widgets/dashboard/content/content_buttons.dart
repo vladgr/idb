@@ -15,9 +15,11 @@ class ContentButtons extends StatelessWidget {
   final _scaffold = GetIt.I<ScaffoldService>();
 
   Future<void> _onPressSave() async {
-    bool isUpdated = await _item.updateItem('guid', 'content');
+    final item = _item.selectedItem!;
+
+    bool isUpdated = await _item.updateItem(item.guid, item.content, item.tags.map((x) => x.id).toList());
     if (isUpdated) {
-      _scaffold.createAlert('Item updated');
+      _scaffold.createAlert('Item updated', seconds: 1);
     } else {
       _scaffold.createAlert('Something went wrong!', type: AlertType.error);
     }

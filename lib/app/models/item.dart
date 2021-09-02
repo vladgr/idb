@@ -10,8 +10,12 @@ class Item {
   late String name;
   late List<Tag> tags;
 
-  String? content;
-  String? contentHtml;
+  @JsonKey(defaultValue: '')
+  late String content;
+
+  @JsonKey(defaultValue: '')
+  late String contentHtml;
+
   DateTime? createdAt;
 
   Item({
@@ -19,6 +23,8 @@ class Item {
     required this.guid,
     required this.name,
     required this.tags,
+    required this.content,
+    required this.contentHtml,
   });
 
   factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);

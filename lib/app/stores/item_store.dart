@@ -95,13 +95,14 @@ abstract class _ItemStore extends BaseStore with Store {
   }
 
   @action
-  Future<bool> updateItem(String guid, String content) async {
+  Future<bool> updateItem(String guid, String content, List<int> tagIds) async {
     this.isInprogress = true;
 
     final url = Config.apiItemUrl.replaceFirst('<guid>', guid);
 
     dynamic data = {
       'content': content,
+      'tag_ids': tagIds,
     };
 
     var result = await apiCall(url, 'PATCH', data, true);

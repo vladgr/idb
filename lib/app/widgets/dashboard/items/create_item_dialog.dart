@@ -44,7 +44,7 @@ class _CreateItemDialogState extends State<CreateItemDialog> {
     final bool isCreated = await _item.createItem(_name, _content, ids);
 
     if (isCreated) {
-      _scaffold.createAlert('Item created');
+      _scaffold.createAlert('Item created', seconds: 1);
       Navigator.of(context).pop();
     }
   }
