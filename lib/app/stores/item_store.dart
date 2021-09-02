@@ -20,6 +20,9 @@ abstract class _ItemStore extends BaseStore with Store {
   @observable
   Item? selectedItem;
 
+  @observable
+  bool isEditModeEnabled = false;
+
   @action
   void clear() {
     this.selectedItem = null;
@@ -61,6 +64,9 @@ abstract class _ItemStore extends BaseStore with Store {
     if (!result.isError) {
       final item = Item.fromJson(result.data);
       this.selectedItem = item;
+
+      // Automatically remove edit mode
+      this.isEditModeEnabled = false;
     }
   }
 
@@ -120,5 +126,10 @@ abstract class _ItemStore extends BaseStore with Store {
 
     // Fetch item from API
     this.fetchItem(value.guid);
+  }
+
+  @action
+  void setEditModeEnabled(bool value) {
+    this.isEditModeEnabled = value;
   }
 }

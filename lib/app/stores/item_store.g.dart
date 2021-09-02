@@ -39,6 +39,21 @@ mixin _$ItemStore on _ItemStore, Store {
     });
   }
 
+  final _$isEditModeEnabledAtom = Atom(name: '_ItemStore.isEditModeEnabled');
+
+  @override
+  bool get isEditModeEnabled {
+    _$isEditModeEnabledAtom.reportRead();
+    return super.isEditModeEnabled;
+  }
+
+  @override
+  set isEditModeEnabled(bool value) {
+    _$isEditModeEnabledAtom.reportWrite(value, super.isEditModeEnabled, () {
+      super.isEditModeEnabled = value;
+    });
+  }
+
   final _$fetchAsyncAction = AsyncAction('_ItemStore.fetch');
 
   @override
@@ -106,10 +121,22 @@ mixin _$ItemStore on _ItemStore, Store {
   }
 
   @override
+  void setEditModeEnabled(bool value) {
+    final _$actionInfo = _$_ItemStoreActionController.startAction(
+        name: '_ItemStore.setEditModeEnabled');
+    try {
+      return super.setEditModeEnabled(value);
+    } finally {
+      _$_ItemStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 map: ${map},
-selectedItem: ${selectedItem}
+selectedItem: ${selectedItem},
+isEditModeEnabled: ${isEditModeEnabled}
     ''';
   }
 }
