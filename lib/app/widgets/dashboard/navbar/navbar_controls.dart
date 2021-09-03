@@ -47,6 +47,26 @@ class NavbarControls extends StatelessWidget {
     return Empty();
   }
 
+  Widget _wSettingsButton() {
+    return IconButton(
+      constraints: BoxConstraints(),
+      onPressed: () => {},
+      icon: Icon(Icons.settings),
+      color: Config.gray108Color,
+      iconSize: _iconSize,
+    );
+  }
+
+  Widget _wLogoutButton() {
+    return IconButton(
+      constraints: BoxConstraints(),
+      onPressed: _user.logout,
+      icon: Icon(Icons.exit_to_app),
+      color: Config.gray108Color,
+      iconSize: _iconSize,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -55,13 +75,8 @@ class NavbarControls extends StatelessWidget {
         children: [
           _wProfileEmail(),
           _wCloseContentButton(),
-          IconButton(
-            constraints: BoxConstraints(),
-            onPressed: _user.logout,
-            icon: Icon(Icons.exit_to_app),
-            color: Config.gray108Color,
-            iconSize: _iconSize,
-          ),
+          _wSettingsButton(),
+          _wLogoutButton(),
         ],
       ),
     );
