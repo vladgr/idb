@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:idb/app/config.dart';
@@ -50,6 +51,10 @@ Future<void> main() async {
         options.dsn = Config.sentryDSN;
       },
     );
+
+    if (isWindows || isMacOS || isLinux) {
+      await DesktopWindow.setMinWindowSize(Size(375, 375));
+    }
 
     runApp(MyApp());
   }, (exception, stackTrace) async {

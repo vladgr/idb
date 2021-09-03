@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -5,6 +7,7 @@ import 'package:get_it/get_it.dart';
 import 'package:idb/app/config.dart';
 import 'package:idb/app/services/l.dart';
 import 'package:idb/app/services/ts.dart';
+import 'package:idb/app/stores/layout_store.dart';
 import 'package:idb/app/stores/search_store.dart';
 
 class NavbarSearch extends StatefulWidget {
@@ -15,6 +18,7 @@ class NavbarSearch extends StatefulWidget {
 }
 
 class _NavbarSearchState extends State<NavbarSearch> {
+  final _layout = GetIt.I<LayoutStore>();
   final _search = GetIt.I<SearchStore>();
   final _controller = TextEditingController();
 
@@ -23,10 +27,12 @@ class _NavbarSearchState extends State<NavbarSearch> {
     super.initState();
     _controller.text = _search.text;
 
-    _controller.addListener(() {
-      if (_controller.text != _search.text) {
-        _search.setText(_controller.text);
-      }
+    Timer.run(() {
+      _controller.addListener(() {
+        if (_controller.text != _search.text) {
+          _search.setText(_controller.text);
+        }
+      });
     });
   }
 
@@ -34,6 +40,10 @@ class _NavbarSearchState extends State<NavbarSearch> {
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  double get _width {
+    return _layout.isMobile ? L.v(180) : L.v(350);
   }
 
   Widget _wSuffixIcon() {
@@ -68,7 +78,7 @@ class _NavbarSearchState extends State<NavbarSearch> {
           shadowColor: Colors.black.withOpacity(0.2),
           elevation: 3.0,
           child: SizedBox(
-            width: L.v(250),
+            width: _width,
             height: L.v(40),
             child: TextField(
               autofocus: true,

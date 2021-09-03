@@ -23,6 +23,11 @@ abstract class _ItemStore extends BaseStore with Store {
   @observable
   bool isEditModeEnabled = false;
 
+  @computed
+  bool get hasSelectedItem {
+    return this.selectedItem != null;
+  }
+
   @action
   void clear() {
     this.selectedItem = null;

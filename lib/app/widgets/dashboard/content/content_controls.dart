@@ -11,10 +11,10 @@ import 'package:idb/app/stores/item_store.dart';
 import 'package:idb/app/constants/enums.dart';
 import 'package:idb/app/stores/user_store.dart';
 
-class ContentButtons extends StatelessWidget {
+class ContentControls extends StatelessWidget {
   final Item item;
 
-  ContentButtons({
+  ContentControls({
     Key? key,
     required this.item,
   }) : super(key: key);

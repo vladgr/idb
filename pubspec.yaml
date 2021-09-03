@@ -11,6 +11,7 @@ dependencies:
         sdk: flutter
 
     cupertino_icons: ^1.0.2
+    desktop_window: ^0.4.0
     flutter_keyboard_visibility: ^5.0.1
     flutter_mobx: ^2.0.0
     flutter_svg: ^0.22.0

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:idb/app/constants/constants.dart';
 import 'package:idb/app/screens/splash_screen.dart';
 import 'package:idb/app/services/l.dart';
 import 'package:idb/app/services/logger_service.dart';
+import 'package:idb/app/stores/item_store.dart';
 import 'package:idb/app/stores/layout_store.dart';
 import 'package:idb/app/stores/tag_store.dart';
 import 'package:idb/app/stores/user_store.dart';
@@ -24,6 +24,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final _item = GetIt.I<ItemStore>();
   final _layout = GetIt.I<LayoutStore>();
   final _logger = GetIt.I<LoggerService>();
   final _tag = GetIt.I<TagStore>();
@@ -42,8 +43,17 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _wItemsCol() {
-    if (_layout.width < kTabletBreakpoint) {
+    if (_layout.isMobile && _item.hasSelectedItem) {
       return Empty();
+    }
+
+    if (_layout.isMobile) {
+      return Expanded(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: L.v(20)),
+          child: ItemsCol(),
+        ),
+      );
     }
 
     return Container(
@@ -54,6 +64,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _wContentCol() {
+    if (_layout.isMobile && !_item.hasSelectedItem) {
+      return Empty();
+    }
+
     return Expanded(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: L.v(20)),
@@ -63,15 +77,14 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _wTagsCol() {
-    if (_layout.width < kDesktopBreakpoint) {
-      return Empty();
+    if (_layout.isDesktop) {
+      return Container(
+        width: L.v(180),
+        margin: EdgeInsets.only(right: L.v(20)),
+        child: TagsCol(),
+      );
     }
-
-    return Container(
-      width: L.v(180),
-      margin: EdgeInsets.only(right: L.v(20)),
-      child: TagsCol(),
-    );
+    return Empty();
   }
 
   @override

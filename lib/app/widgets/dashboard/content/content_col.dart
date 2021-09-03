@@ -5,7 +5,7 @@ import 'package:idb/app/config.dart';
 import 'package:idb/app/services/ts.dart';
 import 'package:idb/app/stores/item_store.dart';
 import 'package:idb/app/widgets/dashboard/content/content_box.dart';
-import 'package:idb/app/widgets/dashboard/content/content_buttons.dart';
+import 'package:idb/app/widgets/dashboard/content/content_controls.dart';
 import 'package:idb/app/widgets/layout/empty.dart';
 
 class ContentCol extends StatelessWidget {
@@ -32,7 +32,7 @@ class ContentCol extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
-              ContentButtons(item: item),
+              ContentControls(item: item),
             ],
           ),
           Divider(),
