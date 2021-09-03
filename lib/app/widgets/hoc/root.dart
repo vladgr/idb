@@ -95,8 +95,6 @@ class _RootState extends State<Root> {
   Widget build(BuildContext context) {
     _setScreenSettings(context);
 
-    _logger.debug('Root render');
-
     return Observer(builder: (BuildContext context) {
       if (_user.isAuthenticated == null || !_layout.isLayoutReady) {
         return SplashScreen(child: this.widget.child);

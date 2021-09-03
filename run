@@ -1,14 +1,7 @@
 #!/bin/bash
 
 
-if [ "$1" == "avopics" ]
-then
-clear
-
-avopics ~/dev/web/flutter/flutter_starter/project/assets/images
-
-
-elif [ "$1" == "cleanbuilder" ]
+if [ "$1" == "cleanbuilder" ]
 then
 clear
 
@@ -37,40 +30,28 @@ flutter pub get
 cd ios && pod install --repo-update
 
 
-elif [ "$1" == "deploytos3" ]
-then
-clear
-
-# APK release for Android upload to AWS S3
-
-flutter build apk -t lib/main_prod.dart --release
-aws --profile vgrapps s3 cp ~/dev/web/flutter/flutter_starter/project/build/app/outputs/apk/release/app-release.apk s3://vgr-apps/apk/flutter_starter.apk --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers
-
-elif [ "$1" == "removefroms3" ]
-then
-clear
-
-# Remove APK from AWS S3
-
-aws --profile vgrapps s3 rm s3://vgr-apps/apk/flutter_starter.apk
-
-
 elif [ "$1" == "deploytoiphone" ]
 then
 clear
-flutter run -t lib/main_prod.dart --release
+flutter run -t lib/main.dart --release
 
 
-elif [ "$1" == "buildappbundle" ]
+elif [ "$1" == "buildweb" ]
+then
+clear
+flutter build web --release --web-renderer canvaskit
+
+elif [ "$1" == "deployweb" ]
 then
 clear
 
-# Appbundle for Android for Google Play
-# Create and copy to ~/Downloads
+flutter build web --release --web-renderer canvaskit
+rsync -avh -e ssh $(pwd)/build/web/  ubuntu@65.21.106.58:/home/ubuntu/idb_flutter/
 
-flutter build appbundle -t lib/main_prod.dart --release
-cp ~/dev/web/flutter/flutter_starter/project/build/app/outputs/bundle/release/app-release.aab ~/Downloads/flutter_starter.aab
-
+# <body style="position: fixed; inset: 0px; overflow: hidden; padding: 0px; margin: 0px;">
+# <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+# <img src="/assets/assets/images/pics/logo_192x192.png" alt="" style="width: 70px; height: 70px" />
+# </div>
 
 elif [ "$1" == "test" ]
 then

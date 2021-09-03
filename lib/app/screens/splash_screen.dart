@@ -20,7 +20,11 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget _wSplash() {
     return Scaffold(
       body: Center(
-        child: CupertinoActivityIndicator(radius: 16),
+        child: Image.asset(
+          'assets/images/pics/logo_192x192.png',
+          width: 70,
+          height: 70,
+        ),
       ),
     );
   }

@@ -1,11 +1,11 @@
 {
-    "name": "idb",
-    "short_name": "idb",
-    "start_url": ".",
+    "name": "iDB",
+    "short_name": "iDB",
+    "start_url": "https://idb.desit.ru",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Info Database",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

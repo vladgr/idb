@@ -42,3 +42,8 @@ flutter:
                 weight: 700
               - asset: assets/fonts/Inconsolata-Regular.ttf
                 weight: 400
+
+    assets:
+        - assets/images/
+        - assets/images/pics/
+        - assets/images/svg/
