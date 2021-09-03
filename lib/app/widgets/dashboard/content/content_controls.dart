@@ -61,34 +61,42 @@ class ContentControls extends StatelessWidget {
     final _user = GetIt.I<UserStore>();
 
     return Observer(builder: (BuildContext context) {
+      double opacity = _item.isEditModeEnabled ? 1 : 0;
+
       return Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           if (_user.isAdmin)
             AnimatedOpacity(
-              opacity: _item.isEditModeEnabled ? 1 : 0,
+              opacity: opacity,
               duration: Duration(milliseconds: 500),
-              child: IconButton(
-                constraints: BoxConstraints(),
-                onPressed: () => _onPressSave(context),
-                icon: Icon(
-                  Icons.save,
-                  color: Config.gray108Color,
-                  size: L.v(20),
+              child: AbsorbPointer(
+                absorbing: !_item.isEditModeEnabled,
+                child: IconButton(
+                  constraints: BoxConstraints(),
+                  onPressed: () => _onPressSave(context),
+                  icon: Icon(
+                    Icons.save,
+                    color: Config.gray108Color,
+                    size: L.v(20),
+                  ),
                 ),
               ),
             ),
           if (_user.isAdmin)
             AnimatedOpacity(
-              opacity: _item.isEditModeEnabled ? 1 : 0,
+              opacity: opacity,
               duration: Duration(milliseconds: 500),
-              child: IconButton(
-                constraints: BoxConstraints(),
-                onPressed: () => _onPressDelete(context),
-                icon: Icon(
-                  Icons.delete,
-                  color: Config.gray108Color,
-                  size: L.v(20),
+              child: AbsorbPointer(
+                absorbing: !_item.isEditModeEnabled,
+                child: IconButton(
+                  constraints: BoxConstraints(),
+                  onPressed: () => _onPressDelete(context),
+                  icon: Icon(
+                    Icons.delete,
+                    color: Config.gray108Color,
+                    size: L.v(20),
+                  ),
                 ),
               ),
             ),
