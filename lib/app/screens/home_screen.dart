@@ -13,6 +13,7 @@ import 'package:idb/app/widgets/dashboard/items/create_item_button.dart';
 import 'package:idb/app/widgets/dashboard/items/items_col.dart';
 import 'package:idb/app/widgets/dashboard/navbar/navbar.dart';
 import 'package:idb/app/widgets/dashboard/tags/tags_col.dart';
+import 'package:idb/app/widgets/dashboard/tags/tags_drawer.dart';
 import 'package:idb/app/widgets/layout/br.dart';
 import 'package:idb/app/widgets/layout/empty.dart';
 
@@ -95,6 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
       }
 
       return Scaffold(
+        endDrawer: _layout.isDesktop ? null : TagsDrawer(),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         floatingActionButton: CreateItemButton(),
         body: SingleChildScrollView(
