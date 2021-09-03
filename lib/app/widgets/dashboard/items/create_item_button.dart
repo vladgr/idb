@@ -20,7 +20,7 @@ class CreateItemButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Observer(builder: (BuildContext context) {
-      if (_user.profile == null || !_user.profile!.isAdmin) return Empty();
+      if (!_user.isAdmin) return Empty();
 
       return FloatingActionButton(
         onPressed: () async {

@@ -70,7 +70,7 @@ class _RootState extends State<Root> {
   }
 
   Future<void> _init() async {
-    await _user.getProfile();
+    await _user.init();
     await _tag.load();
   }
 

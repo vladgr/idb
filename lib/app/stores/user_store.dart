@@ -22,6 +22,12 @@ abstract class _UserStore extends BaseStore with Store {
   @observable
   String? accessToken;
 
+  @computed
+  bool get isAdmin {
+    if (this.profile == null) return false;
+    return this.profile!.isAdmin ? true : false;
+  }
+
   @action
   void clear() {
     this.isInprogress = false;

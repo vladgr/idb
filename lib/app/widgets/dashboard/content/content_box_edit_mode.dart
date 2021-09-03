@@ -1,5 +1,6 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:idb/app/config.dart';
 import 'package:idb/app/models/item.dart';
@@ -28,13 +29,18 @@ class _ContentBoxEditModeState extends State<ContentBoxEditMode> {
 
     var item = this.widget.item;
 
-    _controller.addListener(() {
-      item.content = _controller.text;
-      _item.setItem(item);
-    });
-
     // Set initial value
     _controller.text = item.content;
+
+    // addListener is triggered when we set initial value.
+    // MobX state in initState should be updated in Timer.run
+    // otherwise it throws exception when it updated instantly.
+    Timer.run(() {
+      _controller.addListener(() {
+        item.content = _controller.text;
+        _item.setItem(item);
+      });
+    });
   }
 
   @override
@@ -45,31 +51,29 @@ class _ContentBoxEditModeState extends State<ContentBoxEditMode> {
 
   @override
   Widget build(BuildContext context) {
-    return Observer(builder: (BuildContext context) {
-      return SizedBox(
-        height: MediaQuery.of(context).size.height * 0.75,
-        child: TextField(
-          cursorColor: Config.gray108Color,
-          cursorWidth: 3,
-          style: Ts.text13(Config.gray108Color),
-          textAlignVertical: TextAlignVertical.top,
-          maxLines: null,
-          minLines: null,
-          expands: true,
-          controller: _controller,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(width: 1, color: Colors.black12),
-              borderRadius: BorderRadius.circular(5),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(width: 1, color: Colors.black12),
-              borderRadius: BorderRadius.circular(5),
-            ),
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.75,
+      child: TextField(
+        cursorColor: Config.gray108Color,
+        cursorWidth: 3,
+        style: Ts.text13(Config.gray108Color),
+        textAlignVertical: TextAlignVertical.top,
+        maxLines: null,
+        minLines: null,
+        expands: true,
+        controller: _controller,
+        decoration: InputDecoration(
+          border: OutlineInputBorder(),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(width: 1, color: Colors.black12),
+            borderRadius: BorderRadius.circular(5),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(width: 1, color: Colors.black12),
+            borderRadius: BorderRadius.circular(5),
           ),
         ),
-      );
-    });
+      ),
+    );
   }
 }

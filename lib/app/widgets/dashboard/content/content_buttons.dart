@@ -9,6 +9,7 @@ import 'package:idb/app/services/l.dart';
 import 'package:idb/app/services/scaffold_service.dart';
 import 'package:idb/app/stores/item_store.dart';
 import 'package:idb/app/constants/enums.dart';
+import 'package:idb/app/stores/user_store.dart';
 
 class ContentButtons extends StatelessWidget {
   final Item item;
@@ -57,29 +58,38 @@ class ContentButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _item = GetIt.I<ItemStore>();
+    final _user = GetIt.I<UserStore>();
 
     return Observer(builder: (BuildContext context) {
       return Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (_item.isEditModeEnabled)
-            IconButton(
-              constraints: BoxConstraints(),
-              onPressed: () => _onPressSave(context),
-              icon: Icon(
-                Icons.save,
-                color: Config.gray108Color,
-                size: L.v(20),
+          if (_user.isAdmin)
+            AnimatedOpacity(
+              opacity: _item.isEditModeEnabled ? 1 : 0,
+              duration: Duration(milliseconds: 500),
+              child: IconButton(
+                constraints: BoxConstraints(),
+                onPressed: () => _onPressSave(context),
+                icon: Icon(
+                  Icons.save,
+                  color: Config.gray108Color,
+                  size: L.v(20),
+                ),
               ),
             ),
-          if (_item.isEditModeEnabled)
-            IconButton(
-              constraints: BoxConstraints(),
-              onPressed: () => _onPressDelete(context),
-              icon: Icon(
-                Icons.delete,
-                color: Config.gray108Color,
-                size: L.v(20),
+          if (_user.isAdmin)
+            AnimatedOpacity(
+              opacity: _item.isEditModeEnabled ? 1 : 0,
+              duration: Duration(milliseconds: 500),
+              child: IconButton(
+                constraints: BoxConstraints(),
+                onPressed: () => _onPressDelete(context),
+                icon: Icon(
+                  Icons.delete,
+                  color: Config.gray108Color,
+                  size: L.v(20),
+                ),
               ),
             ),
           if (_item.isEditModeEnabled)

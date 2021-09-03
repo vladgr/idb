@@ -9,6 +9,13 @@ part of 'user_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$UserStore on _UserStore, Store {
+  Computed<bool>? _$isAdminComputed;
+
+  @override
+  bool get isAdmin => (_$isAdminComputed ??=
+          Computed<bool>(() => super.isAdmin, name: '_UserStore.isAdmin'))
+      .value;
+
   final _$isAuthenticatedAtom = Atom(name: '_UserStore.isAuthenticated');
 
   @override
@@ -108,7 +115,8 @@ mixin _$UserStore on _UserStore, Store {
     return '''
 isAuthenticated: ${isAuthenticated},
 profile: ${profile},
-accessToken: ${accessToken}
+accessToken: ${accessToken},
+isAdmin: ${isAdmin}
     ''';
   }
 }
