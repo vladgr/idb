@@ -98,7 +98,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   prefixIcon: Icons.lock,
                   errors: _user.errors,
                   onChanged: (value) => setState(() => _password = value),
-                  textInputAction: TextInputAction.done,
+                  textInputAction: TextInputAction.next,
+                  onFieldSubmitted: (String value) {
+                    // Web / desktop submit form on Enter
+                    if (value.trim().isNotEmpty) {
+                      _onPressed();
+                    }
+                  },
                 ),
                 ErrorBlock(errors: _user.errors),
                 BR(L.v(30)),

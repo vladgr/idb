@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:idb/app/services/l.dart';
 import 'package:idb/app/widgets/dashboard/tags/tags_col.dart';
 
 /// Used on Tablet and Mobile on right side
