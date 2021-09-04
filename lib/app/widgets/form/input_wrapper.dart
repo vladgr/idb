@@ -219,7 +219,6 @@ class _InputWrapperState extends State<InputWrapper> {
       maxLines: _maxLines ?? widget.maxLines,
       enableInteractiveSelection: widget.enableInteractiveSelection,
       cursorColor: Config.primaryColor,
-      onFieldSubmitted: this.widget.onFieldSubmitted,
       onTap: () {
         if (widget.onTap != null) {
           widget.onTap!(this.context, _controller);
