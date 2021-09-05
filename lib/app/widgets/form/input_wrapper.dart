@@ -40,7 +40,7 @@ class InputWrapper extends StatefulWidget {
 
   // void onTapExample(BuildContext context, TextEditingController controller){}
   final Function? onTap;
-  final Function(String)? onFieldSubmitted;
+  final ValueChanged<String>? onFieldSubmitted;
 
   InputWrapper({
     Key? key,
@@ -224,6 +224,7 @@ class _InputWrapperState extends State<InputWrapper> {
           widget.onTap!(this.context, _controller);
         }
       },
+      onFieldSubmitted: this.widget.onFieldSubmitted,
       style: Ts.text16(Config.blackColor),
     );
   }

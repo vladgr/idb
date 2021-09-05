@@ -1,8 +1,12 @@
+import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:get_it/get_it.dart';
+import 'package:html/parser.dart';
 import 'package:idb/app/config.dart';
 import 'package:idb/app/models/item.dart';
 import 'package:idb/app/services/l.dart';
+import 'package:idb/app/services/scaffold_service.dart';
 
 class ContentBoxReadMode extends StatelessWidget {
   final Item item;
@@ -69,6 +73,8 @@ class ContentBoxReadMode extends StatelessWidget {
   /// When block started with "<pre>"
   /// wrap in Stack and make it possible to copy to clipboard
   Widget _wBlock(String htmlString) {
+    final _scaffold = GetIt.I<ScaffoldService>();
+
     if (htmlString.startsWith('<pre>')) {
       return Stack(
         children: [
@@ -77,7 +83,14 @@ class ContentBoxReadMode extends StatelessWidget {
             top: L.v(10),
             right: L.v(5),
             child: IconButton(
-              onPressed: () => {},
+              onPressed: () async {
+                var el = parse(htmlString);
+                String? s = el.body?.firstChild?.text;
+                if (s != null) {
+                  await FlutterClipboard.copy(s);
+                  _scaffold.createAlert('Copied');
+                }
+              },
               icon: Icon(Icons.copy),
               iconSize: L.v(16),
             ),
