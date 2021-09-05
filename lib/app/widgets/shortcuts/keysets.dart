@@ -40,4 +40,24 @@ class KeySets {
     LogicalKeyboardKey.control,
     LogicalKeyboardKey.digit5,
   );
+
+  static final LogicalKeySet n6 = LogicalKeySet(
+    LogicalKeyboardKey.control,
+    LogicalKeyboardKey.digit6,
+  );
+
+  static final LogicalKeySet n7 = LogicalKeySet(
+    LogicalKeyboardKey.control,
+    LogicalKeyboardKey.digit7,
+  );
+
+  static final LogicalKeySet n8 = LogicalKeySet(
+    LogicalKeyboardKey.control,
+    LogicalKeyboardKey.digit8,
+  );
+
+  static final LogicalKeySet n9 = LogicalKeySet(
+    LogicalKeyboardKey.control,
+    LogicalKeyboardKey.digit9,
+  );
 }

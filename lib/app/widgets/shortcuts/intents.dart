@@ -15,3 +15,11 @@ class N3ItemBoxIntent extends Intent {}
 class N4ItemBoxIntent extends Intent {}
 
 class N5ItemBoxIntent extends Intent {}
+
+class N6ItemBoxIntent extends Intent {}
+
+class N7ItemBoxIntent extends Intent {}
+
+class N8ItemBoxIntent extends Intent {}
+
+class N9ItemBoxIntent extends Intent {}

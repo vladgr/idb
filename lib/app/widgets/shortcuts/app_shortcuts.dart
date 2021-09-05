@@ -31,33 +31,14 @@ class AppShortcuts extends StatelessWidget {
 
   void _onPressToggleEditMode() => _item.toggleEditModeEnabled();
 
-  void _onPress1() {
-    if (_item.map.length > 0) {
-      _item.setAndFetchItem(_item.map.values.toList()[0]);
-    }
-  }
+  // Num should be from 1 to 9
+  void _onPressNum(int num) {
+    if (num >= 1 && num <= 9) {
+      int index = num - 1;
 
-  void _onPress2() {
-    if (_item.map.length > 1) {
-      _item.setAndFetchItem(_item.map.values.toList()[1]);
-    }
-  }
-
-  void _onPress3() {
-    if (_item.map.length > 2) {
-      _item.setAndFetchItem(_item.map.values.toList()[2]);
-    }
-  }
-
-  void _onPress4() {
-    if (_item.map.length > 3) {
-      _item.setAndFetchItem(_item.map.values.toList()[3]);
-    }
-  }
-
-  void _onPress5() {
-    if (_item.map.length > 4) {
-      _item.setAndFetchItem(_item.map.values.toList()[4]);
+      if (_item.map.length > index) {
+        _item.setAndFetchItem(_item.map.values.toList()[index]);
+      }
     }
   }
 
@@ -74,16 +55,24 @@ class AppShortcuts extends StatelessWidget {
         KeySets.n3: N3ItemBoxIntent(),
         KeySets.n4: N4ItemBoxIntent(),
         KeySets.n5: N5ItemBoxIntent(),
+        KeySets.n6: N6ItemBoxIntent(),
+        KeySets.n7: N7ItemBoxIntent(),
+        KeySets.n8: N8ItemBoxIntent(),
+        KeySets.n9: N9ItemBoxIntent(),
       },
       actions: {
-        ClearIntent: CallbackAction(onInvoke: (e) => _onPressClear.call()),
-        SaveIntent: CallbackAction(onInvoke: (e) => _onPressSave.call()),
-        ToggleEditModeIntent: CallbackAction(onInvoke: (e) => _onPressToggleEditMode.call()),
-        N1ItemBoxIntent: CallbackAction(onInvoke: (e) => _onPress1.call()),
-        N2ItemBoxIntent: CallbackAction(onInvoke: (e) => _onPress2.call()),
-        N3ItemBoxIntent: CallbackAction(onInvoke: (e) => _onPress3.call()),
-        N4ItemBoxIntent: CallbackAction(onInvoke: (e) => _onPress4.call()),
-        N5ItemBoxIntent: CallbackAction(onInvoke: (e) => _onPress5.call()),
+        ClearIntent: CallbackAction(onInvoke: (e) => _onPressClear()),
+        SaveIntent: CallbackAction(onInvoke: (e) => _onPressSave()),
+        ToggleEditModeIntent: CallbackAction(onInvoke: (e) => _onPressToggleEditMode()),
+        N1ItemBoxIntent: CallbackAction(onInvoke: (e) => _onPressNum(1)),
+        N2ItemBoxIntent: CallbackAction(onInvoke: (e) => _onPressNum(2)),
+        N3ItemBoxIntent: CallbackAction(onInvoke: (e) => _onPressNum(3)),
+        N4ItemBoxIntent: CallbackAction(onInvoke: (e) => _onPressNum(4)),
+        N5ItemBoxIntent: CallbackAction(onInvoke: (e) => _onPressNum(5)),
+        N6ItemBoxIntent: CallbackAction(onInvoke: (e) => _onPressNum(6)),
+        N7ItemBoxIntent: CallbackAction(onInvoke: (e) => _onPressNum(7)),
+        N8ItemBoxIntent: CallbackAction(onInvoke: (e) => _onPressNum(8)),
+        N9ItemBoxIntent: CallbackAction(onInvoke: (e) => _onPressNum(9)),
       },
       child: child,
     );
