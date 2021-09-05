@@ -2,8 +2,10 @@ import 'dart:async';
 
 import 'package:get_it/get_it.dart';
 import 'package:idb/app/config.dart';
+import 'package:idb/app/constants/enums.dart';
 import 'package:idb/app/models/item.dart';
 import 'package:idb/app/services/api.dart';
+import 'package:idb/app/services/scaffold_service.dart';
 import 'package:idb/app/stores/base_store.dart';
 import 'package:idb/app/stores/search_store.dart';
 import 'package:idb/app/stores/tag_store.dart';
@@ -95,6 +97,28 @@ abstract class _ItemStore extends BaseStore with Store {
     return true;
   }
 
+  /// Method call from UI
+  /// After API call it creates snackbar message.
+  @action
+  Future<bool> updateItemFromUI(Item item) async {
+    final scaffold = GetIt.I<ScaffoldService>();
+
+    bool isUpdated = await this.updateItem(
+      item.guid,
+      item.content,
+      item.tags.map((x) => x.id).toList(),
+    );
+
+    if (isUpdated) {
+      scaffold.createAlert('Item updated', seconds: 1);
+      return true;
+    }
+
+    scaffold.createAlert('Something went wrong!', type: AlertType.error);
+    return false;
+  }
+
+  /// API call to update item
   @action
   Future<bool> updateItem(String guid, String content, List<int> tagIds) async {
     this.isInprogress = true;
@@ -143,6 +167,18 @@ abstract class _ItemStore extends BaseStore with Store {
   @action
   void setItem(Item value) {
     this.selectedItem = value;
+  }
+
+  @action
+  void setAndFetchItem(Item value) {
+    this.selectedItem = value;
+    this.fetchItem(value.guid);
+    this.isEditModeEnabled = false;
+  }
+
+  @action
+  void toggleEditModeEnabled() {
+    this.isEditModeEnabled = !this.isEditModeEnabled;
   }
 
   @action

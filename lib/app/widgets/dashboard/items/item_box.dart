@@ -50,9 +50,7 @@ class ItemBox extends StatelessWidget {
 
     return TapWrapper(
       onPressed: () {
-        _item.setItem(this.item);
-        _item.fetchItem(this.item.guid);
-        _item.setEditModeEnabled(false);
+        _item.setAndFetchItem(this.item);
 
         // Hide keyboard on mobile devices
         if (!_layout.isDesktop) {

@@ -23,16 +23,7 @@ class ContentControls extends StatelessWidget {
   final _scaffold = GetIt.I<ScaffoldService>();
 
   Future<void> _onPressSave(BuildContext context) async {
-    bool isUpdated = await _item.updateItem(
-      this.item.guid,
-      this.item.content,
-      this.item.tags.map((x) => x.id).toList(),
-    );
-    if (isUpdated) {
-      _scaffold.createAlert('Item updated', seconds: 1);
-    } else {
-      _scaffold.createAlert('Something went wrong!', type: AlertType.error);
-    }
+    _item.updateItemFromUI(this.item);
   }
 
   Future<void> _onPressDelete(BuildContext context) async {

@@ -9,7 +9,11 @@ import 'package:idb/app/services/l.dart';
 import 'package:idb/app/services/ts.dart';
 import 'package:idb/app/stores/layout_store.dart';
 import 'package:idb/app/stores/search_store.dart';
+import 'package:idb/app/widgets/shortcuts/app_shortcuts.dart';
 
+/// To simplify keyboard shortcuts, use all keybindings
+/// on this widget, because it always on focus.
+/// In that case there is no need to manage focus for different widgets.
 class NavbarSearch extends StatefulWidget {
   const NavbarSearch({Key? key}) : super(key: key);
 
@@ -71,34 +75,36 @@ class _NavbarSearchState extends State<NavbarSearch> {
   @override
   Widget build(BuildContext context) {
     return Observer(builder: (BuildContext context) {
-      return Padding(
-        padding: EdgeInsets.symmetric(horizontal: L.v(15)),
-        child: PhysicalModel(
-          color: Colors.transparent,
-          shadowColor: Colors.black.withOpacity(0.2),
-          elevation: 3.0,
-          child: SizedBox(
-            width: _width,
-            height: L.v(40),
-            child: TextField(
-              autofocus: true,
-              controller: _controller,
-              cursorWidth: 1,
-              cursorColor: Config.gray108Color,
-              style: Ts.text14(Config.gray108Color),
-              decoration: InputDecoration(
-                hintText: 'Search',
-                fillColor: Config.gray222Color,
-                filled: true,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(L.v(10)),
+      return AppShortcuts(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: L.v(15)),
+          child: PhysicalModel(
+            color: Colors.transparent,
+            shadowColor: Colors.black.withOpacity(0.2),
+            elevation: 3.0,
+            child: SizedBox(
+              width: _width,
+              height: L.v(40),
+              child: TextField(
+                autofocus: true,
+                controller: _controller,
+                cursorWidth: 1,
+                cursorColor: Config.gray108Color,
+                style: Ts.text14(Config.gray108Color),
+                decoration: InputDecoration(
+                  hintText: 'Search',
+                  fillColor: Config.gray222Color,
+                  filled: true,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(L.v(10)),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Config.gray222Color, width: 0),
+                    borderRadius: BorderRadius.circular(L.v(3)),
+                  ),
+                  focusedBorder: InputBorder.none,
+                  suffixIcon: _wSuffixIcon(),
                 ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Config.gray222Color, width: 0),
-                  borderRadius: BorderRadius.circular(L.v(3)),
-                ),
-                focusedBorder: InputBorder.none,
-                suffixIcon: _wSuffixIcon(),
               ),
             ),
           ),

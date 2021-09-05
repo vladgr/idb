@@ -84,6 +84,15 @@ mixin _$ItemStore on _ItemStore, Store {
         .run(() => super.createItem(name, content, tagIds));
   }
 
+  final _$updateItemFromUIAsyncAction =
+      AsyncAction('_ItemStore.updateItemFromUI');
+
+  @override
+  Future<bool> updateItemFromUI(Item item) {
+    return _$updateItemFromUIAsyncAction
+        .run(() => super.updateItemFromUI(item));
+  }
+
   final _$updateItemAsyncAction = AsyncAction('_ItemStore.updateItem');
 
   @override
@@ -140,6 +149,28 @@ mixin _$ItemStore on _ItemStore, Store {
         _$_ItemStoreActionController.startAction(name: '_ItemStore.setItem');
     try {
       return super.setItem(value);
+    } finally {
+      _$_ItemStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setAndFetchItem(Item value) {
+    final _$actionInfo = _$_ItemStoreActionController.startAction(
+        name: '_ItemStore.setAndFetchItem');
+    try {
+      return super.setAndFetchItem(value);
+    } finally {
+      _$_ItemStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void toggleEditModeEnabled() {
+    final _$actionInfo = _$_ItemStoreActionController.startAction(
+        name: '_ItemStore.toggleEditModeEnabled');
+    try {
+      return super.toggleEditModeEnabled();
     } finally {
       _$_ItemStoreActionController.endAction(_$actionInfo);
     }
