@@ -11,9 +11,6 @@ import 'package:idb/app/stores/layout_store.dart';
 import 'package:idb/app/stores/search_store.dart';
 import 'package:idb/app/widgets/shortcuts/app_shortcuts.dart';
 
-/// To simplify keyboard shortcuts, use all keybindings
-/// on this widget, because it always on focus.
-/// In that case there is no need to manage focus for different widgets.
 class NavbarSearch extends StatefulWidget {
   const NavbarSearch({Key? key}) : super(key: key);
 

@@ -5,9 +5,10 @@ import 'package:idb/app/stores/search_store.dart';
 import 'package:idb/app/widgets/shortcuts/intents.dart';
 import 'package:idb/app/widgets/shortcuts/keysets.dart';
 
-/// Shortcuts
-/// To simplify and do not manage focus,
-/// use this wrapper in NavbarSearch and ContentBoxEditMode
+/// To simplify keyboard shortcuts, use all keybindings in single class.
+/// In that case there is no need to manage focus for different widgets.
+/// Use this wrapper in NavbarSearch and ContentBoxEditMode,
+/// only these widgets have focus.
 class AppShortcuts extends StatelessWidget {
   final Widget child;
 
