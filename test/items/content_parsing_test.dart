@@ -17,7 +17,6 @@ void main() {
     anything3
   """;
 
-  // Consider feature feature to split by blocks and copy paste each block
   test('Test parsing', () async {
     await _ts.init();
 

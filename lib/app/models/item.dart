@@ -1,3 +1,4 @@
+import 'package:html/parser.dart';
 import 'package:idb/app/models/tag.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -40,4 +41,16 @@ class Item {
 
   @override
   int get hashCode => this.id;
+
+  /// Split contentHtml to parts to be able
+  /// to process each part separately for custom functionality
+  List<String> get htmlParts {
+    final doc = parse(this.contentHtml);
+
+    if (doc.body == null) {
+      return [this.contentHtml];
+    }
+
+    return doc.body!.children.map((el) => el.outerHtml).toList();
+  }
 }

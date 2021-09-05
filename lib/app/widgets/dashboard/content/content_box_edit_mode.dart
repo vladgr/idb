@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:idb/app/config.dart';
 import 'package:idb/app/models/item.dart';
+import 'package:idb/app/services/l.dart';
 import 'package:idb/app/services/ts.dart';
 import 'package:idb/app/stores/item_store.dart';
 
@@ -65,12 +66,12 @@ class _ContentBoxEditModeState extends State<ContentBoxEditMode> {
         decoration: InputDecoration(
           border: OutlineInputBorder(),
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(width: 1, color: Colors.black12),
-            borderRadius: BorderRadius.circular(5),
+            borderSide: BorderSide(width: L.v(1), color: Colors.black12),
+            borderRadius: BorderRadius.circular(L.v(5)),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(width: 1, color: Colors.black12),
-            borderRadius: BorderRadius.circular(5),
+            borderRadius: BorderRadius.circular(L.v(5)),
           ),
         ),
       ),
