@@ -24,10 +24,13 @@ class Config {
 
   static const sentryDSN = 'https://3943fc97b137429a8731e09b700e6091@o343321.ingest.sentry.io/5938944';
 
+  static const bucketUrl = 'https://idb-images.s3.amazonaws.com';
+
   static const apiCheckTokenUrl = '$apiUrl/v1/auth/check_token';
   static const apiLoginUrl = '$apiUrl/v1/auth/login';
   static const apiProfileUrl = '$apiUrl/v1/profile';
   static const apiTagsUrl = '$apiUrl/v1/idb/tags';
   static const apiItemsUrl = '$apiUrl/v1/idb/items';
   static const apiItemUrl = '$apiUrl/v1/idb/items/<guid>';
+  static const apiSignUploadUrl = '$apiUrl/v1/idb/sign_s3_upload';
 }

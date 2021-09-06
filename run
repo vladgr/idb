@@ -48,16 +48,12 @@ clear
 flutter build web --release --web-renderer canvaskit
 rsync -avh -e ssh $(pwd)/build/web/  ubuntu@65.21.106.58:/home/ubuntu/idb_flutter/
 
-# <body style="position: fixed; inset: 0px; overflow: hidden; padding: 0px; margin: 0px;">
-# <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
-# <img src="/assets/assets/images/pics/logo_192x192.png" alt="" style="width: 70px; height: 70px" />
-# </div>
 
 elif [ "$1" == "test" ]
 then
 clear
 
-flutter test test/items/content_parsing_test.dart
+flutter test test/items/image_parsing_test.dart
 
 
 else

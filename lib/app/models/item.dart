@@ -1,4 +1,5 @@
 import 'package:html/parser.dart';
+import 'package:idb/app/config.dart';
 import 'package:idb/app/models/tag.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -12,10 +13,10 @@ class Item {
   late List<Tag> tags;
 
   @JsonKey(defaultValue: '')
-  late String content;
+  String content;
 
   @JsonKey(defaultValue: '')
-  late String contentHtml;
+  String contentHtml;
 
   DateTime? createdAt;
 
@@ -42,15 +43,32 @@ class Item {
   @override
   int get hashCode => this.id;
 
+  /// Returns the same content, but with images replaced
+  /// to full path src and as image tags
+  String get processedHtml {
+    return _processImages(this.contentHtml);
+  }
+
   /// Split contentHtml to parts to be able
   /// to process each part separately for custom functionality
   List<String> get htmlParts {
-    final doc = parse(this.contentHtml);
+    final doc = parse(this.processedHtml);
 
     if (doc.body == null) {
-      return [this.contentHtml];
+      return [this.processedHtml];
     }
 
     return doc.body!.children.map((el) => el.outerHtml).toList();
+  }
+
+  /// Convert uploaded images to "img" html tag.
+  /// Returns updated html content.
+  String _processImages(String htmlContent) {
+    final re = RegExp(r'\[img:(.*?)\]', dotAll: true);
+
+    return htmlContent.replaceAllMapped(re, (m) {
+      final imgPath = '${m.group(1)}';
+      return '<img src="${Config.bucketUrl}/$imgPath" />';
+    });
   }
 }

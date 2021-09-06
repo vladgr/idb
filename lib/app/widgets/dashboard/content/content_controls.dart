@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -10,6 +11,7 @@ import 'package:idb/app/services/scaffold_service.dart';
 import 'package:idb/app/stores/item_store.dart';
 import 'package:idb/app/constants/enums.dart';
 import 'package:idb/app/stores/user_store.dart';
+import 'package:idb/app/widgets/dashboard/items/upload_image_dialog.dart';
 
 class ContentControls extends StatelessWidget {
   final Item item;
@@ -22,8 +24,29 @@ class ContentControls extends StatelessWidget {
   final _item = GetIt.I<ItemStore>();
   final _scaffold = GetIt.I<ScaffoldService>();
 
+  double get _iconSize {
+    return L.v(20);
+  }
+
   Future<void> _onPressSave(BuildContext context) async {
     _item.updateItemFromUI(this.item);
+  }
+
+  Future<void> _onPressUpload(BuildContext context) async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['jpg', 'jpeg', 'png'],
+    );
+
+    if (result != null) {
+      final file = result.files.first;
+
+      await showDialog(
+        barrierDismissible: true,
+        context: context,
+        builder: (context) => UploadImageDialog(file: file),
+      );
+    }
   }
 
   Future<void> _onPressDelete(BuildContext context) async {
@@ -69,7 +92,24 @@ class ContentControls extends StatelessWidget {
                   icon: Icon(
                     Icons.save,
                     color: Config.gray108Color,
-                    size: L.v(20),
+                    size: _iconSize,
+                  ),
+                ),
+              ),
+            ),
+          if (_user.isAdmin)
+            AnimatedOpacity(
+              opacity: opacity,
+              duration: Duration(milliseconds: 500),
+              child: AbsorbPointer(
+                absorbing: !_item.isEditModeEnabled,
+                child: IconButton(
+                  constraints: BoxConstraints(),
+                  onPressed: () => _onPressUpload(context),
+                  icon: Icon(
+                    Icons.upload,
+                    color: Config.gray108Color,
+                    size: _iconSize,
                   ),
                 ),
               ),
@@ -86,7 +126,7 @@ class ContentControls extends StatelessWidget {
                   icon: Icon(
                     Icons.delete,
                     color: Config.gray108Color,
-                    size: L.v(20),
+                    size: _iconSize,
                   ),
                 ),
               ),
@@ -98,7 +138,7 @@ class ContentControls extends StatelessWidget {
               icon: Icon(
                 Icons.arrow_right_alt,
                 color: Config.gray108Color,
-                size: L.v(20),
+                size: _iconSize,
               ),
             ),
           if (!_item.isEditModeEnabled)
@@ -108,7 +148,7 @@ class ContentControls extends StatelessWidget {
               icon: Icon(
                 Icons.wysiwyg,
                 color: Config.gray108Color,
-                size: L.v(20),
+                size: _iconSize,
               ),
             ),
         ],

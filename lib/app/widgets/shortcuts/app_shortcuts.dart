@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:idb/app/stores/item_store.dart';
 import 'package:idb/app/stores/search_store.dart';
+import 'package:idb/app/stores/user_store.dart';
 import 'package:idb/app/widgets/shortcuts/intents.dart';
 import 'package:idb/app/widgets/shortcuts/keysets.dart';
 
@@ -19,13 +20,16 @@ class AppShortcuts extends StatelessWidget {
 
   final _item = GetIt.I<ItemStore>();
   final _search = GetIt.I<SearchStore>();
+  final _user = GetIt.I<UserStore>();
 
   void _onPressClear() => _search.clear();
 
   Future<void> _onPressSave() async {
-    final item = _item.selectedItem;
-    if (item != null && _item.isEditModeEnabled) {
-      _item.updateItemFromUI(item);
+    if (_user.isAdmin) {
+      final item = _item.selectedItem;
+      if (item != null && _item.isEditModeEnabled) {
+        _item.updateItemFromUI(item);
+      }
     }
   }
 

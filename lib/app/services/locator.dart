@@ -7,6 +7,7 @@ import 'package:idb/app/stores/item_store.dart';
 import 'package:idb/app/stores/layout_store.dart';
 import 'package:idb/app/stores/search_store.dart';
 import 'package:idb/app/stores/tag_store.dart';
+import 'package:idb/app/stores/upload_store.dart';
 import 'package:idb/app/stores/user_store.dart';
 import 'package:get_it/get_it.dart';
 
@@ -29,5 +30,6 @@ void setupLocator() {
   locator.registerLazySingleton<LayoutStore>(() => LayoutStore());
   locator.registerLazySingleton<SearchStore>(() => SearchStore());
   locator.registerLazySingleton<TagStore>(() => TagStore());
+  locator.registerLazySingleton<UploadStore>(() => UploadStore());
   locator.registerLazySingleton<UserStore>(() => UserStore());
 }
