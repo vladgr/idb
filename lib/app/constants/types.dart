@@ -1,5 +1,7 @@
 typedef void SetErrorCallback(String name, String? error);
 
+typedef void BoolCallback(bool value);
+
 typedef Future<void> FutureVoidCallback();
 
 abstract class IStore {

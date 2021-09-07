@@ -1,11 +1,13 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:get_it/get_it.dart';
 import 'package:idb/app/config.dart';
 import 'package:idb/app/models/user.dart';
 import 'package:idb/app/services/api.dart';
 import 'package:idb/app/services/token.dart';
 import 'package:idb/app/stores/base_store.dart';
+import 'package:idb/app/stores/settings_store.dart';
 import 'package:mobx/mobx.dart';
 
 part 'user_store.g.dart';
@@ -36,6 +38,11 @@ abstract class _UserStore extends BaseStore with Store {
   @action
   Future<void> init() async {
     await this.getProfile();
+
+    // Set by default current user to settings
+    if (this.profile != null) {
+      GetIt.I<SettingsStore>().setUserIds([this.profile!.id]);
+    }
   }
 
   // Check token locally

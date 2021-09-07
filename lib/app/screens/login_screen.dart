@@ -84,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 InputWrapper(
                   name: 'email',
-                  hintText: L.t('E-mail'),
+                  hintText: 'E-mail',
                   prefixIcon: Icons.email,
                   errors: _user.errors,
                   onChanged: (value) => setState(() => _email = value),
@@ -94,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 InputWrapper(
                   name: 'password',
                   isPassword: true,
-                  hintText: L.t('Password'),
+                  hintText: 'Password',
                   prefixIcon: Icons.lock,
                   errors: _user.errors,
                   onChanged: (value) => setState(() => _password = value),

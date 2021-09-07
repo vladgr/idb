@@ -16,6 +16,12 @@ mixin _$ItemStore on _ItemStore, Store {
       (_$hasSelectedItemComputed ??= Computed<bool>(() => super.hasSelectedItem,
               name: '_ItemStore.hasSelectedItem'))
           .value;
+  Computed<int>? _$countComputed;
+
+  @override
+  int get count => (_$countComputed ??=
+          Computed<int>(() => super.count, name: '_ItemStore.count'))
+      .value;
 
   final _$mapAtom = Atom(name: '_ItemStore.map');
 
@@ -193,7 +199,8 @@ mixin _$ItemStore on _ItemStore, Store {
 map: ${map},
 selectedItem: ${selectedItem},
 isEditModeEnabled: ${isEditModeEnabled},
-hasSelectedItem: ${hasSelectedItem}
+hasSelectedItem: ${hasSelectedItem},
+count: ${count}
     ''';
   }
 }

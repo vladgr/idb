@@ -7,8 +7,10 @@ import 'package:get_it/get_it.dart';
 import 'package:idb/app/config.dart';
 import 'package:idb/app/services/l.dart';
 import 'package:idb/app/services/ts.dart';
+import 'package:idb/app/stores/item_store.dart';
 import 'package:idb/app/stores/layout_store.dart';
 import 'package:idb/app/stores/search_store.dart';
+import 'package:idb/app/widgets/layout/empty.dart';
 
 class NavbarSearch extends StatefulWidget {
   const NavbarSearch({Key? key}) : super(key: key);
@@ -18,6 +20,7 @@ class NavbarSearch extends StatefulWidget {
 }
 
 class _NavbarSearchState extends State<NavbarSearch> {
+  final _item = GetIt.I<ItemStore>();
   final _layout = GetIt.I<LayoutStore>();
   final _search = GetIt.I<SearchStore>();
 
@@ -61,41 +64,62 @@ class _NavbarSearchState extends State<NavbarSearch> {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Observer(builder: (BuildContext context) {
-      return Padding(
-        padding: EdgeInsets.symmetric(horizontal: L.v(15)),
-        child: PhysicalModel(
-          color: Colors.transparent,
-          shadowColor: Colors.black.withOpacity(0.2),
-          elevation: 3.0,
-          child: SizedBox(
-            width: _width,
-            height: L.v(40),
-            child: TextField(
-              focusNode: _layout.searchFocusNode,
-              controller: _layout.searchController,
-              cursorWidth: 1,
-              cursorColor: Config.gray108Color,
-              style: Ts.text14(Config.gray108Color),
-              decoration: InputDecoration(
-                hintText: 'Search',
-                fillColor: Config.gray222Color,
-                filled: true,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(L.v(10)),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Config.gray222Color, width: 0),
-                  borderRadius: BorderRadius.circular(L.v(3)),
-                ),
-                focusedBorder: InputBorder.none,
-                suffixIcon: _wSuffixIcon(),
+  Widget _wSearchBox() {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: L.v(15)),
+      child: PhysicalModel(
+        color: Colors.transparent,
+        shadowColor: Colors.black.withOpacity(0.2),
+        elevation: 3.0,
+        child: SizedBox(
+          width: _width,
+          height: L.v(40),
+          child: TextField(
+            focusNode: _layout.searchFocusNode,
+            controller: _layout.searchController,
+            cursorWidth: 1,
+            cursorColor: Config.gray108Color,
+            style: Ts.text14(Config.gray108Color),
+            decoration: InputDecoration(
+              hintText: 'Search',
+              fillColor: Config.gray222Color,
+              filled: true,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(L.v(10)),
               ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Config.gray222Color, width: 0),
+                borderRadius: BorderRadius.circular(L.v(3)),
+              ),
+              focusedBorder: InputBorder.none,
+              suffixIcon: _wSuffixIcon(),
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _wCountBox() {
+    if (_item.count == 0) {
+      return Empty();
+    }
+
+    return Text(
+      _item.count.toString(),
+      style: Ts.text14(Colors.black.withOpacity(0.3)),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Observer(builder: (BuildContext context) {
+      return Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _wSearchBox(),
+          _wCountBox(),
+        ],
       );
     });
   }

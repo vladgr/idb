@@ -8,6 +8,7 @@ import 'package:idb/app/services/api.dart';
 import 'package:idb/app/services/scaffold_service.dart';
 import 'package:idb/app/stores/base_store.dart';
 import 'package:idb/app/stores/search_store.dart';
+import 'package:idb/app/stores/settings_store.dart';
 import 'package:idb/app/stores/tag_store.dart';
 import 'package:mobx/mobx.dart';
 
@@ -30,6 +31,11 @@ abstract class _ItemStore extends BaseStore with Store {
     return this.selectedItem != null;
   }
 
+  @computed
+  int get count {
+    return this.map.length;
+  }
+
   @action
   void clear() {
     this.selectedItem = null;
@@ -38,9 +44,11 @@ abstract class _ItemStore extends BaseStore with Store {
 
   String get _queryString {
     final tagIds = GetIt.I<TagStore>().selectedTags.map((x) => x.id).toList();
+    final userIds = GetIt.I<SettingsStore>().userIds;
 
     String q = 'search=${GetIt.I<SearchStore>().text}';
     if (tagIds.isNotEmpty) q += '&tag_ids=${tagIds.join(',')}';
+    if (userIds.length == 1) q += '&user_id=${userIds[0]}';
     return q;
   }
 

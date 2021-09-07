@@ -76,7 +76,7 @@ class _CreateItemDialogState extends State<CreateItemDialog> {
               InputWrapper(
                 autofocus: true,
                 name: 'name',
-                hintText: L.t('Input item name'),
+                hintText: 'Input item name',
                 errors: _item.errors,
                 onChanged: (value) => setState(() => _name = value),
               ),

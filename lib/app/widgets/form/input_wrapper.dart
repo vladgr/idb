@@ -155,7 +155,7 @@ class _InputWrapperState extends State<InputWrapper> {
 
     if (widget.isValidateEmpty) {
       if (value!.trim().isEmpty) {
-        widget.setError!(widget.name, L.t('This field may not be blank.'));
+        widget.setError!(widget.name, 'This field may not be blank.');
         return null;
       }
     }

@@ -6,6 +6,7 @@ import 'package:idb/app/services/ts.dart';
 import 'package:idb/app/stores/item_store.dart';
 import 'package:idb/app/stores/layout_store.dart';
 import 'package:idb/app/stores/user_store.dart';
+import 'package:idb/app/widgets/dashboard/settings/settings_dialog.dart';
 import 'package:idb/app/widgets/layout/empty.dart';
 
 class NavbarControls extends StatelessWidget {
@@ -48,13 +49,21 @@ class NavbarControls extends StatelessWidget {
   }
 
   Widget _wSettingsButton() {
-    return IconButton(
-      constraints: BoxConstraints(),
-      onPressed: () => {},
-      icon: Icon(Icons.settings),
-      color: Config.gray108Color,
-      iconSize: _iconSize,
-    );
+    return Builder(builder: (BuildContext context) {
+      return IconButton(
+        constraints: BoxConstraints(),
+        onPressed: () async {
+          await showDialog(
+            barrierDismissible: true,
+            context: context,
+            builder: (context) => SettingsDialog(),
+          );
+        },
+        icon: Icon(Icons.settings),
+        color: Config.gray108Color,
+        iconSize: _iconSize,
+      );
+    });
   }
 
   Widget _wLogoutButton() {

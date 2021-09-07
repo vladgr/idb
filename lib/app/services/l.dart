@@ -31,22 +31,9 @@ class L {
     orientation = value;
   }
 
+  /// Use size values via wrapper,
+  /// so later the size can be adjusted depending on conditions.
   static double v(double value) {
     return value;
-    // return value * ratio;
-  }
-
-  // Translations
-  static String t(String text) {
-    if (translationMap.containsKey(text)) {
-      if (translationMap[text]!.containsKey(lang)) {
-        var value = translationMap[text]![lang];
-        if (value!.isNotEmpty) {
-          return value;
-        }
-      }
-    }
-
-    return text;
   }
 }
