@@ -10,11 +10,14 @@ part 'layout_store.g.dart';
 class LayoutStore = _LayoutStore with _$LayoutStore;
 
 abstract class _LayoutStore with Store {
+  // Controller for search TextField
+  final searchController = TextEditingController();
+
   // Node for seach TextField
-  FocusNode searchFocusNode = FocusNode();
+  final searchFocusNode = FocusNode();
 
   // Node for item content TextField
-  FocusNode contentFocusNode = FocusNode();
+  final contentFocusNode = FocusNode();
 
   @observable
   bool isLayoutReady = false;

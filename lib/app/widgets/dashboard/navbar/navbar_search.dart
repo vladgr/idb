@@ -20,27 +20,20 @@ class NavbarSearch extends StatefulWidget {
 class _NavbarSearchState extends State<NavbarSearch> {
   final _layout = GetIt.I<LayoutStore>();
   final _search = GetIt.I<SearchStore>();
-  final _controller = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    _controller.text = _search.text;
+    _layout.searchController.text = _search.text;
     _layout.searchFocusNode.requestFocus();
 
     Timer.run(() {
-      _controller.addListener(() {
-        if (_controller.text != _search.text) {
-          _search.setText(_controller.text);
+      _layout.searchController.addListener(() {
+        if (_layout.searchController.text != _search.text) {
+          _search.setText(_layout.searchController.text);
         }
       });
     });
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 
   double get _width {
@@ -56,7 +49,6 @@ class _NavbarSearchState extends State<NavbarSearch> {
           size: L.v(18),
         ),
         onPressed: () {
-          _controller.text = '';
           _search.clear();
         },
       );
@@ -83,7 +75,7 @@ class _NavbarSearchState extends State<NavbarSearch> {
             height: L.v(40),
             child: TextField(
               focusNode: _layout.searchFocusNode,
-              controller: _controller,
+              controller: _layout.searchController,
               cursorWidth: 1,
               cursorColor: Config.gray108Color,
               style: Ts.text14(Config.gray108Color),

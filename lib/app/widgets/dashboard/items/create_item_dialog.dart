@@ -6,6 +6,7 @@ import 'package:idb/app/services/l.dart';
 import 'package:idb/app/services/scaffold_service.dart';
 import 'package:idb/app/services/ts.dart';
 import 'package:idb/app/stores/item_store.dart';
+import 'package:idb/app/stores/layout_store.dart';
 import 'package:idb/app/stores/tag_store.dart';
 import 'package:idb/app/widgets/form/error_block.dart';
 import 'package:idb/app/widgets/form/input_wrapper.dart';
@@ -21,6 +22,7 @@ class CreateItemDialog extends StatefulWidget {
 
 class _CreateItemDialogState extends State<CreateItemDialog> {
   final _item = GetIt.I<ItemStore>();
+  final _layout = GetIt.I<LayoutStore>();
   final _tag = GetIt.I<TagStore>();
   final _scaffold = GetIt.I<ScaffoldService>();
 
@@ -45,6 +47,7 @@ class _CreateItemDialogState extends State<CreateItemDialog> {
 
     if (isCreated) {
       _scaffold.createAlert('Item created', seconds: 1);
+      _layout.searchController.text = _name;
       Navigator.of(context).pop();
     }
   }

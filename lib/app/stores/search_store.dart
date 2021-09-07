@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:idb/app/stores/item_store.dart';
+import 'package:idb/app/stores/layout_store.dart';
 import 'package:idb/app/stores/tag_store.dart';
 import 'package:mobx/mobx.dart';
 
@@ -16,6 +17,7 @@ abstract class _SearchStore with Store {
     this.text = '';
     GetIt.I<TagStore>().clear();
     GetIt.I<ItemStore>().clear();
+    GetIt.I<LayoutStore>().searchController.text = '';
   }
 
   @action
