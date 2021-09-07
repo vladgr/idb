@@ -10,6 +10,12 @@ part 'layout_store.g.dart';
 class LayoutStore = _LayoutStore with _$LayoutStore;
 
 abstract class _LayoutStore with Store {
+  // Node for seach TextField
+  FocusNode searchFocusNode = FocusNode();
+
+  // Node for item content TextField
+  FocusNode contentFocusNode = FocusNode();
+
   @observable
   bool isLayoutReady = false;
 
@@ -88,10 +94,8 @@ abstract class _LayoutStore with Store {
   void setBreakpoints(double w) {
     this.isMobile = w < kTabletBreakpoint ? true : false;
 
-    this.isTablet =
-        (w >= kTabletBreakpoint && w < kDesktopBreakpoint) ? true : false;
+    this.isTablet = (w >= kTabletBreakpoint && w < kDesktopBreakpoint) ? true : false;
 
     this.isDesktop = w >= kDesktopBreakpoint ? true : false;
   }
 }
-

@@ -56,6 +56,9 @@ class ItemBox extends StatelessWidget {
         if (!_layout.isDesktop) {
           dismissKeyboard(context);
         }
+
+        // Set focus to search navbar
+        _layout.searchFocusNode.requestFocus();
       },
       child: Container(
         width: double.infinity,

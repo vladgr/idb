@@ -7,7 +7,7 @@ import 'package:idb/app/models/item.dart';
 import 'package:idb/app/services/l.dart';
 import 'package:idb/app/services/ts.dart';
 import 'package:idb/app/stores/item_store.dart';
-import 'package:idb/app/widgets/shortcuts/app_shortcuts.dart';
+import 'package:idb/app/stores/layout_store.dart';
 
 class ContentBoxEditMode extends StatefulWidget {
   final Item item;
@@ -23,6 +23,7 @@ class ContentBoxEditMode extends StatefulWidget {
 
 class _ContentBoxEditModeState extends State<ContentBoxEditMode> {
   final _item = GetIt.I<ItemStore>();
+  final _layout = GetIt.I<LayoutStore>();
   final _controller = TextEditingController();
 
   @override
@@ -53,28 +54,27 @@ class _ContentBoxEditModeState extends State<ContentBoxEditMode> {
 
   @override
   Widget build(BuildContext context) {
-    return AppShortcuts(
-      child: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.75,
-        child: TextField(
-          cursorColor: Config.gray108Color,
-          cursorWidth: 3,
-          style: Ts.text13(Config.gray108Color),
-          textAlignVertical: TextAlignVertical.top,
-          maxLines: null,
-          minLines: null,
-          expands: true,
-          controller: _controller,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(width: L.v(1), color: Colors.black12),
-              borderRadius: BorderRadius.circular(L.v(5)),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(width: 1, color: Colors.black12),
-              borderRadius: BorderRadius.circular(L.v(5)),
-            ),
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.75,
+      child: TextField(
+        focusNode: _layout.contentFocusNode,
+        cursorColor: Config.gray108Color,
+        cursorWidth: 3,
+        style: Ts.text13(Config.gray108Color),
+        textAlignVertical: TextAlignVertical.top,
+        maxLines: null,
+        minLines: null,
+        expands: true,
+        controller: _controller,
+        decoration: InputDecoration(
+          border: OutlineInputBorder(),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(width: L.v(1), color: Colors.black12),
+            borderRadius: BorderRadius.circular(L.v(5)),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(width: 1, color: Colors.black12),
+            borderRadius: BorderRadius.circular(L.v(5)),
           ),
         ),
       ),

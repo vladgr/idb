@@ -4,6 +4,8 @@ import 'package:idb/app/config.dart';
 import 'package:idb/app/models/tag.dart';
 import 'package:idb/app/services/l.dart';
 import 'package:idb/app/services/ts.dart';
+import 'package:idb/app/stores/item_store.dart';
+import 'package:idb/app/stores/layout_store.dart';
 import 'package:idb/app/stores/tag_store.dart';
 import 'package:idb/app/widgets/layout/tap_wrapper.dart';
 
@@ -19,10 +21,18 @@ class TagBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _item = GetIt.I<ItemStore>();
+    final _layout = GetIt.I<LayoutStore>();
     final _tag = GetIt.I<TagStore>();
 
     return TapWrapper(
-      onPressed: () => _tag.toggleTag(this.tag),
+      onPressed: () {
+        _tag.toggleTag(this.tag);
+
+        if (_item.isEditModeEnabled) {
+          _layout.searchFocusNode.requestFocus();
+        }
+      },
       child: Container(
         width: double.infinity,
         padding: EdgeInsets.symmetric(horizontal: L.v(10), vertical: L.v(6)),

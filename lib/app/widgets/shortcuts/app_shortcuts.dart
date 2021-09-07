@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:idb/app/stores/item_store.dart';
+import 'package:idb/app/stores/layout_store.dart';
 import 'package:idb/app/stores/search_store.dart';
 import 'package:idb/app/stores/user_store.dart';
 import 'package:idb/app/widgets/shortcuts/intents.dart';
 import 'package:idb/app/widgets/shortcuts/keysets.dart';
 
-/// To simplify keyboard shortcuts, use all keybindings in single class.
-/// In that case there is no need to manage focus for different widgets.
-/// Use this wrapper in NavbarSearch and ContentBoxEditMode,
-/// only these widgets have focus.
+/// Global keyboard shortcuts using FocusableActionDetector
 class AppShortcuts extends StatelessWidget {
   final Widget child;
 
@@ -19,6 +17,7 @@ class AppShortcuts extends StatelessWidget {
   }) : super(key: key);
 
   final _item = GetIt.I<ItemStore>();
+  final _layout = GetIt.I<LayoutStore>();
   final _search = GetIt.I<SearchStore>();
   final _user = GetIt.I<UserStore>();
 
@@ -33,7 +32,13 @@ class AppShortcuts extends StatelessWidget {
     }
   }
 
-  void _onPressToggleEditMode() => _item.toggleEditModeEnabled();
+  void _onPressToggleEditMode() {
+    _item.toggleEditModeEnabled();
+
+    if (_item.isEditModeEnabled) {
+      _layout.contentFocusNode.requestFocus();
+    }
+  }
 
   // Num should be from 1 to 9
   void _onPressNum(int num) {

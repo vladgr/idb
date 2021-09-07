@@ -68,7 +68,7 @@ class Item {
 
     return htmlContent.replaceAllMapped(re, (m) {
       final imgPath = '${m.group(1)}';
-      return '<img src="${Config.bucketUrl}/$imgPath" />';
+      return '<img class="item-image" src="${Config.bucketUrl}/$imgPath" />';
     });
   }
 }

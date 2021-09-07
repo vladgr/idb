@@ -14,6 +14,8 @@ import 'package:idb/app/widgets/hoc/root.dart';
 import 'package:get_it/get_it.dart';
 import 'package:sentry/sentry.dart';
 
+import 'app/widgets/shortcuts/app_shortcuts.dart';
+
 class MyApp extends StatelessWidget {
   final ns = GetIt.I<NavigationService>();
 
@@ -33,7 +35,11 @@ class MyApp extends StatelessWidget {
             onTap: () {
               if (isIOS) hideKeyboard(context);
             },
-            child: Root(child: child!),
+            child: AppShortcuts(
+              child: Root(
+                child: child!,
+              ),
+            ),
           ),
         ),
       ),
@@ -54,6 +60,11 @@ Future<void> main() async {
 
     if (isWindows || isMacOS || isLinux) {
       await DesktopWindow.setMinWindowSize(Size(375, 375));
+
+      if (isMacOS) {
+        // Optimized for personal use on Mac
+        await DesktopWindow.setWindowSize(Size(1300, 900));
+      }
     }
 
     runApp(MyApp());
@@ -104,6 +115,6 @@ ThemeData appTheme() {
 void hideKeyboard(BuildContext context) {
   FocusScopeNode curFocus = FocusScope.of(context);
   if (!curFocus.hasPrimaryFocus && curFocus.focusedChild != null) {
-    FocusManager.instance.primaryFocus!.unfocus();
+    FocusManager.instance.primaryFocus?.unfocus();
   }
 }

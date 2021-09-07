@@ -34,6 +34,8 @@ class ContentBoxReadMode extends StatelessWidget {
           fontFamily: 'Roboto',
           fontWeight: FontWeight.w400,
           color: Colors.black87,
+          padding: EdgeInsets.all(0),
+          margin: EdgeInsets.all(0),
         ),
         'code': Style(
           backgroundColor: _backgroundColor,
@@ -64,8 +66,12 @@ class ContentBoxReadMode extends StatelessWidget {
           color: Colors.black.withOpacity(0.65),
         ),
         'a': Style(
-          color: Colors.pink,
+          color: Config.primaryColor,
         ),
+        'p': Style(
+          margin: EdgeInsets.all(L.v(5)),
+        ),
+        'img.item-image': Style(),
       },
     );
   }

@@ -41,6 +41,7 @@ then
 clear
 flutter build web --release --web-renderer canvaskit
 
+
 elif [ "$1" == "deployweb" ]
 then
 clear
