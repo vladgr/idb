@@ -8,7 +8,7 @@ This project was originally made on Django many years ago, then ported to React 
 
 95% of time I use it on Desktop, so compiled it to Mac desktop app.
 
-Also deployed Web PWA to server to use it on any other devices (phones, tablets). Web and Mac are ready for usage, everything else is supported, but not tested. Most likely will work.
+Also deployed Web PWA to server to use it on any other devices (phones, tablets). Web and Mac are ready for use, everything else is supported, but not tested. Most likely will work.
 
 PKB has simple and comfortable UI that allows to find anything in few seconds.
 
@@ -141,4 +141,4 @@ https://<your_bucket>.s3.amazonaws.com/<this_is_the_path>
 
 ```
 
-Items (notes) are stored in database using markdown. REST API converts them on the fly on response to HTML. On Python I am using `Markdown` library to do convertion from markdown to HTML.
+Items (notes) are stored in database on backend using markdown. Flutter app shows content as rendered HTML using `flutter_html` package. I do markdown to HTML convertion on backend using `markdown` Python library, but optionally you can do convertion on Flutter using `flutter_markdown` package.
