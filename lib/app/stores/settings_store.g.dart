@@ -9,34 +9,23 @@ part of 'settings_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$SettingsStore on _SettingsStore, Store {
-  final _$userIdsAtom = Atom(name: '_SettingsStore.userIds');
+  final _$selectedUserIdsAtom = Atom(name: '_SettingsStore.selectedUserIds');
 
   @override
-  List<int> get userIds {
-    _$userIdsAtom.reportRead();
-    return super.userIds;
+  List<int> get selectedUserIds {
+    _$selectedUserIdsAtom.reportRead();
+    return super.selectedUserIds;
   }
 
   @override
-  set userIds(List<int> value) {
-    _$userIdsAtom.reportWrite(value, super.userIds, () {
-      super.userIds = value;
+  set selectedUserIds(List<int> value) {
+    _$selectedUserIdsAtom.reportWrite(value, super.selectedUserIds, () {
+      super.selectedUserIds = value;
     });
   }
 
   final _$_SettingsStoreActionController =
       ActionController(name: '_SettingsStore');
-
-  @override
-  void setUserIds(List<int> value) {
-    final _$actionInfo = _$_SettingsStoreActionController.startAction(
-        name: '_SettingsStore.setUserIds');
-    try {
-      return super.setUserIds(value);
-    } finally {
-      _$_SettingsStoreActionController.endAction(_$actionInfo);
-    }
-  }
 
   @override
   void toggleUser(int value) {
@@ -52,7 +41,7 @@ mixin _$SettingsStore on _SettingsStore, Store {
   @override
   String toString() {
     return '''
-userIds: ${userIds}
+selectedUserIds: ${selectedUserIds}
     ''';
   }
 }

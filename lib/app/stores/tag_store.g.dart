@@ -46,11 +46,11 @@ mixin _$TagStore on _TagStore, Store {
     });
   }
 
-  final _$loadAsyncAction = AsyncAction('_TagStore.load');
+  final _$fetchTagsAsyncAction = AsyncAction('_TagStore.fetchTags');
 
   @override
-  Future<void> load() {
-    return _$loadAsyncAction.run(() => super.load());
+  Future<void> fetchTags() {
+    return _$fetchTagsAsyncAction.run(() => super.fetchTags());
   }
 
   final _$_TagStoreActionController = ActionController(name: '_TagStore');

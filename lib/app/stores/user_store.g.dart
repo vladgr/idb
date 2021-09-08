@@ -61,6 +61,21 @@ mixin _$UserStore on _UserStore, Store {
     });
   }
 
+  final _$usersAtom = Atom(name: '_UserStore.users');
+
+  @override
+  List<User> get users {
+    _$usersAtom.reportRead();
+    return super.users;
+  }
+
+  @override
+  set users(List<User> value) {
+    _$usersAtom.reportWrite(value, super.users, () {
+      super.users = value;
+    });
+  }
+
   final _$initAsyncAction = AsyncAction('_UserStore.init');
 
   @override
@@ -90,11 +105,18 @@ mixin _$UserStore on _UserStore, Store {
     return _$loginAsyncAction.run(() => super.login(data, onSuccess));
   }
 
-  final _$getProfileAsyncAction = AsyncAction('_UserStore.getProfile');
+  final _$fetchProfileAsyncAction = AsyncAction('_UserStore.fetchProfile');
 
   @override
-  Future<void> getProfile() {
-    return _$getProfileAsyncAction.run(() => super.getProfile());
+  Future<void> fetchProfile() {
+    return _$fetchProfileAsyncAction.run(() => super.fetchProfile());
+  }
+
+  final _$fetchUsersAsyncAction = AsyncAction('_UserStore.fetchUsers');
+
+  @override
+  Future<void> fetchUsers() {
+    return _$fetchUsersAsyncAction.run(() => super.fetchUsers());
   }
 
   final _$_UserStoreActionController = ActionController(name: '_UserStore');
@@ -116,6 +138,7 @@ mixin _$UserStore on _UserStore, Store {
 isAuthenticated: ${isAuthenticated},
 profile: ${profile},
 accessToken: ${accessToken},
+users: ${users},
 isAdmin: ${isAdmin}
     ''';
   }

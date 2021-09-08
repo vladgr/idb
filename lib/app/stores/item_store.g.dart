@@ -68,11 +68,11 @@ mixin _$ItemStore on _ItemStore, Store {
     });
   }
 
-  final _$fetchAsyncAction = AsyncAction('_ItemStore.fetch');
+  final _$fetchItemsAsyncAction = AsyncAction('_ItemStore.fetchItems');
 
   @override
-  Future<void> fetch() {
-    return _$fetchAsyncAction.run(() => super.fetch());
+  Future<void> fetchItems() {
+    return _$fetchItemsAsyncAction.run(() => super.fetchItems());
   }
 
   final _$fetchItemAsyncAction = AsyncAction('_ItemStore.fetchItem');

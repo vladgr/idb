@@ -5,6 +5,7 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:idb/app/routes.dart';
 import 'package:idb/app/services/navigation_service.dart';
+import 'package:idb/app/stores/settings_store.dart';
 import 'package:idb/app/stores/tag_store.dart';
 import 'package:mobx/mobx.dart';
 import 'package:idb/app/screens/splash_screen.dart';
@@ -29,6 +30,7 @@ class _RootState extends State<Root> {
   final _layout = GetIt.I<LayoutStore>();
   final _logger = GetIt.I<LoggerService>();
   final _nav = GetIt.I<NavigationService>();
+  final _settings = GetIt.I<SettingsStore>();
   final _tag = GetIt.I<TagStore>();
   final _user = GetIt.I<UserStore>();
 
@@ -71,7 +73,8 @@ class _RootState extends State<Root> {
 
   Future<void> _init() async {
     await _user.init();
-    await _tag.load();
+    await _settings.init();
+    await _tag.fetchTags();
   }
 
   void _setScreenSettings(BuildContext ctx) {

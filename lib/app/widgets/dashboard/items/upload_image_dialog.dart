@@ -52,7 +52,7 @@ class _UploadImageDialogState extends State<UploadImageDialog> {
       return;
     }
 
-    // Sign upload
+    /// Sign upload
     final result = await _upload.signUpload(this.widget.file.name, mimeType);
     if (result.isError) {
       _scaffold.createAlert('Can not sign url for upload. Something went wrong.', type: AlertType.error);
@@ -61,8 +61,6 @@ class _UploadImageDialogState extends State<UploadImageDialog> {
 
     final signedUrl = result.data['signed_url'];
     final uploadTo = result.data['upload_to'];
-
-    print(signedUrl);
 
     Uint8List bytes;
 

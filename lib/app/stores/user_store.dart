@@ -1,13 +1,11 @@
 import 'dart:async';
 import 'dart:ui';
 
-import 'package:get_it/get_it.dart';
 import 'package:idb/app/config.dart';
 import 'package:idb/app/models/user.dart';
 import 'package:idb/app/services/api.dart';
 import 'package:idb/app/services/token.dart';
 import 'package:idb/app/stores/base_store.dart';
-import 'package:idb/app/stores/settings_store.dart';
 import 'package:mobx/mobx.dart';
 
 part 'user_store.g.dart';
@@ -24,6 +22,9 @@ abstract class _UserStore extends BaseStore with Store {
   @observable
   String? accessToken;
 
+  @observable
+  List<User> users = [];
+
   @computed
   bool get isAdmin {
     if (this.profile == null) return false;
@@ -37,12 +38,8 @@ abstract class _UserStore extends BaseStore with Store {
 
   @action
   Future<void> init() async {
-    await this.getProfile();
-
-    // Set by default current user to settings
-    if (this.profile != null) {
-      GetIt.I<SettingsStore>().setUserIds([this.profile!.id]);
-    }
+    await this.fetchProfile();
+    await this.fetchUsers();
   }
 
   // Check token locally
@@ -90,7 +87,7 @@ abstract class _UserStore extends BaseStore with Store {
   }
 
   @action
-  Future<void> getProfile() async {
+  Future<void> fetchProfile() async {
     this.isInprogress = true;
     this.errors = null;
 
@@ -102,5 +99,18 @@ abstract class _UserStore extends BaseStore with Store {
     }
 
     this.isInprogress = false;
+  }
+
+  @action
+  Future<void> fetchUsers() async {
+    var result = await apiCall(Config.apiUsersUrl, 'GET', {}, true);
+    if (!result.isError) {
+      var l = <User>[];
+      for (var d in result.data) {
+        l.add(User.fromJson(d));
+      }
+
+      this.users = l;
+    }
   }
 }

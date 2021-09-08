@@ -47,7 +47,7 @@ abstract class _TagStore extends BaseStore with Store {
   }
 
   @action
-  Future<void> load() async {
+  Future<void> fetchTags() async {
     var result = await apiCall(Config.apiTagsUrl, 'GET', {}, true);
     if (!result.isError) {
       var m = Map<int, Tag>();
@@ -74,6 +74,6 @@ abstract class _TagStore extends BaseStore with Store {
     this.selectedTags = l;
 
     // Reload items
-    GetIt.I<ItemStore>().fetch();
+    GetIt.I<ItemStore>().fetchItems();
   }
 }

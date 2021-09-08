@@ -25,7 +25,7 @@ abstract class _SearchStore with Store {
     this.text = value;
 
     if (value.trim().length > 2) {
-      GetIt.I<ItemStore>().fetch();
+      GetIt.I<ItemStore>().fetchItems();
     }
   }
 }

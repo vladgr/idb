@@ -4,7 +4,6 @@ import 'package:http/http.dart' as http;
 import 'package:idb/app/config.dart';
 import 'package:idb/app/models/api_result.dart';
 import 'package:idb/app/services/api.dart';
-import 'package:idb/app/services/helpers.dart';
 
 import 'package:idb/app/stores/base_store.dart';
 import 'package:mobx/mobx.dart';
@@ -20,7 +19,6 @@ abstract class _UploadStore extends BaseStore with Store {
     this.isInprogress = true;
 
     dynamic data = {
-      'guid': getGuid(),
       'filename': filename,
       'content_type': contentType,
     };
@@ -42,7 +40,6 @@ abstract class _UploadStore extends BaseStore with Store {
     };
 
     final response = await http.put(uri, headers: headers, body: bytes);
-    print(response);
 
     if (response.statusCode >= 200 && response.statusCode < 300) {
       return true;

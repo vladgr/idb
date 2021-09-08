@@ -44,7 +44,7 @@ abstract class _ItemStore extends BaseStore with Store {
 
   String get _queryString {
     final tagIds = GetIt.I<TagStore>().selectedTags.map((x) => x.id).toList();
-    final userIds = GetIt.I<SettingsStore>().userIds;
+    final userIds = GetIt.I<SettingsStore>().selectedUserIds;
 
     String q = 'search=${GetIt.I<SearchStore>().text}';
     if (tagIds.isNotEmpty) q += '&tag_ids=${tagIds.join(',')}';
@@ -53,7 +53,7 @@ abstract class _ItemStore extends BaseStore with Store {
   }
 
   @action
-  Future<void> fetch() async {
+  Future<void> fetchItems() async {
     final _search = GetIt.I<SearchStore>();
     if (_search.text.length < 3) return;
 
@@ -164,7 +164,7 @@ abstract class _ItemStore extends BaseStore with Store {
   @action
   void postDeleteItem() {
     this.selectedItem = null;
-    this.fetch();
+    this.fetchItems();
   }
 
   @action
