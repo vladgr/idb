@@ -19,10 +19,14 @@ Features.
 -   authentication
 -   multi-users with admin access to share with your team members when needed
 -   tags
--   items (notes)
+-   content items (notes)
 -   quick search
 -   keyboard shortcuts
 -   uploading images and storing on AWS S3
+
+## Demo video
+
+[![PKB on Flutter](https://img.youtube.com/vi/mcXBic0Dl3Q/0.jpg)](https://www.youtube.com/watch?v=mcXBic0Dl3Q)
 
 ## Json config that hidden in gitignore
 
@@ -42,9 +46,13 @@ assets/json/config.json
 All shorcuts are listed in app_shortcuts.dart and self explanatory.
 ```
 
-## To use project for yourself, you will need to implement own backend (simple REST API)
+## I can't opensource backend, it is small part of bigger project.
+
+But backend (REST API) is very simple to implement.
 
 Backend models are matched to frontend models: user.dart, tag.dart, item.dart.
+
+User model on backend additionally has `user_id` field (user who created content item).
 
 ## Endpoints (see config.dart)
 
@@ -134,11 +142,10 @@ content_type: string
 
 Response (200):
 
-signed_url: url that will be used for uploading image to AWS S3.
+signed_url: url that will be used by Flutter ap for uploading image to AWS S3.
 upload_to: the path inside AWS S3 bucket where file will be stored.
 
 https://<your_bucket>.s3.amazonaws.com/<this_is_the_path>
-
 ```
 
-Items (notes) are stored in database on backend using markdown. Flutter app shows content as rendered HTML using `flutter_html` package. I do markdown to HTML convertion on backend using `markdown` Python library, but optionally you can do convertion on Flutter using `flutter_markdown` package.
+Content items (notes) are stored in database on backend in markdown format. Flutter app shows content as rendered HTML using `flutter_html` package. I do markdown to HTML convertion on backend using `markdown` Python library, but optionally you can do convertion on Flutter using `flutter_markdown` package.
