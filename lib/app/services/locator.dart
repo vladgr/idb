@@ -18,11 +18,9 @@ void setupLocator() {
   // Factories
   locator.registerFactory<SentryService>(() => SentryService());
 
-  // Singletons that used in AppRouteDelegate and should be registered earlier
+  // Singletons
   locator.registerSingleton<LoggerService>(LoggerService());
   locator.registerSingleton<NavigationService>(NavigationService());
-
-  // Singletons
   locator.registerSingleton<ScaffoldService>(ScaffoldService());
   locator.registerSingleton<StorageService>(StorageService());
 

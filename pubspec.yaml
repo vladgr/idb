@@ -24,7 +24,7 @@ dependencies:
     mime: ^1.0.0
     path: ^1.8.0
     path_provider: ^2.0.1
-    sentry: ^5.0.0
+    sentry_flutter: ^6.0.0
     uuid: ^3.0.4
 
 dev_dependencies:
@@ -52,3 +52,4 @@ flutter:
         - assets/images/
         - assets/images/pics/
         - assets/images/svg/
+        - assets/json/

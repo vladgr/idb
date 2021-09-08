@@ -1,5 +1,6 @@
 import 'dart:async';
-
+import 'dart:convert';
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,7 @@ import 'package:idb/app/services/scaffold_service.dart';
 import 'package:idb/app/services/sentry_service.dart';
 import 'package:idb/app/widgets/hoc/root.dart';
 import 'package:get_it/get_it.dart';
-import 'package:sentry/sentry.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'app/widgets/shortcuts/app_shortcuts.dart';
 
@@ -47,12 +48,23 @@ class MyApp extends StatelessWidget {
   }
 }
 
+Future<void> loadConfig() async {
+  String data = await rootBundle.loadString('assets/json/config.json');
+  final m = await json.decode(data);
+
+  Config.apiUrl = m['apiUrl'];
+  Config.sentryDSN = m['sentryDSN'];
+  Config.bucketUrl = m['bucketUrl'];
+}
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await loadConfig();
   setupLocator();
 
   runZonedGuarded(() async {
-    await Sentry.init(
+    await SentryFlutter.init(
       (options) {
         options.dsn = Config.sentryDSN;
       },
