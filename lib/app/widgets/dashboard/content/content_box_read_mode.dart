@@ -7,6 +7,7 @@ import 'package:idb/app/config.dart';
 import 'package:idb/app/models/item.dart';
 import 'package:idb/app/services/l.dart';
 import 'package:idb/app/services/scaffold_service.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ContentBoxReadMode extends StatelessWidget {
   final Item item;
@@ -27,6 +28,9 @@ class ContentBoxReadMode extends StatelessWidget {
   /// Render HTML string with custom styling
   Widget _wHtml(String htmlString) {
     return Html(
+      onAnchorTap: (url, _, __, ___) {
+        if (url != null) launch(url);
+      },
       data: htmlString,
       style: {
         'body': Style(
@@ -81,6 +85,7 @@ class ContentBoxReadMode extends StatelessWidget {
   Widget _wBlock(String htmlString) {
     final _scaffold = GetIt.I<ScaffoldService>();
 
+    // Code blocks that can be copied to clipboard
     if (htmlString.startsWith('<pre>')) {
       return Stack(
         children: [
@@ -90,7 +95,7 @@ class ContentBoxReadMode extends StatelessWidget {
             right: L.v(5),
             child: IconButton(
               onPressed: () async {
-                var el = parse(htmlString);
+                final el = parse(htmlString);
                 String? s = el.body?.firstChild?.text;
                 if (s != null) {
                   await FlutterClipboard.copy(s);
