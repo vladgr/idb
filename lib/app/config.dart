@@ -26,7 +26,6 @@ class Config {
   static late final bucketUrl;
 
   // API endpoints
-  static final apiCheckTokenUrl = '$apiUrl/v1/auth/check_token';
   static final apiLoginUrl = '$apiUrl/v1/auth/login';
   static final apiProfileUrl = '$apiUrl/v1/profile';
   static final apiTagsUrl = '$apiUrl/v1/idb/tags';
