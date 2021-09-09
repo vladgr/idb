@@ -6,15 +6,17 @@
 
 ## About project
 
-This project was originally made on Django many years ago, then ported to React Web PWA and now I ported it to Flutter.
+This project was originally made on Django many years ago, then ported to React Web PWA and as of September, 2021 ported to Flutter.
 
 95% of time I use it on Desktop, so compiled it to Mac desktop app.
 
-Also deployed Web PWA to server to use it on any other devices (phones, tablets). Web and Mac are ready for use, everything else is supported, but not tested. Most likely will work.
+Also deployed Web PWA to server to use it on any other devices (phones, tablets). Web and Mac are ready for use, everything else is supported, but not tested.
 
 PKB has simple and comfortable UI that allows to find anything in few seconds.
 
-I use this UI setup for more than 5 years since it was made on React and like it.
+I use this UI setup for more than 5 years since it was made on React.
+
+Items (notes) on the left side, tags on the right side and content in the middle.
 
 Features.
 
