@@ -2,6 +2,8 @@
 
 "Personal Knowledge Base" app written on Flutter.
 
+# [>> View DEMO Video](https://www.youtube.com/watch?v=mcXBic0Dl3Q)
+
 ## About project
 
 This project was originally made on Django many years ago, then ported to React Web PWA and now I ported it to Flutter.
@@ -23,10 +25,6 @@ Features.
 -   quick search
 -   keyboard shortcuts
 -   uploading images and storing on AWS S3
-
-## Demo video
-
-[![PKB on Flutter](https://img.youtube.com/vi/mcXBic0Dl3Q/0.jpg)](https://www.youtube.com/watch?v=mcXBic0Dl3Q)
 
 ## Json config that hidden in gitignore
 
