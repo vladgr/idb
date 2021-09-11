@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:idb/app/config.dart';
 import 'package:idb/app/models/item.dart';
-import 'package:idb/app/services/helpers.dart';
 import 'package:idb/app/services/l.dart';
 import 'package:idb/app/services/ts.dart';
 import 'package:idb/app/stores/item_store.dart';
@@ -49,16 +48,17 @@ class ItemBox extends StatelessWidget {
     final _layout = GetIt.I<LayoutStore>();
 
     return TapWrapper(
-      onPressed: () {
-        _item.setAndFetchItem(this.item);
+      onPressed: () async {
+        await _item.setAndFetchItem(this.item);
 
-        // Hide keyboard on mobile devices
-        if (!_layout.isDesktop) {
-          dismissKeyboard(context);
+        // After selecting item
+        // Desktop: set focus to search field
+        // Mobiles: remove focus (so keyboard is not opened automatically)
+        if (_layout.isDesktop) {
+          _layout.searchFocusNode.requestFocus();
+        } else {
+          _layout.searchFocusNode.unfocus();
         }
-
-        // Set focus to search navbar
-        _layout.searchFocusNode.requestFocus();
       },
       child: Container(
         width: double.infinity,

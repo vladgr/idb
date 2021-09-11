@@ -114,6 +114,14 @@ mixin _$ItemStore on _ItemStore, Store {
     return _$deleteItemAsyncAction.run(() => super.deleteItem(guid));
   }
 
+  final _$setAndFetchItemAsyncAction =
+      AsyncAction('_ItemStore.setAndFetchItem');
+
+  @override
+  Future<void> setAndFetchItem(Item value) {
+    return _$setAndFetchItemAsyncAction.run(() => super.setAndFetchItem(value));
+  }
+
   final _$_ItemStoreActionController = ActionController(name: '_ItemStore');
 
   @override
@@ -155,17 +163,6 @@ mixin _$ItemStore on _ItemStore, Store {
         _$_ItemStoreActionController.startAction(name: '_ItemStore.setItem');
     try {
       return super.setItem(value);
-    } finally {
-      _$_ItemStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void setAndFetchItem(Item value) {
-    final _$actionInfo = _$_ItemStoreActionController.startAction(
-        name: '_ItemStore.setAndFetchItem');
-    try {
-      return super.setAndFetchItem(value);
     } finally {
       _$_ItemStoreActionController.endAction(_$actionInfo);
     }

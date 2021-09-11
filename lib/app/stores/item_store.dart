@@ -178,9 +178,9 @@ abstract class _ItemStore extends BaseStore with Store {
   }
 
   @action
-  void setAndFetchItem(Item value) {
+  Future<void> setAndFetchItem(Item value) async {
     this.selectedItem = value;
-    this.fetchItem(value.guid);
+    await this.fetchItem(value.guid);
     this.isEditModeEnabled = false;
   }
 
