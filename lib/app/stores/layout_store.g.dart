@@ -159,6 +159,21 @@ mixin _$LayoutStore on _LayoutStore, Store {
     });
   }
 
+  final _$versionAtom = Atom(name: '_LayoutStore.version');
+
+  @override
+  String get version {
+    _$versionAtom.reportRead();
+    return super.version;
+  }
+
+  @override
+  set version(String value) {
+    _$versionAtom.reportWrite(value, super.version, () {
+      super.version = value;
+    });
+  }
+
   final _$initAsyncAction = AsyncAction('_LayoutStore.init');
 
   @override
@@ -246,6 +261,7 @@ paddingTop: ${paddingTop},
 isMobile: ${isMobile},
 isTablet: ${isTablet},
 isDesktop: ${isDesktop},
+version: ${version},
 contentHeight: ${contentHeight},
 safeAreaHeight: ${safeAreaHeight}
     ''';

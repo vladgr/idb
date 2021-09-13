@@ -4,6 +4,7 @@ import 'package:idb/app/stores/user_store.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter/material.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 part 'layout_store.g.dart';
 
@@ -47,6 +48,9 @@ abstract class _LayoutStore with Store {
   @observable
   bool isDesktop = false;
 
+  @observable
+  String version = '';
+
   // Returns content height: for screens with standard app bar.
   @computed
   double get contentHeight {
@@ -64,6 +68,9 @@ abstract class _LayoutStore with Store {
     final user = GetIt.I<UserStore>();
 
     await user.checkLocalToken();
+
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    this.version = packageInfo.version;
 
     this.isLayoutReady = true;
   }

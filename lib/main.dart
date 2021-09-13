@@ -105,15 +105,12 @@ ThemeData appTheme() {
       actionsIconTheme: IconThemeData(
         color: Colors.white,
       ),
-      textTheme: TextTheme(
-        headline6: TextStyle(
-          fontSize: 20,
-          color: Colors.white,
-        ),
+      toolbarTextStyle: TextStyle(
+        fontSize: 20,
+        color: Colors.white,
       ),
     ),
     primaryColor: Config.primaryColor,
-    accentColor: Colors.white,
     iconTheme: IconThemeData(
       color: Config.primaryColor,
     ),

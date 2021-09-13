@@ -78,7 +78,6 @@ class _RootState extends State<Root> {
   }
 
   void _setScreenSettings(BuildContext ctx) {
-    // Set real screen minSize for Layout Service
     var width = MediaQuery.of(ctx).size.width;
     var height = MediaQuery.of(ctx).size.height;
     var paddingTop = MediaQuery.of(ctx).padding.top;

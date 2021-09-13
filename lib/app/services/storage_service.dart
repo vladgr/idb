@@ -3,16 +3,6 @@ import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class StorageService {
-  StorageService() {
-    Timer.run(() async {
-      try {
-        await SharedPreferences.getInstance();
-      } catch (e) {
-        SharedPreferences.setMockInitialValues({});
-      }
-    });
-  }
-
   Future<void> save(String key, dynamic value) async {
     final SharedPreferences spr = await SharedPreferences.getInstance();
 

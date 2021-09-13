@@ -1,7 +1,4 @@
 import 'package:get_it/get_it.dart';
-import 'package:idb/app/config.dart';
-import 'package:idb/app/models/user.dart';
-import 'package:idb/app/services/api.dart';
 import 'package:idb/app/stores/user_store.dart';
 import 'package:mobx/mobx.dart';
 

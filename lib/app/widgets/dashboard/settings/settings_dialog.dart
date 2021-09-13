@@ -5,6 +5,7 @@ import 'package:get_it/get_it.dart';
 import 'package:idb/app/config.dart';
 import 'package:idb/app/services/l.dart';
 import 'package:idb/app/services/ts.dart';
+import 'package:idb/app/stores/layout_store.dart';
 import 'package:idb/app/stores/settings_store.dart';
 import 'package:idb/app/stores/user_store.dart';
 import 'package:idb/app/widgets/layout/app_switch.dart';
@@ -18,6 +19,7 @@ class SettingsDialog extends StatefulWidget {
 
 class _SettingsDialogState extends State<SettingsDialog> {
   final _settings = GetIt.I<SettingsStore>();
+  final _layout = GetIt.I<LayoutStore>();
   final _user = GetIt.I<UserStore>();
 
   @override
@@ -33,10 +35,11 @@ class _SettingsDialogState extends State<SettingsDialog> {
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'Users:',
-                style: Ts.bold16(Config.gray108Color),
+                style: Ts.text16(Config.gray108Color),
               ),
               Divider(),
               for (var user in _user.users)
@@ -50,6 +53,11 @@ class _SettingsDialogState extends State<SettingsDialog> {
                     },
                   ),
                 ),
+              Divider(),
+              Text(
+                'Version: ${_layout.version}',
+                style: Ts.text12(Config.gray108Color),
+              ),
             ],
           ),
         ),
