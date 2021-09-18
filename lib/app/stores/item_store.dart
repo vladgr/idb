@@ -18,7 +18,7 @@ class ItemStore = _ItemStore with _$ItemStore;
 
 abstract class _ItemStore extends BaseStore with Store {
   @observable
-  Map<int, Item> map = Map<int, Item>();
+  Map<int, Item> map = <int, Item>{};
 
   @observable
   Item? selectedItem;
@@ -28,18 +28,18 @@ abstract class _ItemStore extends BaseStore with Store {
 
   @computed
   bool get hasSelectedItem {
-    return this.selectedItem != null;
+    return selectedItem != null;
   }
 
   @computed
   int get count {
-    return this.map.length;
+    return map.length;
   }
 
   @action
   void clear() {
-    this.selectedItem = null;
-    this.map = Map<int, Item>();
+    selectedItem = null;
+    map = <int, Item>{};
   }
 
   String get _queryString {
@@ -60,14 +60,14 @@ abstract class _ItemStore extends BaseStore with Store {
     final url = '${Config.apiItemsUrl}?$_queryString';
     var result = await apiCall(url, 'GET', {}, true);
     if (!result.isError) {
-      var m = Map<int, Item>();
+      var m = <int, Item>{};
 
       for (var d in result.data) {
         var item = Item.fromJson(d);
         m[item.id] = item;
       }
 
-      this.map = m;
+      map = m;
     }
   }
 
@@ -77,14 +77,14 @@ abstract class _ItemStore extends BaseStore with Store {
 
     var result = await apiCall(url, 'GET', {}, true);
     if (!result.isError) {
-      this.selectedItem = Item.fromJson(result.data);
+      selectedItem = Item.fromJson(result.data);
     }
   }
 
   @action
   Future<bool> createItem(String name, String content, List<int> tagIds) async {
-    this.isInprogress = true;
-    this.errors = null;
+    isInprogress = true;
+    errors = null;
 
     final url = Config.apiItemsUrl;
 
@@ -95,10 +95,10 @@ abstract class _ItemStore extends BaseStore with Store {
     };
 
     var result = await apiCall(url, 'POST', data, true);
-    this.isInprogress = false;
+    isInprogress = false;
 
     if (result.isError) {
-      this.errors = result.data;
+      errors = result.data;
       return false;
     }
 
@@ -111,7 +111,7 @@ abstract class _ItemStore extends BaseStore with Store {
   Future<bool> updateItemFromUI(Item item) async {
     final scaffold = GetIt.I<ScaffoldService>();
 
-    bool isUpdated = await this.updateItem(
+    bool isUpdated = await updateItem(
       item.guid,
       item.content,
       item.tags.map((x) => x.id).toList(),
@@ -129,7 +129,7 @@ abstract class _ItemStore extends BaseStore with Store {
   /// API call to update item
   @action
   Future<bool> updateItem(String guid, String content, List<int> tagIds) async {
-    this.isInprogress = true;
+    isInprogress = true;
 
     final url = Config.apiItemUrl.replaceFirst('<guid>', guid);
 
@@ -139,58 +139,58 @@ abstract class _ItemStore extends BaseStore with Store {
     };
 
     var result = await apiCall(url, 'PATCH', data, true);
-    this.isInprogress = false;
+    isInprogress = false;
 
     if (result.isError) {
       return false;
     }
 
-    this.selectedItem = Item.fromJson(result.data);
+    selectedItem = Item.fromJson(result.data);
     return true;
   }
 
   @action
   Future<bool> deleteItem(String guid) async {
-    this.isInprogress = true;
+    isInprogress = true;
 
     final url = Config.apiItemUrl.replaceFirst('<guid>', guid);
 
     var result = await apiCall(url, 'DELETE', {}, true);
-    this.isInprogress = false;
+    isInprogress = false;
 
     return result.isError ? false : true;
   }
 
   @action
   void postDeleteItem() {
-    this.selectedItem = null;
-    this.fetchItems();
+    selectedItem = null;
+    fetchItems();
   }
 
   @action
   void clearSelectedItem() {
-    this.selectedItem = null;
+    selectedItem = null;
   }
 
   @action
   void setItem(Item value) {
-    this.selectedItem = value;
+    selectedItem = value;
   }
 
   @action
   Future<void> setAndFetchItem(Item value) async {
-    this.selectedItem = value;
-    await this.fetchItem(value.guid);
-    this.isEditModeEnabled = false;
+    selectedItem = value;
+    await fetchItem(value.guid);
+    isEditModeEnabled = false;
   }
 
   @action
   void toggleEditModeEnabled() {
-    this.isEditModeEnabled = !this.isEditModeEnabled;
+    isEditModeEnabled = !isEditModeEnabled;
   }
 
   @action
   void setEditModeEnabled(bool value) {
-    this.isEditModeEnabled = value;
+    isEditModeEnabled = value;
   }
 }

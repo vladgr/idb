@@ -21,8 +21,8 @@ class Tag {
   }
 
   @override
-  bool operator ==(covariant Tag other) => other.id == this.id;
+  bool operator ==(covariant Tag other) => other.id == id;
 
   @override
-  int get hashCode => this.id;
+  int get hashCode => id;
 }

@@ -20,7 +20,7 @@ import 'package:mime/mime.dart';
 class UploadImageDialog extends StatefulWidget {
   final PlatformFile file;
 
-  UploadImageDialog({
+  const UploadImageDialog({
     Key? key,
     required this.file,
   }) : super(key: key);
@@ -45,7 +45,7 @@ class _UploadImageDialogState extends State<UploadImageDialog> {
   }
 
   Future<void> _onSubmit() async {
-    final mimeType = lookupMimeType(this.widget.file.name);
+    final mimeType = lookupMimeType(widget.file.name);
 
     if (mimeType == null) {
       _scaffold.createAlert('Can not detect mime type of the file.');
@@ -53,7 +53,7 @@ class _UploadImageDialogState extends State<UploadImageDialog> {
     }
 
     /// Sign upload
-    final result = await _upload.signUpload(this.widget.file.name, mimeType);
+    final result = await _upload.signUpload(widget.file.name, mimeType);
     if (result.isError) {
       _scaffold.createAlert('Can not sign url for upload. Something went wrong.', type: AlertType.error);
       return;
@@ -65,9 +65,9 @@ class _UploadImageDialogState extends State<UploadImageDialog> {
     Uint8List bytes;
 
     if (isWeb) {
-      bytes = this.widget.file.bytes!;
+      bytes = widget.file.bytes!;
     } else {
-      final File f = File(this.widget.file.path);
+      final File f = File(widget.file.path);
       bytes = await f.readAsBytes();
     }
 
@@ -103,7 +103,7 @@ class _UploadImageDialogState extends State<UploadImageDialog> {
                 style: Ts.bold16(Config.gray108Color),
               ),
               BR(20),
-              Text('File: ${this.widget.file.name}'),
+              Text('File: ${widget.file.name}'),
               BR(10),
               AppButton(
                 text: 'Upload file',

@@ -16,7 +16,7 @@ abstract class _UploadStore extends BaseStore with Store {
   /// Send request to API that will sign file upload for AWS S3.
   @action
   Future<ApiResult> signUpload(String filename, String contentType) async {
-    this.isInprogress = true;
+    isInprogress = true;
 
     dynamic data = {
       'filename': filename,
@@ -24,7 +24,7 @@ abstract class _UploadStore extends BaseStore with Store {
     };
 
     var result = await apiCall(Config.apiSignUploadUrl, 'POST', data, true);
-    this.isInprogress = false;
+    isInprogress = false;
     return result;
   }
 

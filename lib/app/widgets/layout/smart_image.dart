@@ -14,8 +14,8 @@ class SmartImage extends StatelessWidget {
     var logger = GetIt.I<LoggerService>();
     var re = RegExp(r'_(\d+)x(\d+)\.');
 
-    var l = re.allMatches(this.src).toList();
-    if (l.length != 1) logger.debug(this.src);
+    var l = re.allMatches(src).toList();
+    if (l.length != 1) logger.debug(src);
     assert(l.length == 1);
 
     var m = l.first;
@@ -23,7 +23,7 @@ class SmartImage extends StatelessWidget {
     var height = int.parse(m.group(2)!).toDouble();
 
     return Image(
-      image: AssetImage(this.src),
+      image: AssetImage(src),
       width: L.v(width),
       height: L.v(height),
     );

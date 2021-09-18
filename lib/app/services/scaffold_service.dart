@@ -6,8 +6,8 @@ import 'package:idb/app/services/ts.dart';
 class ScaffoldService {
   final GlobalKey<ScaffoldMessengerState> scaffoldKey = GlobalKey<ScaffoldMessengerState>();
 
-  void createAlert(String text, {AlertType type: AlertType.success, int seconds: 3}) {
-    var color;
+  void createAlert(String text, {AlertType type = AlertType.success, int seconds = 3}) {
+    Color color;
 
     switch (type) {
       case AlertType.success:
@@ -34,11 +34,11 @@ class ScaffoldService {
         textColor: Colors.white,
         label: 'CLOSE',
         onPressed: () {
-          this.scaffoldKey.currentState!.hideCurrentSnackBar();
+          scaffoldKey.currentState!.hideCurrentSnackBar();
         },
       ),
     );
 
-    this.scaffoldKey.currentState!.showSnackBar(snack);
+    scaffoldKey.currentState!.showSnackBar(snack);
   }
 }

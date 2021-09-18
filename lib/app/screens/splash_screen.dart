@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 class SplashScreen extends StatefulWidget {
   final Widget? child;
 
-  SplashScreen({
+  const SplashScreen({
     Key? key,
     this.child,
   }) : super(key: key);
@@ -31,10 +31,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (this.widget.child != null) {
+    if (widget.child != null) {
       return Stack(
         children: <Widget>[
-          Opacity(opacity: 0, child: this.widget.child),
+          Opacity(opacity: 0, child: widget.child),
           _wSplash(),
         ],
       );

@@ -18,7 +18,7 @@ import 'package:idb/app/widgets/layout/br.dart';
 import 'package:idb/app/widgets/layout/empty.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();

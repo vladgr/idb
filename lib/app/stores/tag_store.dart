@@ -15,7 +15,7 @@ class TagStore = _TagStore with _$TagStore;
 
 abstract class _TagStore extends BaseStore with Store {
   @observable
-  Map<int, Tag> map = Map<int, Tag>();
+  Map<int, Tag> map = <int, Tag>{};
 
   @observable
   List<Tag> selectedTags = [];
@@ -27,13 +27,13 @@ abstract class _TagStore extends BaseStore with Store {
     final _item = GetIt.I<ItemStore>();
     final _search = GetIt.I<SearchStore>();
 
-    var allTags = this.map.values.toList();
+    var allTags = map.values.toList();
 
     if (_item.map.isEmpty || _search.text.isEmpty) {
       return allTags;
     }
 
-    Set<Tag> tagsSet = Set<Tag>();
+    Set<Tag> tagsSet = <Tag>{};
     for (var item in _item.map.values) {
       tagsSet.addAll(item.tags);
     }
@@ -43,35 +43,35 @@ abstract class _TagStore extends BaseStore with Store {
 
   @action
   void clear() {
-    this.selectedTags = [];
+    selectedTags = [];
   }
 
   @action
   Future<void> fetchTags() async {
     var result = await apiCall(Config.apiTagsUrl, 'GET', {}, true);
     if (!result.isError) {
-      var m = Map<int, Tag>();
+      var m = <int, Tag>{};
 
       for (var d in result.data) {
         var tag = Tag.fromJson(d);
         m[tag.id] = tag;
       }
 
-      this.map = m;
+      map = m;
     }
   }
 
   @action
   void toggleTag(Tag tag) {
-    var l = [...this.selectedTags];
+    var l = [...selectedTags];
 
-    if (this.selectedTags.contains(tag)) {
+    if (selectedTags.contains(tag)) {
       l.remove(tag);
     } else {
       l.add(tag);
     }
 
-    this.selectedTags = l;
+    selectedTags = l;
 
     // Reload items
     GetIt.I<ItemStore>().fetchItems();

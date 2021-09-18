@@ -11,7 +11,7 @@ class AppButton extends StatelessWidget {
     Key? key,
     required this.text,
     required this.onPressed,
-    this.isDisabled: false,
+    this.isDisabled = false,
   }) : super(key: key);
 
   @override

@@ -11,7 +11,7 @@ import 'package:idb/app/stores/user_store.dart';
 import 'package:idb/app/widgets/layout/app_switch.dart';
 
 class SettingsDialog extends StatefulWidget {
-  SettingsDialog({Key? key}) : super(key: key);
+  const SettingsDialog({Key? key}) : super(key: key);
 
   @override
   _SettingsDialogState createState() => _SettingsDialogState();

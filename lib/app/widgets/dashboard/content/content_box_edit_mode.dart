@@ -30,7 +30,7 @@ class _ContentBoxEditModeState extends State<ContentBoxEditMode> {
   void initState() {
     super.initState();
 
-    var item = this.widget.item;
+    var item = widget.item;
 
     // Set initial value
     _controller.text = item.content;

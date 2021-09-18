@@ -41,21 +41,21 @@ class Item {
   bool operator ==(covariant Item other) => other.id == id;
 
   @override
-  int get hashCode => this.id;
+  int get hashCode => id;
 
   /// Returns the same content, but with images replaced
   /// to full path src and as image tags
   String get processedHtml {
-    return _processImages(this.contentHtml);
+    return _processImages(contentHtml);
   }
 
   /// Split contentHtml to parts to be able
   /// to process each part separately for custom functionality
   List<String> get htmlParts {
-    final doc = parse(this.processedHtml);
+    final doc = parse(processedHtml);
 
     if (doc.body == null) {
-      return [this.processedHtml];
+      return [processedHtml];
     }
 
     return doc.body!.children.map((el) => el.outerHtml).toList();

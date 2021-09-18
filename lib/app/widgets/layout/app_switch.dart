@@ -19,8 +19,8 @@ class AppSwitch extends StatelessWidget {
       scale: 0.8,
       child: CupertinoSwitch(
         activeColor: Config.primaryColor,
-        value: this.value,
-        onChanged: this.onChanged,
+        value: value,
+        onChanged: onChanged,
       ),
     );
   }

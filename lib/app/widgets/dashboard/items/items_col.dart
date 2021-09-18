@@ -18,7 +18,7 @@ class ItemsCol extends StatelessWidget {
     return Observer(builder: (BuildContext context) {
       final items = _item.map.values.toList();
 
-      if (items.length == 0) {
+      if (items.isEmpty) {
         return Empty();
       }
 

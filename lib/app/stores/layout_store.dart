@@ -54,12 +54,12 @@ abstract class _LayoutStore with Store {
   // Returns content height: for screens with standard app bar.
   @computed
   double get contentHeight {
-    return this.height - L.appBarHeight - this.paddingTop;
+    return height - L.appBarHeight - paddingTop;
   }
 
   @computed
   double get safeAreaHeight {
-    return this.height - this.paddingTop;
+    return height - paddingTop;
   }
 
   // Init all stores, that require init
@@ -70,42 +70,42 @@ abstract class _LayoutStore with Store {
     await user.checkLocalToken();
 
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    this.version = packageInfo.version;
+    version = packageInfo.version;
 
-    this.isLayoutReady = true;
+    isLayoutReady = true;
   }
 
   @action
   void setOrientation(Orientation value) {
-    this.orientation = value;
+    orientation = value;
   }
 
   @action
   void setWidth(double value) {
-    this.width = value;
+    width = value;
   }
 
   @action
   void setHeight(double value) {
-    this.height = value;
+    height = value;
   }
 
   @action
   void setPaddingTop(double value) {
-    this.paddingTop = value;
+    paddingTop = value;
   }
 
   @action
   void setKeyboardVisibility(bool value) {
-    this.isKeyboardVisible = value;
+    isKeyboardVisible = value;
   }
 
   @action
   void setBreakpoints(double w) {
-    this.isMobile = w < kTabletBreakpoint ? true : false;
+    isMobile = w < kTabletBreakpoint ? true : false;
 
-    this.isTablet = (w >= kTabletBreakpoint && w < kDesktopBreakpoint) ? true : false;
+    isTablet = (w >= kTabletBreakpoint && w < kDesktopBreakpoint) ? true : false;
 
-    this.isDesktop = w >= kDesktopBreakpoint ? true : false;
+    isDesktop = w >= kDesktopBreakpoint ? true : false;
   }
 }

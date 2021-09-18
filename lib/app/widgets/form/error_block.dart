@@ -19,7 +19,7 @@ class ErrorBlock extends StatelessWidget {
       SizedBox(width: double.infinity), // take full width
     ];
 
-    for (var error in this.errors['errors']) {
+    for (var error in errors['errors']) {
       l.add(
         Padding(
           padding: EdgeInsets.only(top: L.v(10)),
@@ -35,15 +35,15 @@ class ErrorBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (this.errors == null) {
+    if (errors == null) {
       return Empty();
     }
 
-    if (!this.errors.containsKey('errors')) {
+    if (!errors.containsKey('errors')) {
       return Empty();
     }
 
-    if (this.name != null && this.errors.containsKey('errorBlockName') && name != errors['errorBlockName']) {
+    if (name != null && errors.containsKey('errorBlockName') && name != errors['errorBlockName']) {
       return Empty();
     }
 

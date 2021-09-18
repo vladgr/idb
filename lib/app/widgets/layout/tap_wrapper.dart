@@ -9,16 +9,16 @@ class TapWrapper extends StatelessWidget {
     Key? key,
     required this.child,
     required this.onPressed,
-    this.hasEffect: true,
+    this.hasEffect = true,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    if (this.hasEffect) {
+    if (hasEffect) {
       return Material(
         color: Colors.transparent,
         child: InkWell(
-          onTap: this.onPressed as void Function()?,
+          onTap: onPressed as void Function()?,
           child: child,
         ),
       );
@@ -32,7 +32,7 @@ class TapWrapper extends StatelessWidget {
         hoverColor: Colors.transparent,
         highlightColor: Colors.transparent,
         splashColor: Colors.transparent,
-        onTap: this.onPressed as void Function()?,
+        onTap: onPressed as void Function()?,
         child: child,
       ),
     );

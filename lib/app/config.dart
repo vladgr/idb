@@ -21,9 +21,9 @@ class Config {
   static const Color gray243Color = Color.fromRGBO(243, 243, 243, 1);
 
   // Loaded from json config on start
-  static late final apiUrl;
-  static late final sentryDSN;
-  static late final bucketUrl;
+  static late final String apiUrl;
+  static late final String sentryDSN;
+  static late final String bucketUrl;
 
   // API endpoints
   static final apiLoginUrl = '$apiUrl/v1/auth/login';

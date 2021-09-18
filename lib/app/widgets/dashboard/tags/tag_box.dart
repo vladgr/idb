@@ -25,7 +25,7 @@ class TagBox extends StatelessWidget {
 
     return TapWrapper(
       onPressed: () {
-        _tag.toggleTag(this.tag);
+        _tag.toggleTag(tag);
 
         if (_layout.isDesktop) {
           _layout.searchFocusNode.requestFocus();

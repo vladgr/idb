@@ -9,7 +9,7 @@ class BH extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: this.width),
+      padding: EdgeInsets.only(left: width),
       child: Empty(),
     );
   }

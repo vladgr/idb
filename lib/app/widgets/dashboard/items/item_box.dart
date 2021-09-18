@@ -49,7 +49,7 @@ class ItemBox extends StatelessWidget {
 
     return TapWrapper(
       onPressed: () async {
-        await _item.setAndFetchItem(this.item);
+        await _item.setAndFetchItem(item);
 
         // After selecting item
         // Desktop: set focus to search field

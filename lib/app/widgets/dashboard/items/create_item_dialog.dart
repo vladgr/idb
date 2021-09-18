@@ -14,7 +14,7 @@ import 'package:idb/app/widgets/layout/app_button.dart';
 import 'package:idb/app/widgets/layout/br.dart';
 
 class CreateItemDialog extends StatefulWidget {
-  CreateItemDialog({Key? key}) : super(key: key);
+  const CreateItemDialog({Key? key}) : super(key: key);
 
   @override
   _CreateItemDialogState createState() => _CreateItemDialogState();

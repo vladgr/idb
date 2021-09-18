@@ -6,13 +6,13 @@ import '../test_service.dart';
 void main() {
   final _ts = TestService();
 
-  String data = """
+  String data = '''
   something
   [img:some-path1/some-file1.jpg]
   something
   [img:some-path2/some-file2.jpg]
   something
-  """;
+  ''';
 
   test('Test parsing image', () async {
     await _ts.init();
@@ -21,9 +21,10 @@ void main() {
 
     data = data.replaceAllMapped(re, (m) {
       final imgPath = '${m.group(1)}';
-      return '<img src="${Config.bucketUrl}/${imgPath}" />';
+      return '<img src="${Config.bucketUrl}/$imgPath" />';
     });
 
+    // ignore: avoid_print
     print(data);
   });
 }

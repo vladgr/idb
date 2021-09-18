@@ -14,7 +14,7 @@ abstract class _SearchStore with Store {
 
   @action
   void clear() {
-    this.text = '';
+    text = '';
     GetIt.I<TagStore>().clear();
     GetIt.I<ItemStore>().clear();
     GetIt.I<LayoutStore>().searchController.text = '';
@@ -22,7 +22,7 @@ abstract class _SearchStore with Store {
 
   @action
   void setText(String value) {
-    this.text = value;
+    text = value;
 
     if (value.trim().length > 2) {
       GetIt.I<ItemStore>().fetchItems();

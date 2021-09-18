@@ -7,7 +7,9 @@ class SentryService {
 
   Future<void> reportError(dynamic error, dynamic stackTrace) async {
     if (kDebugMode) {
+      // ignore: avoid_print
       print('Caught error: $error');
+      // ignore: avoid_print
       print(stackTrace);
     } else {
       _sentry.captureException(error, stackTrace: stackTrace);

@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:idb/app/services/locator.dart';
+import 'package:idb/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TestService {
@@ -16,6 +17,7 @@ class TestService {
       },
     );
 
+    await loadConfig();
     setupLocator();
   }
 }

@@ -42,19 +42,19 @@ class InputWrapper extends StatefulWidget {
   final Function? onTap;
   final ValueChanged<String>? onFieldSubmitted;
 
-  InputWrapper({
+  const InputWrapper({
     Key? key,
     this.formData,
     required this.name,
     this.errors,
-    this.autofocus: false,
-    this.initialValue: '',
-    this.labelText: '',
-    this.hintText: '',
-    this.isValidateEmpty: true,
-    this.isObscured: false,
-    this.isPassword: false,
-    this.maxLines: 1,
+    this.autofocus = false,
+    this.initialValue = '',
+    this.labelText = '',
+    this.hintText = '',
+    this.isValidateEmpty = true,
+    this.isObscured = false,
+    this.isPassword = false,
+    this.maxLines = 1,
     this.focusNode,
     this.setError,
     this.onChanged,
@@ -66,7 +66,7 @@ class InputWrapper extends StatefulWidget {
     this.onTap,
     this.textInputAction,
     this.textInputType,
-    this.enableInteractiveSelection: true,
+    this.enableInteractiveSelection = true,
     this.prefixIcon,
     this.suffixIcon,
     this.onFieldSubmitted,
@@ -103,9 +103,9 @@ class _InputWrapperState extends State<InputWrapper> {
       setState(() {
         _controller.text = widget.initialValue;
 
-        if (this.widget.isObscured) _isObscured = this.widget.isObscured;
+        if (widget.isObscured) _isObscured = widget.isObscured;
 
-        if (this.widget.isPassword) {
+        if (widget.isPassword) {
           // Obscured fields can not be multilines
           _maxLines = 1;
           _isObscured = true;
@@ -123,7 +123,7 @@ class _InputWrapperState extends State<InputWrapper> {
 
   bool get _isActive {
     if (_hasFocus) return true;
-    if (_controller.text.trim().length > 0) return true;
+    if (_controller.text.trim().isNotEmpty) return true;
     return false;
   }
 
@@ -164,25 +164,25 @@ class _InputWrapperState extends State<InputWrapper> {
   }
 
   void _onChanged(String value) {
-    if (this.widget.store != null) {
-      this.widget.store!.setError(this.widget.name, null);
+    if (widget.store != null) {
+      widget.store!.setError(widget.name, null);
     }
 
     bool hasError = false;
 
-    if (this.widget.regex != null && this.widget.regexError != null && this.widget.store != null) {
-      if (value.isNotEmpty && !this.widget.regex!.hasMatch(value)) {
+    if (widget.regex != null && widget.regexError != null && widget.store != null) {
+      if (value.isNotEmpty && !widget.regex!.hasMatch(value)) {
         hasError = true;
-        this.widget.store!.setError(this.widget.name, this.widget.regexError);
+        widget.store!.setError(widget.name, widget.regexError);
       }
     }
 
-    if (this.widget.minLength != null && this.widget.store != null && !hasError) {
-      if (value.trim().length < this.widget.minLength!) hasError = true;
+    if (widget.minLength != null && widget.store != null && !hasError) {
+      if (value.trim().length < widget.minLength!) hasError = true;
     }
 
-    if (this.widget.maxLength != null && this.widget.store != null && !hasError) {
-      if (value.trim().length > this.widget.maxLength!) hasError = true;
+    if (widget.maxLength != null && widget.store != null && !hasError) {
+      if (value.trim().length > widget.maxLength!) hasError = true;
     }
 
     TextSelection prevSelection = _controller.selection;
@@ -199,13 +199,13 @@ class _InputWrapperState extends State<InputWrapper> {
 
   Widget _wInputField() {
     return TextFormField(
-      autofocus: this.widget.autofocus,
+      autofocus: widget.autofocus,
       scrollPadding: EdgeInsets.all(L.v(30)),
       controller: _controller,
       focusNode: _focusNode,
       textInputAction: widget.textInputAction,
       decoration: InputDecoration(
-        hintText: this.widget.hintText,
+        hintText: widget.hintText,
         hintStyle: Ts.text16(Config.grayColor),
         focusColor: Colors.transparent,
         enabledBorder: InputBorder.none,
@@ -213,7 +213,7 @@ class _InputWrapperState extends State<InputWrapper> {
       ),
       validator: _onValidate,
       onSaved: _onSaved,
-      keyboardType: this.widget.textInputType,
+      keyboardType: widget.textInputType,
       obscureText: _isObscured,
       onChanged: _onChanged,
       maxLines: _maxLines ?? widget.maxLines,
@@ -221,10 +221,10 @@ class _InputWrapperState extends State<InputWrapper> {
       cursorColor: Config.primaryColor,
       onTap: () {
         if (widget.onTap != null) {
-          widget.onTap!(this.context, _controller);
+          widget.onTap!(context, _controller);
         }
       },
-      onFieldSubmitted: this.widget.onFieldSubmitted,
+      onFieldSubmitted: widget.onFieldSubmitted,
       style: Ts.text16(Config.blackColor),
     );
   }
@@ -245,11 +245,11 @@ class _InputWrapperState extends State<InputWrapper> {
 
   Widget _wPrefix() {
     if (_isActive && !_hasError) {
-      if (this.widget.prefixIcon != null) {
+      if (widget.prefixIcon != null) {
         return Padding(
           padding: EdgeInsets.only(left: L.v(20), right: L.v(15)),
           child: Icon(
-            this.widget.prefixIcon,
+            widget.prefixIcon,
             size: L.v(24),
             color: Config.primaryColor,
           ),
@@ -259,11 +259,11 @@ class _InputWrapperState extends State<InputWrapper> {
       return BH(L.v(20));
     }
 
-    if (this.widget.prefixIcon != null) {
+    if (widget.prefixIcon != null) {
       return Padding(
         padding: EdgeInsets.only(left: L.v(20), right: L.v(15)),
         child: Icon(
-          this.widget.prefixIcon,
+          widget.prefixIcon,
           size: L.v(24),
           color: Config.grayColor,
         ),
@@ -274,7 +274,7 @@ class _InputWrapperState extends State<InputWrapper> {
   }
 
   Widget _wSuffix() {
-    if (this.widget.isPassword) {
+    if (widget.isPassword) {
       IconData icon = _isObscured ? CupertinoIcons.eye_slash : CupertinoIcons.eye;
 
       var color = _isActive ? Config.primaryColor : Config.grayColor;
@@ -291,11 +291,11 @@ class _InputWrapperState extends State<InputWrapper> {
     }
 
     if (_isActive && !_hasError) {
-      if (this.widget.suffixIcon != null) {
+      if (widget.suffixIcon != null) {
         return Padding(
           padding: EdgeInsets.only(left: L.v(15), right: L.v(20)),
           child: Icon(
-            this.widget.suffixIcon,
+            widget.suffixIcon,
             size: L.v(24),
             color: Config.primaryColor,
           ),
@@ -305,11 +305,11 @@ class _InputWrapperState extends State<InputWrapper> {
       return BH(L.v(20));
     }
 
-    if (this.widget.suffixIcon != null) {
+    if (widget.suffixIcon != null) {
       return Padding(
         padding: EdgeInsets.only(left: L.v(15), right: L.v(20)),
         child: Icon(
-          this.widget.suffixIcon,
+          widget.suffixIcon,
           size: L.v(24),
           color: Config.grayColor,
         ),

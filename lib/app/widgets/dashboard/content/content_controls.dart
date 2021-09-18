@@ -29,7 +29,7 @@ class ContentControls extends StatelessWidget {
   }
 
   Future<void> _onPressSave(BuildContext context) async {
-    _item.updateItemFromUI(this.item);
+    _item.updateItemFromUI(item);
   }
 
   Future<void> _onPressUpload(BuildContext context) async {
@@ -53,14 +53,14 @@ class ContentControls extends StatelessWidget {
     await showConfirmDialog(
       context,
       'Are you sure?',
-      'Item: ${this.item.name} will be deleted.',
+      'Item: ${item.name} will be deleted.',
       'Delete',
       _onPressDeleteConfirm,
     );
   }
 
   Future<void> _onPressDeleteConfirm() async {
-    bool isDeleted = await _item.deleteItem(this.item.guid);
+    bool isDeleted = await _item.deleteItem(item.guid);
     if (isDeleted) {
       _item.postDeleteItem();
       _scaffold.createAlert('Item deleted');

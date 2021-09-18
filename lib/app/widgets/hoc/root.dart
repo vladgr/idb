@@ -17,10 +17,9 @@ import 'package:idb/app/stores/layout_store.dart';
 import 'package:idb/app/stores/user_store.dart';
 
 class Root extends StatefulWidget {
-  final Key? key;
   final Widget child;
 
-  Root({this.key, required this.child}) : super(key: key);
+  const Root({Key? key, required this.child}) : super(key: key);
 
   @override
   _RootState createState() => _RootState();
@@ -99,7 +98,7 @@ class _RootState extends State<Root> {
 
     return Observer(builder: (BuildContext context) {
       if (_user.isAuthenticated == null || !_layout.isLayoutReady) {
-        return SplashScreen(child: this.widget.child);
+        return SplashScreen(child: widget.child);
       }
 
       return widget.child;

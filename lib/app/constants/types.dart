@@ -1,8 +1,8 @@
-typedef void SetErrorCallback(String name, String? error);
+typedef SetErrorCallback = void Function(String name, String? error);
 
-typedef void BoolCallback(bool value);
+typedef BoolCallback = void Function(bool value);
 
-typedef Future<void> FutureVoidCallback();
+typedef FutureVoidCallback = Future<void> Function();
 
 abstract class IStore {
   void clearErrors();

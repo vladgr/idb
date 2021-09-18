@@ -15,19 +15,19 @@ abstract class _SettingsStore with Store {
 
     // Set by default current user to settings
     if (user.profile != null) {
-      this.selectedUserIds = [user.profile!.id];
+      selectedUserIds = [user.profile!.id];
     }
   }
 
   @action
   void toggleUser(int value) {
-    final l = [...this.selectedUserIds];
+    final l = [...selectedUserIds];
     if (l.contains(value)) {
       l.remove(value);
     } else {
       l.add(value);
     }
 
-    this.selectedUserIds = l;
+    selectedUserIds = l;
   }
 }

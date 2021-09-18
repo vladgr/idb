@@ -117,7 +117,7 @@ class ContentBoxReadMode extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
-      children: this.item.htmlParts.map((s) => _wBlock(s)).toList(),
+      children: item.htmlParts.map((s) => _wBlock(s)).toList(),
     );
   }
 }

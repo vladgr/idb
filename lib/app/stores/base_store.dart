@@ -9,26 +9,28 @@ abstract class _BaseStore with Store implements IStore {
   @observable
   dynamic errors;
 
+  @override
   @action
   void clearErrors() {
-    this.errors = null;
+    errors = null;
   }
 
+  @override
   @action
   void setError(String key, value) {
-    dynamic er = this.errors;
-    if (er == null) er = {};
+    dynamic er = errors;
+    er ??= {};
     er[key] = [value];
-    this.errors = er;
+    errors = er;
   }
 
   @computed
   bool get hasError {
-    if (this.errors == null) return false;
+    if (errors == null) return false;
 
-    for (var key in this.errors.keys) {
-      if (this.errors[key] != null) {
-        var obj = this.errors[key]!;
+    for (var key in errors.keys) {
+      if (errors[key] != null) {
+        var obj = errors[key]!;
 
         if (obj is List) {
           for (var v in obj) {
@@ -48,6 +50,6 @@ abstract class _BaseStore with Store implements IStore {
 
   @action
   void setInProgress(bool value) {
-    this.isInprogress = value;
+    isInprogress = value;
   }
 }

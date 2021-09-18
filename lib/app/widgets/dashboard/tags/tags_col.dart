@@ -17,7 +17,7 @@ class TagsCol extends StatelessWidget {
     return Observer(builder: (BuildContext context) {
       final tags = _tag.tags;
 
-      if (tags.length == 0) {
+      if (tags.isEmpty) {
         return Empty();
       }
 

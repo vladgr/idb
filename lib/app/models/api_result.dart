@@ -2,7 +2,7 @@ class ApiResult {
   bool isError;
   dynamic data;
 
-  ApiResult({this.isError: false});
+  ApiResult({this.isError = false});
 
   @override
   String toString() {

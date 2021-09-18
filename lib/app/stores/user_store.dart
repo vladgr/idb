@@ -27,19 +27,19 @@ abstract class _UserStore extends BaseStore with Store {
 
   @computed
   bool get isAdmin {
-    if (this.profile == null) return false;
-    return this.profile!.isAdmin ? true : false;
+    if (profile == null) return false;
+    return profile!.isAdmin ? true : false;
   }
 
   @action
   void clear() {
-    this.isInprogress = false;
+    isInprogress = false;
   }
 
   @action
   Future<void> init() async {
-    await this.fetchProfile();
-    await this.fetchUsers();
+    await fetchProfile();
+    await fetchUsers();
   }
 
   // Check token locally
@@ -48,57 +48,57 @@ abstract class _UserStore extends BaseStore with Store {
   Future<void> checkLocalToken() async {
     var token = await Token.getToken();
     if (token == null) {
-      this.accessToken = null;
-      this.isAuthenticated = false;
+      accessToken = null;
+      isAuthenticated = false;
     } else {
-      this.accessToken = token;
-      this.isAuthenticated = true;
+      accessToken = token;
+      isAuthenticated = true;
     }
   }
 
   @action
   Future<void> logout() async {
     await Token.removeToken();
-    this.accessToken = null;
-    this.isAuthenticated = false;
+    accessToken = null;
+    isAuthenticated = false;
 
     Timer(Duration(seconds: 3), () {
-      this.profile = null;
+      profile = null;
     });
   }
 
   @action
   Future<void> login(dynamic data, VoidCallback onSuccess) async {
-    this.isInprogress = true;
-    this.errors = null;
+    isInprogress = true;
+    errors = null;
 
     var result = await apiCall(Config.apiLoginUrl, 'POST', data, false);
     if (result.isError) {
-      this.errors = result.data;
+      errors = result.data;
     } else {
       Token.setToken(result.data['token']);
-      this.accessToken = result.data['token'];
-      this.isAuthenticated = true;
+      accessToken = result.data['token'];
+      isAuthenticated = true;
 
       onSuccess();
     }
 
-    this.isInprogress = false;
+    isInprogress = false;
   }
 
   @action
   Future<void> fetchProfile() async {
-    this.isInprogress = true;
-    this.errors = null;
+    isInprogress = true;
+    errors = null;
 
     var result = await apiCall(Config.apiProfileUrl, 'GET', {}, true);
     if (result.isError) {
-      this.logout();
+      logout();
     } else {
-      this.profile = User.fromJson(result.data);
+      profile = User.fromJson(result.data);
     }
 
-    this.isInprogress = false;
+    isInprogress = false;
   }
 
   @action
@@ -110,7 +110,7 @@ abstract class _UserStore extends BaseStore with Store {
         l.add(User.fromJson(d));
       }
 
-      this.users = l;
+      users = l;
     }
   }
 }

@@ -20,6 +20,8 @@ import 'app/widgets/shortcuts/app_shortcuts.dart';
 class MyApp extends StatelessWidget {
   final ns = GetIt.I<NavigationService>();
 
+  MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
