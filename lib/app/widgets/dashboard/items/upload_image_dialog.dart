@@ -67,7 +67,7 @@ class _UploadImageDialogState extends State<UploadImageDialog> {
     if (isWeb) {
       bytes = widget.file.bytes!;
     } else {
-      final File f = File(widget.file.path);
+      final File f = File(widget.file.path!);
       bytes = await f.readAsBytes();
     }
 
