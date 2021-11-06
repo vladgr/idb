@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:idb/app/screens/splash_screen.dart';
+import 'package:idb/app/services/helpers.dart';
 import 'package:idb/app/services/l.dart';
 import 'package:idb/app/services/logger_service.dart';
 import 'package:idb/app/stores/item_store.dart';
@@ -95,25 +96,28 @@ class _HomeScreenState extends State<HomeScreen> {
         return SplashScreen();
       }
 
-      return Scaffold(
-        endDrawer: _layout.isDesktop ? null : TagsDrawer(),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-        floatingActionButton: CreateItemButton(),
-        body: SingleChildScrollView(
-          physics: ClampingScrollPhysics(),
-          child: Column(
-            children: <Widget>[
-              Navbar(),
-              BR(L.v(20)),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _wItemsCol(),
-                  _wContentCol(),
-                  _wTagsCol(),
-                ],
-              ),
-            ],
+      return SafeArea(
+        top: isMobile ? true : false,
+        child: Scaffold(
+          endDrawer: _layout.isDesktop ? null : TagsDrawer(),
+          floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+          floatingActionButton: CreateItemButton(),
+          body: SingleChildScrollView(
+            physics: ClampingScrollPhysics(),
+            child: Column(
+              children: <Widget>[
+                Navbar(),
+                BR(L.v(20)),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _wItemsCol(),
+                    _wContentCol(),
+                    _wTagsCol(),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       );

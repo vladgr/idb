@@ -133,6 +133,10 @@ bool get isWeb {
   return kIsWeb;
 }
 
+bool get isMobile {
+  return (isIOS || isAndroid) ? true : false;
+}
+
 Future<void> showConfirmDialog(
   BuildContext context,
   String title,

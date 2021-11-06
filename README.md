@@ -8,9 +8,9 @@
 
 This project was originally made on Django many years ago, then ported to React Web PWA and as of September, 2021 ported to Flutter.
 
-95% of time I use it on Desktop, so compiled it to Mac desktop app.
+App is compiled to Mac desktop app and iOS app.
 
-Also deployed Web PWA to server to use it on any other devices (phones, tablets). Web and Mac are ready for use, everything else is supported, but not tested.
+Also deployed Web PWA to server to use it on any other devices (phones, tablets). Web, Mac and iOS are ready for use, everything else is supported, but not tested.
 
 PKB has simple and comfortable UI that allows to find anything in few seconds.
 
