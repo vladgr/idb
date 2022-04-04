@@ -30,6 +30,21 @@ flutter pub get
 cd ios && pod install --repo-update
 
 
+elif [ "$1" == "cleanmac" ]
+then
+clear
+
+flutter clean
+rm -rf macos/Runner.xcworkspace
+rm -rf macos/Pods
+rm -f macos/Podfile.lock
+rm -f pubspec.lock
+rm -f .packages
+
+flutter pub get
+cd macos && pod install --repo-update
+
+
 elif [ "$1" == "deploytoiphone" ]
 then
 clear
