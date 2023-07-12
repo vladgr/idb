@@ -3,6 +3,7 @@ import 'package:mobx/mobx.dart';
 
 part 'base_store.g.dart';
 
+// ignore: library_private_types_in_public_api
 class BaseStore = _BaseStore with _$BaseStore;
 
 abstract class _BaseStore with Store implements IStore {

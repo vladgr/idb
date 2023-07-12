@@ -22,6 +22,7 @@ class Root extends StatefulWidget {
   const Root({Key? key, required this.child}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _RootState createState() => _RootState();
 }
 

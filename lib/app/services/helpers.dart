@@ -159,6 +159,7 @@ Future<void> showConfirmDialog(
           child: Text(buttonText, style: Ts.text18(Config.redColor)),
           onPressed: () async {
             await onPressed();
+            // ignore: use_build_context_synchronously
             Navigator.of(context).pop();
           },
         ),

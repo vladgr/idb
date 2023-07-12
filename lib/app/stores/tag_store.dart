@@ -11,6 +11,7 @@ import 'package:mobx/mobx.dart';
 
 part 'tag_store.g.dart';
 
+// ignore: library_private_types_in_public_api
 class TagStore = _TagStore with _$TagStore;
 
 abstract class _TagStore extends BaseStore with Store {
@@ -24,17 +25,17 @@ abstract class _TagStore extends BaseStore with Store {
   // returns tags that exist in items
   @computed
   List<Tag> get tags {
-    final _item = GetIt.I<ItemStore>();
-    final _search = GetIt.I<SearchStore>();
+    final item = GetIt.I<ItemStore>();
+    final search = GetIt.I<SearchStore>();
 
     var allTags = map.values.toList();
 
-    if (_item.map.isEmpty || _search.text.isEmpty) {
+    if (item.map.isEmpty || search.text.isEmpty) {
       return allTags;
     }
 
     Set<Tag> tagsSet = <Tag>{};
-    for (var item in _item.map.values) {
+    for (var item in item.map.values) {
       tagsSet.addAll(item.tags);
     }
 

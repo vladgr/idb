@@ -16,6 +16,7 @@ class ContentBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: no_leading_underscores_for_local_identifiers
     final _item = GetIt.I<ItemStore>();
 
     return Observer(builder: (BuildContext context) {

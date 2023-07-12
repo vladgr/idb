@@ -5,3 +5,6 @@ linter:
     prefer_const_constructors: false
     prefer_final_fields: false
     prefer_single_quotes: true
+    no_leading_underscores_for_local_identifiers: false
+
+

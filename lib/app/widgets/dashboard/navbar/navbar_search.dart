@@ -16,6 +16,7 @@ class NavbarSearch extends StatefulWidget {
   const NavbarSearch({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _NavbarSearchState createState() => _NavbarSearchState();
 }
 
@@ -74,7 +75,7 @@ class _NavbarSearchState extends State<NavbarSearch> {
         child: SizedBox(
           width: _width,
           height: L.v(40),
-          child: TextField(
+          child: TextFormField(
             focusNode: _layout.searchFocusNode,
             controller: _layout.searchController,
             cursorWidth: 1,

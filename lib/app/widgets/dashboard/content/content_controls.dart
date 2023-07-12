@@ -1,5 +1,4 @@
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
@@ -23,6 +22,7 @@ class ContentControls extends StatelessWidget {
 
   final _item = GetIt.I<ItemStore>();
   final _scaffold = GetIt.I<ScaffoldService>();
+  final _user = GetIt.I<UserStore>();
 
   double get _iconSize {
     return L.v(20);
@@ -41,6 +41,7 @@ class ContentControls extends StatelessWidget {
     if (result != null) {
       final file = result.files.first;
 
+      // ignore: use_build_context_synchronously
       await showDialog(
         barrierDismissible: true,
         context: context,
@@ -71,9 +72,6 @@ class ContentControls extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _item = GetIt.I<ItemStore>();
-    final _user = GetIt.I<UserStore>();
-
     return Observer(builder: (BuildContext context) {
       double opacity = _item.isEditModeEnabled ? 1 : 0;
 

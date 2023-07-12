@@ -4,6 +4,7 @@ import 'package:mobx/mobx.dart';
 
 part 'settings_store.g.dart';
 
+// ignore: library_private_types_in_public_api
 class SettingsStore = _SettingsStore with _$SettingsStore;
 
 abstract class _SettingsStore with Store {

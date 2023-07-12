@@ -1,3 +1,5 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -28,8 +30,8 @@ class ContentBoxReadMode extends StatelessWidget {
   /// Render HTML string with custom styling
   Widget _wHtml(String htmlString) {
     return Html(
-      onAnchorTap: (url, _, __, ___) {
-        if (url != null) launch(url);
+      onAnchorTap: (url, _, __) {
+        if (url != null) launchUrl(Uri.parse(url));
       },
       data: htmlString,
       style: {
@@ -38,8 +40,8 @@ class ContentBoxReadMode extends StatelessWidget {
           fontFamily: 'Roboto',
           fontWeight: FontWeight.w400,
           color: Colors.black87,
-          padding: EdgeInsets.all(0),
-          margin: EdgeInsets.all(0),
+          padding: HtmlPaddings.all(0),
+          margin: Margins.all(0),
         ),
         'code': Style(
           backgroundColor: _backgroundColor,
@@ -48,7 +50,7 @@ class ContentBoxReadMode extends StatelessWidget {
           color: Config.primaryColor,
         ),
         'pre': Style(
-          padding: EdgeInsets.only(
+          padding: HtmlPaddings.only(
             top: L.v(10),
             left: L.v(10),
             right: L.v(10),
@@ -73,7 +75,7 @@ class ContentBoxReadMode extends StatelessWidget {
           color: Config.primaryColor,
         ),
         'p': Style(
-          margin: EdgeInsets.all(L.v(5)),
+          margin: Margins.all(L.v(5)),
         ),
         'img.item-image': Style(),
       },

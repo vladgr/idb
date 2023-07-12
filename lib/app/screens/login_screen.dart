@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:idb/app/constants/constants.dart';
@@ -20,6 +19,7 @@ class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _LoginScreenState createState() => _LoginScreenState();
 }
 
@@ -61,6 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
       'password': _password,
     };
     await _user.login(data, _onSuccess);
+    // ignore: use_build_context_synchronously
     dismissKeyboard(context);
   }
 

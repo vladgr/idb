@@ -50,7 +50,7 @@ Future<ApiResult> apiCall(String url, String method, dynamic data, bool isAuth) 
 
   try {
     if (isAuth) {
-      headers['Authorization'] = 'Token ' + token!;
+      headers['Authorization'] = 'Token ${token!}';
     }
 
     if (method == 'get') {

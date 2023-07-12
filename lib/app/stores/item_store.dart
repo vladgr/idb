@@ -14,6 +14,7 @@ import 'package:mobx/mobx.dart';
 
 part 'item_store.g.dart';
 
+// ignore: library_private_types_in_public_api
 class ItemStore = _ItemStore with _$ItemStore;
 
 abstract class _ItemStore extends BaseStore with Store {
@@ -54,8 +55,8 @@ abstract class _ItemStore extends BaseStore with Store {
 
   @action
   Future<void> fetchItems() async {
-    final _search = GetIt.I<SearchStore>();
-    if (_search.text.length < 3) return;
+    final search = GetIt.I<SearchStore>();
+    if (search.text.length < 3) return;
 
     final url = '${Config.apiItemsUrl}?$_queryString';
     var result = await apiCall(url, 'GET', {}, true);

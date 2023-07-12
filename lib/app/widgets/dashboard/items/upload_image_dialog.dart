@@ -26,6 +26,7 @@ class UploadImageDialog extends StatefulWidget {
   }) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _UploadImageDialogState createState() => _UploadImageDialogState();
 }
 
@@ -80,6 +81,7 @@ class _UploadImageDialogState extends State<UploadImageDialog> {
       await FlutterClipboard.copy(info);
 
       _scaffold.createAlert('Image info copied to clipboard', seconds: 1);
+      // ignore: use_build_context_synchronously
       Navigator.of(context).pop();
     }
   }

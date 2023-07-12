@@ -10,6 +10,7 @@ import 'package:mobx/mobx.dart';
 
 part 'upload_store.g.dart';
 
+// ignore: library_private_types_in_public_api
 class UploadStore = _UploadStore with _$UploadStore;
 
 abstract class _UploadStore extends BaseStore with Store {

@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:idb/app/config.dart';
 
 class AppButton extends StatelessWidget {
@@ -21,8 +20,8 @@ class AppButton extends StatelessWidget {
       child: CupertinoButton(
         disabledColor: Config.primaryColor.withOpacity(0.4),
         color: Config.primaryColor,
-        child: Text(text),
         onPressed: isDisabled ? null : onPressed,
+        child: Text(text),
       ),
     );
   }

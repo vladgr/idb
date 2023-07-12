@@ -4,7 +4,7 @@ import 'package:idb/app/config.dart';
 import '../test_service.dart';
 
 void main() {
-  final _ts = TestService();
+  final ts = TestService();
 
   String data = '''
   something
@@ -15,7 +15,7 @@ void main() {
   ''';
 
   test('Test parsing image', () async {
-    await _ts.init();
+    await ts.init();
 
     final re = RegExp(r'\[img:(.*?)\]', dotAll: true);
 

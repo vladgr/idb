@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
@@ -35,9 +34,9 @@ class CreateItemButton extends StatelessWidget {
             builder: (context) => CreateItemDialog(),
           );
         },
-        child: Icon(Icons.add),
         backgroundColor: Config.primaryColor,
         foregroundColor: Colors.white,
+        child: Icon(Icons.add),
       );
     });
   }

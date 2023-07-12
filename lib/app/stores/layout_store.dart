@@ -8,6 +8,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 part 'layout_store.g.dart';
 
+// ignore: library_private_types_in_public_api
 class LayoutStore = _LayoutStore with _$LayoutStore;
 
 abstract class _LayoutStore with Store {

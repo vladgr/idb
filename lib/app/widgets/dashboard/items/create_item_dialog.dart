@@ -17,6 +17,7 @@ class CreateItemDialog extends StatefulWidget {
   const CreateItemDialog({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _CreateItemDialogState createState() => _CreateItemDialogState();
 }
 
@@ -48,6 +49,7 @@ class _CreateItemDialogState extends State<CreateItemDialog> {
     if (isCreated) {
       _scaffold.createAlert('Item created', seconds: 1);
       _layout.searchController.text = _name;
+      // ignore: use_build_context_synchronously
       Navigator.of(context).pop();
     }
   }
