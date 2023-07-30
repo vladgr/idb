@@ -6,10 +6,11 @@ part of 'settings_store.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$SettingsStore on _SettingsStore, Store {
-  final _$selectedUserIdsAtom = Atom(name: '_SettingsStore.selectedUserIds');
+  late final _$selectedUserIdsAtom =
+      Atom(name: '_SettingsStore.selectedUserIds', context: context);
 
   @override
   List<int> get selectedUserIds {
@@ -24,8 +25,8 @@ mixin _$SettingsStore on _SettingsStore, Store {
     });
   }
 
-  final _$_SettingsStoreActionController =
-      ActionController(name: '_SettingsStore');
+  late final _$_SettingsStoreActionController =
+      ActionController(name: '_SettingsStore', context: context);
 
   @override
   void toggleUser(int value) {

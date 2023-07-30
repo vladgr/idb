@@ -6,7 +6,7 @@ part of 'base_store.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$BaseStore on _BaseStore, Store {
   Computed<bool>? _$hasErrorComputed;
@@ -16,7 +16,7 @@ mixin _$BaseStore on _BaseStore, Store {
           Computed<bool>(() => super.hasError, name: '_BaseStore.hasError'))
       .value;
 
-  final _$errorsAtom = Atom(name: '_BaseStore.errors');
+  late final _$errorsAtom = Atom(name: '_BaseStore.errors', context: context);
 
   @override
   dynamic get errors {
@@ -31,7 +31,8 @@ mixin _$BaseStore on _BaseStore, Store {
     });
   }
 
-  final _$isInprogressAtom = Atom(name: '_BaseStore.isInprogress');
+  late final _$isInprogressAtom =
+      Atom(name: '_BaseStore.isInprogress', context: context);
 
   @override
   bool get isInprogress {
@@ -46,7 +47,8 @@ mixin _$BaseStore on _BaseStore, Store {
     });
   }
 
-  final _$_BaseStoreActionController = ActionController(name: '_BaseStore');
+  late final _$_BaseStoreActionController =
+      ActionController(name: '_BaseStore', context: context);
 
   @override
   void clearErrors() {

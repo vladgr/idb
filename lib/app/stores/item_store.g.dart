@@ -6,7 +6,7 @@ part of 'item_store.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$ItemStore on _ItemStore, Store {
   Computed<bool>? _$hasSelectedItemComputed;
@@ -23,7 +23,7 @@ mixin _$ItemStore on _ItemStore, Store {
           Computed<int>(() => super.count, name: '_ItemStore.count'))
       .value;
 
-  final _$mapAtom = Atom(name: '_ItemStore.map');
+  late final _$mapAtom = Atom(name: '_ItemStore.map', context: context);
 
   @override
   Map<int, Item> get map {
@@ -38,7 +38,8 @@ mixin _$ItemStore on _ItemStore, Store {
     });
   }
 
-  final _$selectedItemAtom = Atom(name: '_ItemStore.selectedItem');
+  late final _$selectedItemAtom =
+      Atom(name: '_ItemStore.selectedItem', context: context);
 
   @override
   Item? get selectedItem {
@@ -53,7 +54,8 @@ mixin _$ItemStore on _ItemStore, Store {
     });
   }
 
-  final _$isEditModeEnabledAtom = Atom(name: '_ItemStore.isEditModeEnabled');
+  late final _$isEditModeEnabledAtom =
+      Atom(name: '_ItemStore.isEditModeEnabled', context: context);
 
   @override
   bool get isEditModeEnabled {
@@ -68,21 +70,24 @@ mixin _$ItemStore on _ItemStore, Store {
     });
   }
 
-  final _$fetchItemsAsyncAction = AsyncAction('_ItemStore.fetchItems');
+  late final _$fetchItemsAsyncAction =
+      AsyncAction('_ItemStore.fetchItems', context: context);
 
   @override
   Future<void> fetchItems() {
     return _$fetchItemsAsyncAction.run(() => super.fetchItems());
   }
 
-  final _$fetchItemAsyncAction = AsyncAction('_ItemStore.fetchItem');
+  late final _$fetchItemAsyncAction =
+      AsyncAction('_ItemStore.fetchItem', context: context);
 
   @override
   Future<void> fetchItem(String guid) {
     return _$fetchItemAsyncAction.run(() => super.fetchItem(guid));
   }
 
-  final _$createItemAsyncAction = AsyncAction('_ItemStore.createItem');
+  late final _$createItemAsyncAction =
+      AsyncAction('_ItemStore.createItem', context: context);
 
   @override
   Future<bool> createItem(String name, String content, List<int> tagIds) {
@@ -90,8 +95,8 @@ mixin _$ItemStore on _ItemStore, Store {
         .run(() => super.createItem(name, content, tagIds));
   }
 
-  final _$updateItemFromUIAsyncAction =
-      AsyncAction('_ItemStore.updateItemFromUI');
+  late final _$updateItemFromUIAsyncAction =
+      AsyncAction('_ItemStore.updateItemFromUI', context: context);
 
   @override
   Future<bool> updateItemFromUI(Item item) {
@@ -99,7 +104,8 @@ mixin _$ItemStore on _ItemStore, Store {
         .run(() => super.updateItemFromUI(item));
   }
 
-  final _$updateItemAsyncAction = AsyncAction('_ItemStore.updateItem');
+  late final _$updateItemAsyncAction =
+      AsyncAction('_ItemStore.updateItem', context: context);
 
   @override
   Future<bool> updateItem(String guid, String content, List<int> tagIds) {
@@ -107,22 +113,24 @@ mixin _$ItemStore on _ItemStore, Store {
         .run(() => super.updateItem(guid, content, tagIds));
   }
 
-  final _$deleteItemAsyncAction = AsyncAction('_ItemStore.deleteItem');
+  late final _$deleteItemAsyncAction =
+      AsyncAction('_ItemStore.deleteItem', context: context);
 
   @override
   Future<bool> deleteItem(String guid) {
     return _$deleteItemAsyncAction.run(() => super.deleteItem(guid));
   }
 
-  final _$setAndFetchItemAsyncAction =
-      AsyncAction('_ItemStore.setAndFetchItem');
+  late final _$setAndFetchItemAsyncAction =
+      AsyncAction('_ItemStore.setAndFetchItem', context: context);
 
   @override
   Future<void> setAndFetchItem(Item value) {
     return _$setAndFetchItemAsyncAction.run(() => super.setAndFetchItem(value));
   }
 
-  final _$_ItemStoreActionController = ActionController(name: '_ItemStore');
+  late final _$_ItemStoreActionController =
+      ActionController(name: '_ItemStore', context: context);
 
   @override
   void clear() {

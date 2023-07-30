@@ -78,6 +78,7 @@ abstract class _ItemStore extends BaseStore with Store {
 
     var result = await apiCall(url, 'GET', {}, true);
     if (!result.isError) {
+      selectedItem = null;
       selectedItem = Item.fromJson(result.data);
     }
   }
@@ -146,6 +147,7 @@ abstract class _ItemStore extends BaseStore with Store {
       return false;
     }
 
+    selectedItem = null;
     selectedItem = Item.fromJson(result.data);
     return true;
   }

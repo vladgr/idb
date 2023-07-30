@@ -77,7 +77,9 @@ class ContentBoxReadMode extends StatelessWidget {
         'p': Style(
           margin: Margins.all(L.v(5)),
         ),
-        'img.item-image': Style(),
+        'img.item-image': Style(
+          display: Display.inline,
+        ),
       },
     );
   }

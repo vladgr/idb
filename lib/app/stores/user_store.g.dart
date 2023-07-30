@@ -6,7 +6,7 @@ part of 'user_store.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$UserStore on _UserStore, Store {
   Computed<bool>? _$isAdminComputed;
@@ -16,7 +16,8 @@ mixin _$UserStore on _UserStore, Store {
           Computed<bool>(() => super.isAdmin, name: '_UserStore.isAdmin'))
       .value;
 
-  final _$isAuthenticatedAtom = Atom(name: '_UserStore.isAuthenticated');
+  late final _$isAuthenticatedAtom =
+      Atom(name: '_UserStore.isAuthenticated', context: context);
 
   @override
   bool? get isAuthenticated {
@@ -31,7 +32,7 @@ mixin _$UserStore on _UserStore, Store {
     });
   }
 
-  final _$profileAtom = Atom(name: '_UserStore.profile');
+  late final _$profileAtom = Atom(name: '_UserStore.profile', context: context);
 
   @override
   User? get profile {
@@ -46,7 +47,8 @@ mixin _$UserStore on _UserStore, Store {
     });
   }
 
-  final _$accessTokenAtom = Atom(name: '_UserStore.accessToken');
+  late final _$accessTokenAtom =
+      Atom(name: '_UserStore.accessToken', context: context);
 
   @override
   String? get accessToken {
@@ -61,7 +63,7 @@ mixin _$UserStore on _UserStore, Store {
     });
   }
 
-  final _$usersAtom = Atom(name: '_UserStore.users');
+  late final _$usersAtom = Atom(name: '_UserStore.users', context: context);
 
   @override
   List<User> get users {
@@ -76,50 +78,56 @@ mixin _$UserStore on _UserStore, Store {
     });
   }
 
-  final _$initAsyncAction = AsyncAction('_UserStore.init');
+  late final _$initAsyncAction =
+      AsyncAction('_UserStore.init', context: context);
 
   @override
   Future<void> init() {
     return _$initAsyncAction.run(() => super.init());
   }
 
-  final _$checkLocalTokenAsyncAction =
-      AsyncAction('_UserStore.checkLocalToken');
+  late final _$checkLocalTokenAsyncAction =
+      AsyncAction('_UserStore.checkLocalToken', context: context);
 
   @override
   Future<void> checkLocalToken() {
     return _$checkLocalTokenAsyncAction.run(() => super.checkLocalToken());
   }
 
-  final _$logoutAsyncAction = AsyncAction('_UserStore.logout');
+  late final _$logoutAsyncAction =
+      AsyncAction('_UserStore.logout', context: context);
 
   @override
   Future<void> logout() {
     return _$logoutAsyncAction.run(() => super.logout());
   }
 
-  final _$loginAsyncAction = AsyncAction('_UserStore.login');
+  late final _$loginAsyncAction =
+      AsyncAction('_UserStore.login', context: context);
 
   @override
   Future<void> login(dynamic data, VoidCallback onSuccess) {
     return _$loginAsyncAction.run(() => super.login(data, onSuccess));
   }
 
-  final _$fetchProfileAsyncAction = AsyncAction('_UserStore.fetchProfile');
+  late final _$fetchProfileAsyncAction =
+      AsyncAction('_UserStore.fetchProfile', context: context);
 
   @override
   Future<void> fetchProfile() {
     return _$fetchProfileAsyncAction.run(() => super.fetchProfile());
   }
 
-  final _$fetchUsersAsyncAction = AsyncAction('_UserStore.fetchUsers');
+  late final _$fetchUsersAsyncAction =
+      AsyncAction('_UserStore.fetchUsers', context: context);
 
   @override
   Future<void> fetchUsers() {
     return _$fetchUsersAsyncAction.run(() => super.fetchUsers());
   }
 
-  final _$_UserStoreActionController = ActionController(name: '_UserStore');
+  late final _$_UserStoreActionController =
+      ActionController(name: '_UserStore', context: context);
 
   @override
   void clear() {

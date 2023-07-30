@@ -6,7 +6,7 @@ part of 'tag_store.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$TagStore on _TagStore, Store {
   Computed<List<Tag>>? _$tagsComputed;
@@ -16,7 +16,7 @@ mixin _$TagStore on _TagStore, Store {
           Computed<List<Tag>>(() => super.tags, name: '_TagStore.tags'))
       .value;
 
-  final _$mapAtom = Atom(name: '_TagStore.map');
+  late final _$mapAtom = Atom(name: '_TagStore.map', context: context);
 
   @override
   Map<int, Tag> get map {
@@ -31,7 +31,8 @@ mixin _$TagStore on _TagStore, Store {
     });
   }
 
-  final _$selectedTagsAtom = Atom(name: '_TagStore.selectedTags');
+  late final _$selectedTagsAtom =
+      Atom(name: '_TagStore.selectedTags', context: context);
 
   @override
   List<Tag> get selectedTags {
@@ -46,14 +47,16 @@ mixin _$TagStore on _TagStore, Store {
     });
   }
 
-  final _$fetchTagsAsyncAction = AsyncAction('_TagStore.fetchTags');
+  late final _$fetchTagsAsyncAction =
+      AsyncAction('_TagStore.fetchTags', context: context);
 
   @override
   Future<void> fetchTags() {
     return _$fetchTagsAsyncAction.run(() => super.fetchTags());
   }
 
-  final _$_TagStoreActionController = ActionController(name: '_TagStore');
+  late final _$_TagStoreActionController =
+      ActionController(name: '_TagStore', context: context);
 
   @override
   void clear() {

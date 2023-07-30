@@ -6,7 +6,7 @@ part of 'layout_store.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$LayoutStore on _LayoutStore, Store {
   Computed<double>? _$contentHeightComputed;
@@ -24,7 +24,8 @@ mixin _$LayoutStore on _LayoutStore, Store {
               name: '_LayoutStore.safeAreaHeight'))
           .value;
 
-  final _$isLayoutReadyAtom = Atom(name: '_LayoutStore.isLayoutReady');
+  late final _$isLayoutReadyAtom =
+      Atom(name: '_LayoutStore.isLayoutReady', context: context);
 
   @override
   bool get isLayoutReady {
@@ -39,7 +40,8 @@ mixin _$LayoutStore on _LayoutStore, Store {
     });
   }
 
-  final _$isKeyboardVisibleAtom = Atom(name: '_LayoutStore.isKeyboardVisible');
+  late final _$isKeyboardVisibleAtom =
+      Atom(name: '_LayoutStore.isKeyboardVisible', context: context);
 
   @override
   bool get isKeyboardVisible {
@@ -54,7 +56,8 @@ mixin _$LayoutStore on _LayoutStore, Store {
     });
   }
 
-  final _$orientationAtom = Atom(name: '_LayoutStore.orientation');
+  late final _$orientationAtom =
+      Atom(name: '_LayoutStore.orientation', context: context);
 
   @override
   Orientation? get orientation {
@@ -69,7 +72,7 @@ mixin _$LayoutStore on _LayoutStore, Store {
     });
   }
 
-  final _$widthAtom = Atom(name: '_LayoutStore.width');
+  late final _$widthAtom = Atom(name: '_LayoutStore.width', context: context);
 
   @override
   double get width {
@@ -84,7 +87,7 @@ mixin _$LayoutStore on _LayoutStore, Store {
     });
   }
 
-  final _$heightAtom = Atom(name: '_LayoutStore.height');
+  late final _$heightAtom = Atom(name: '_LayoutStore.height', context: context);
 
   @override
   double get height {
@@ -99,7 +102,8 @@ mixin _$LayoutStore on _LayoutStore, Store {
     });
   }
 
-  final _$paddingTopAtom = Atom(name: '_LayoutStore.paddingTop');
+  late final _$paddingTopAtom =
+      Atom(name: '_LayoutStore.paddingTop', context: context);
 
   @override
   double get paddingTop {
@@ -114,7 +118,8 @@ mixin _$LayoutStore on _LayoutStore, Store {
     });
   }
 
-  final _$isMobileAtom = Atom(name: '_LayoutStore.isMobile');
+  late final _$isMobileAtom =
+      Atom(name: '_LayoutStore.isMobile', context: context);
 
   @override
   bool get isMobile {
@@ -129,7 +134,8 @@ mixin _$LayoutStore on _LayoutStore, Store {
     });
   }
 
-  final _$isTabletAtom = Atom(name: '_LayoutStore.isTablet');
+  late final _$isTabletAtom =
+      Atom(name: '_LayoutStore.isTablet', context: context);
 
   @override
   bool get isTablet {
@@ -144,7 +150,8 @@ mixin _$LayoutStore on _LayoutStore, Store {
     });
   }
 
-  final _$isDesktopAtom = Atom(name: '_LayoutStore.isDesktop');
+  late final _$isDesktopAtom =
+      Atom(name: '_LayoutStore.isDesktop', context: context);
 
   @override
   bool get isDesktop {
@@ -159,7 +166,8 @@ mixin _$LayoutStore on _LayoutStore, Store {
     });
   }
 
-  final _$versionAtom = Atom(name: '_LayoutStore.version');
+  late final _$versionAtom =
+      Atom(name: '_LayoutStore.version', context: context);
 
   @override
   String get version {
@@ -174,14 +182,16 @@ mixin _$LayoutStore on _LayoutStore, Store {
     });
   }
 
-  final _$initAsyncAction = AsyncAction('_LayoutStore.init');
+  late final _$initAsyncAction =
+      AsyncAction('_LayoutStore.init', context: context);
 
   @override
   Future<void> init() {
     return _$initAsyncAction.run(() => super.init());
   }
 
-  final _$_LayoutStoreActionController = ActionController(name: '_LayoutStore');
+  late final _$_LayoutStoreActionController =
+      ActionController(name: '_LayoutStore', context: context);
 
   @override
   void setOrientation(Orientation value) {
